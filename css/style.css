@@ -1,0 +1,109 @@
+body{
+    /* border: 1px red solid; */
+    min-height: 800px;
+}
+
+/* navigation */
+#nav_head{ background-color:#0a0908}
+#nav_head a {color:white;}
+.nav_form a{
+    text-decoration: none;
+    margin:10px;
+}
+
+ /* 1st section */
+.header_container{
+    background-image:url("../assets/images/realbg.jpg");
+    min-height: 200px;
+    width:100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: contain;
+    
+}
+.overlay{
+    background-color:rgba(0,0,0,0.7);
+    min-height: 700px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color:white;
+    
+}
+
+/* cards */
+.view_container-second a {
+    text-decoration: none;
+    color:black;
+}
+.view_container-second{
+    display:flex;
+    justify-content: space-between;
+}
+.card_container{
+    min-height:500px;
+}
+.card_container a{
+    text-decoration: none;
+    color:white; 
+}
+
+ /* footer section  */
+ footer{
+    /* border: 1px red solid;  */
+    min-height: 200px;
+    background-color:#0a0908;  
+}
+
+.footer_container-margin{ margin-top :10px} 
+
+.footer_container h6 , h5{
+    color:white;
+    margin-left:30px;
+    font-weight: bold;
+    /* margin-top:0px; */
+} 
+ 
+.footer_container ul li {
+    list-style-type: none;
+    padding-top: 10px;      
+ }   
+ 
+.footer_container ul li a , p{
+   text-decoration: none;
+   color: gray;
+}  
+.footer_container a{
+
+    text-decoration: none;
+    color: gray;
+ } 
+.footer_container ul li a:hover{
+   color:white; 
+ }   
+
+
+
+
+
+
+
+ /* login..html */
+ .login a{
+    text-decoration: none;
+    color:black;
+ }
+ .login a:hover{
+    color:black
+ }
+ 
+
+
+
+/* register..html */
+
+ .register a{
+    text-decoration: none;
+    color:black;
+  }

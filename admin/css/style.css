@@ -1,0 +1,53 @@
+
+
+/* navigation */
+#nav_head{ background-color:#0a0908}
+#nav_head a { color:white; text-decoration: none;}
+.nav_form a{
+    text-decoration: none;
+    margin:10px;
+}
+
+ /* 1st section */
+
+ /* footer section  */
+ footer{
+    /* border: 1px red solid; */
+    min-height: 200px;
+    background-color:#0a0908;  
+}
+
+.footer_container-margin{  margin-top :10px} 
+
+.footer_container h6 , h5{
+    color:white;
+    margin-left:30px;
+    font-weight: bold;
+    /* margin-top:0px; */
+} 
+ 
+.footer_container ul li {
+    list-style-type: none;
+    padding-top: 10px;      
+ }   
+ 
+.footer_container ul li a , p{
+   text-decoration: none;
+   color: gray;
+}  
+.footer_container a{
+
+    text-decoration: none;
+    color: gray;
+ } 
+.footer_container ul li a:hover{
+   color:white; 
+ }   
+
+
+
+
+
+
+
+ 
