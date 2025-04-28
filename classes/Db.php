@@ -18,6 +18,7 @@
             try{
                 $this->conn = new PDO($dsn, $this->dbuser, $this->dbpass, $options);
                 return $this->conn;
+                
             }
             catch(PDOException $e){
                 echo  $e->getMessage();
@@ -25,10 +26,4 @@
         }   
 
     }
-    // $obj = new Db;
-    // $res = $obj->connect();
-    // echo "<pre>";
-    // print_r($res);
-    // echo "</pre>";
-
-?>
+    
