@@ -21,34 +21,24 @@
     $_SESSION['phone']= $phone;
     $_SESSION['pass']= $pass;
     $_SESSION['radio']= $radio;
-
-    if (!isset($_SESSION['errormsg'])) {
-        $_SESSION['errormsg'] = "";
-    }
-    $errormsg = $_SESSION['errormsg'];
     
     if(empty($firstname) || empty($lastname) || empty($email)|| empty($phone)|| empty($pass)|| empty($radio)){
-        $errormsg= "All fields are required";
-        $redirect= "../register.php?id=$errormsg";
+        $err = "All fields are required";
     }elseif(!filter_var($email,FILTER_VALIDATE_EMAIL)){
-        $errormsg = "Please choose a valid email";
-        $redirect= "../register.php?id=$errormsg";
+        $err = "Please choose a valid email";
     }elseif(strlen($pass) > 8){
-        $errormsg= "Password must be less than 8 character"; 
-        $redirect= "../register.php?id=$errormsg";
+        $err= "Password must be less than 8 character"; 
     }elseif($cus->emailExit($email) === true){
-        $errormsg= "Email already in use";
-        $redirect= "../register.php?id=$errormsg";
-    }else{
-        $resp = $cus->insertCustomer($firstname,$lastname,$phone,$email,$pass);
+        $err= "Email already in use";
+    }else{$resp = $cus->insertCustomer($firstname,$lastname,$phone,$email,$pass);
         if($resp){
            $_SESSION["feedback"]= "An account has been created for you, please login";
-           $redirect= "../login.php";  
-        }else{
-            $errormsg= "registration failed, try again";
-            $redirect ="../register.php"; 
-        }    
+           header("Location:../login.php");
+           exit;
+        }
     }
+    $_SESSION['errormsg'] = $err;
+    $redirect = "../register.php?";
     header("Location:$redirect");
     exit;
     

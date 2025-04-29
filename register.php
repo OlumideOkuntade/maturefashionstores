@@ -9,8 +9,7 @@ require_once("partials/header.php");
     <h6 class="fs-5">Create Account</h6>
       <?php
         if(isset($_SESSION["errormsg"])){
-          $errormsg = $_GET['id'];
-          echo "<div class='alert alert-danger'><p>". $errormsg ."</p></div>";
+          echo "<div class='alert alert-danger'><p>". $_SESSION['errormsg']."</p></div>";
           unset($_SESSION["errormsg"]);
         }
         if(isset($_SESSION["feedback"])){
