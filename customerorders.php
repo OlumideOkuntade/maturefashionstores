@@ -4,14 +4,13 @@
     require_once "customer_guard.php"; 
     $cus = new Customer;
     $customerid = $_SESSION["useronline"];
-    //$productid = $_SESSION['productid'];
-    //$size = $_SESSION['size'];
     $data = $cus->get_customer($customerid);
    // $prod = $cus->productbyId($productid);
-    $orders = $cus->allorders();
+    $orders = $cus->allorders($customerid);
     // echo "<pre>";
     // print_r($orders);
     // echo "</pre>";
+    // exit;
 
 ?>
 <!DOCTYPE html>
@@ -80,8 +79,6 @@
             <div class="col-md-8 offset-1">
                 <h3 class="fw-4 mt-3">Order listings</h3>
                 <hr>
-                <!-- <canvas class="my-4 w-100" id="myChart" width="2500" height="180"></canvas> -->
-                <!-- <button class="btn btn-dark mb-5 float-end"><a href="newproduct.php">Add product</a></button> -->
                 <table class="table table-striped table-sm">
                     <thead>
                         <tr>
@@ -103,15 +100,14 @@
                                 $size = $order['order_size'];
                                 $amount = $order['order_amount'];
                             echo "<tr>
-                                        <td>$m</td>
-                                        <td>$date</td>
-                                        <td>$productname</td>
-                                        <td><img src='Admin/uploads/$order[product_image]'></td>
-                                        <td>$size</td>
-                                        <td>$amount</td>
-                                        
-                                    </tr>";
-                                    $m++;
+                                    <td>$m</td>
+                                    <td>$date</td>
+                                    <td>$productname</td>
+                                    <td><img src='Admin/uploads/$order[product_image]'></td>
+                                    <td>$size</td>
+                                    <td>$amount</td>
+                                </tr>";
+                                $m++;
 
                             }
                         ?>

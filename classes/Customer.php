@@ -116,11 +116,11 @@
                 return false;
             }
         }
-        public function allorders(){
+        public function allorders($customerid){
             try{
-                $sql = "SELECT * FROM orders JOIN products ON products.product_id=orders.order_productid";
+                $sql = "SELECT * FROM orders JOIN products ON products.product_id=orders.order_productid WHERE orders.order_customerID= ?";
                 $stmt = $this->connect()->prepare($sql);
-                $stmt->execute();
+                $stmt->execute([$customerid]);
                 $data= $stmt->fetchAll(PDO::FETCH_ASSOC);
                 return $data;
             }
