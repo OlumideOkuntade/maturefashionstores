@@ -11,14 +11,13 @@ session_start();
   unset($_SESSION['phone']);
   $password = isset($_SESSION['pass'])? $_SESSION['pass']:'';
   unset($_SESSION['pass']);
-  if(isset($_SESSION['radio'])== "yes"){
+  $radio = isset($_SESSION['radio'])? $_SESSION['radio']:'';
+  if($radio == "yes"){
     $rad = "checked";
-  }elseif(isset($_SESSION['radio'])== "no"){
+  }elseif($radio == "no"){
     $radd = "checked";
   }
   unset($_SESSION['radio']);
-  //echo $rad;
-  //echo $radd;
  
 ?>
 
