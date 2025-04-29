@@ -1,7 +1,25 @@
 <?php
 session_start();
-require_once("partials/header.php");
-
+  require_once("partials/header.php");
+  $firstname = isset($_SESSION['firstname'])? $_SESSION['firstname']:'';
+  unset($_SESSION['firstname']);
+  $lastname = isset($_SESSION['lastname'])? $_SESSION['lastname']:'';
+  unset($_SESSION['lastname']);
+  $email = isset($_SESSION['email'])? $_SESSION['email']:'';
+  unset($_SESSION['email']);
+  $phone = isset($_SESSION['phone'])? $_SESSION['phone']:'';
+  unset($_SESSION['phone']);
+  $password = isset($_SESSION['pass'])? $_SESSION['pass']:'';
+  unset($_SESSION['pass']);
+  if(isset($_SESSION['radio'])== "yes"){
+    $rad = "checked";
+  }elseif(isset($_SESSION['radio'])== "no"){
+    $radd = "checked";
+  }
+  unset($_SESSION['radio']);
+  //echo $rad;
+  //echo $radd;
+ 
 ?>
 
 <div class="row">
@@ -19,67 +37,32 @@ require_once("partials/header.php");
       ?>
       <form action="process/process_register.php" method="post">
         <div class=' form-floating '>
-          <input type="text" name="firstname" class='form-control mb-3 ' placeholder="Enter your Firstname" value="<?php 
-            if(isset($_SESSION['firstname'])){
-              echo $_SESSION['firstname'];
-              unset($_SESSION['firstname']);
-            }
-          ?>">
+          <input type="text" name="firstname" class='form-control mb-3 ' placeholder="Enter your Firstname" value="<?php echo $firstname ?>">
           <label >First name</label>
         </div>
         <div class=' form-floating '>
-          <input type="text" name="lastname" class='form-control mb-3' placeholder="Enter your Lastname"value="<?php 
-            if(isset($_SESSION['lastname'])){
-              echo $_SESSION['lastname'];
-              unset($_SESSION['lastname']);
-            }
-          ?>">
+          <input type="text" name="lastname" class='form-control mb-3' placeholder="Enter your Lastname"value="<?php echo $lastname   ?>">
           <label >Last name</label>
         </div>
         <div class=' form-floating '>
-          <input type="email" name="email" class='form-control mb-3'placeholder="Enter your email" value="<?php 
-            if(isset($_SESSION['email'])){
-              echo $_SESSION['email'];
-              unset($_SESSION['email']);
-            }
-          ?>">
+          <input type="email" name="email" class='form-control mb-3'placeholder="Enter your email" value="<?php echo $email ?>">
           <label>Enter your email</label>
         </div>
         <div class=' form-floating '>
-          <input type="text" name="phone" class='form-control mb-3 ' placeholder="Enter phone number" value="<?php  
-            if(isset($_SESSION['phone'])){
-              echo $_SESSION['phone'];
-              unset($_SESSION['phone']);
-            }
-          ?>">
+          <input type="text" name="phone" class='form-control mb-3 ' placeholder="Enter phone number" value="<?php echo $phone ?>">
           <label>Phone number</label>
         </div>
         <div class=' form-floating '>
-          <input type="password" name="pass" class='form-control mb-3'placeholder="Enter your password" value="<?php  
-            if(isset($_SESSION['pass'])){
-              echo $_SESSION['pass'];
-              unset($_SESSION['pass']);
-            }
-          ?>">
+          <input type="password" name="pass" class='form-control mb-3'placeholder="Enter your password" value="<?php echo $password ?>">
           <label>Enter your password</label>
         </div>
         <label>Would you like to receive updates on Mature latest products, 
           releases and exclusive partnerships in line with our privacy policy?</label>
         <div>
-          <input type="radio" name="radio" class="mb-2" value="yes"<?php
-            if(isset($_SESSION['radio'])==='yes'){
-              echo 'checked';
-              unset($_SESSION['radio']);
-            }
-          ?>> Yes
+          <input type="radio" name="radio" class="mb-2" value="yes"<?php echo(isset($rad)? $rad :"")?>> Yes
         </div>
         <div>
-          <input type="radio" name="radio" class="mb-5" value="no" <?php 
-            if(isset($_SESSION['radio'])=="no"){
-              echo 'checked';
-              unset($_SESSION['radio']);
-            }
-          ?>> No
+          <input type="radio" name="radio" class="mb-5" value="no" <?php echo(isset($radd)? $radd :"");?>> No
         </div>
         <button name="btn"class="btn btn-dark col-12 round-5 mb-2">Create</button>
         <p>By continuing, you agree to the Terms of use and Privacy Policy.</p> 

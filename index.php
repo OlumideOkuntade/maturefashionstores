@@ -1,11 +1,11 @@
 <?php
-require_once("partials/header.php");
-require_once "admin/classes/Admin.php";
-$ad = new Admin;
-$prod = $ad->allproduct();
-// echo "<pre>";
-// print_r($prod);
-// echo "</pre>";
+    require_once("partials/header.php");
+    require_once "admin/classes/Admin.php";
+    $ad = new Admin;
+    $prod = $ad->allproduct();
+    // echo "<pre>";
+    // print_r($prod);
+    // echo "</pre>";
 ?>
 <style>
     

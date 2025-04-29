@@ -13,7 +13,7 @@
             $res = $stmt->execute([$firstname,$lastname,$phone,$email,$hashed]);
             return $res;
         }
-        public function emailExit($email){
+        public function emailExits($email){
             $sql= "SELECT * FROM customers WHERE email = ?";
             $stmt = $this->db->prepare($sql);
             $stmt->execute([$email]);

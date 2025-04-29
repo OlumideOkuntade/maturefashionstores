@@ -5,11 +5,6 @@ require_once "../classes/Payment.php";
 require_once "../customer_guard.php";
 $cus = new Customer; $pay = new Payment;
 
-// if(!isset($_SESSION["orderId"])){
-//   $_SESSION["errormsg"] = "Please specify your preference and click the button";
-//   header("Location:../uniform.php");
-//   exit;
-// }
 $customerid = $_SESSION["useronline"];
 $productid = $_SESSION['productid'];
 $size = $_SESSION['size'];
@@ -44,4 +39,3 @@ if(isset($_POST["btnorder"])){
 
 
 
-?>

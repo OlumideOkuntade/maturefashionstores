@@ -1,6 +1,6 @@
 <?php
     session_start();
-    require_once "../Classes/Customer.php";
+    require_once "../classes/Customer.php";
     $cus = new Customer;
     if(!isset($_POST["btn"])){
         $_SESSION['errormsg'] = "Please complete the form";
@@ -28,7 +28,7 @@
         $err = "Please choose a valid email";
     }elseif(strlen($pass) > 8){
         $err= "Password must be less than 8 character"; 
-    }elseif($cus->emailExit($email) === true){
+    }elseif($cus->emailExits($email) === true){
         $err= "Email already in use";
     }else{$resp = $cus->insertCustomer($firstname,$lastname,$phone,$email,$pass);
         if($resp){
@@ -41,17 +41,10 @@
     $redirect = "../register.php?";
     header("Location:$redirect");
     exit;
-    
    
-    
 
 
 
 
 
-
-
-
-
-?>
     
