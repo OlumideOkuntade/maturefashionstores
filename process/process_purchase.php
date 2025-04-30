@@ -18,20 +18,23 @@
         $customerid = $_SESSION["useronline"];
         $_SESSION['productid'] = $productid;
         $_SESSION['size'] = $size;
-        $data = $car->checkCart($customerid);
-        if($data['cart_id'] > 0){
-            $cartid = $data['cart_id'];
+        $data = $car->getCustomerCartId($customerid);
+        // echo "<pre>";
+        // echo print_r($data->cart_id);
+        // echo "</pre>";
+        if($data->cart_id > 0){
+            $cartid = $data->cart_id;
         }else{
-            $car->insertCart($customerid);
+            $car->insertIntoCart($customerid);
         }
         //check if product and cartid are in items table
-        $dat = $car->checkProduct($productid);
+        $dat = $car->checkProductInCart($productid);
         if($dat){
-            $car->updateProduct($amt,$qty,$cartid,$productid);
+            $car->updateCartProduct($amt,$qty,$cartid,$productid);
             header('Location:../confirm_purchase.php');
             exit;
         }else{
-          $res= $car->insertCartitem($qty,$customerid,$productid,$cartid,$amt);
+          $res= $car->insertIntoCartitem($qty,$customerid,$productid,$cartid,$amt);
           if($res == true){             
                 header("Location:../confirm_purchase.php");
                 exit;

@@ -31,11 +31,11 @@ if($rsp && ($rsp->status)){
   }
 
  $pay->updatePayment($paystatus,$data,$ref);
- $pay->deleteall($customerid);
+ $car->deleteAllCartItem($customerid);
 
   header("Location:dashboard.php");
   exit;
-//
+
 
 
 

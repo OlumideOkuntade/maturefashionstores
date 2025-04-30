@@ -11,7 +11,7 @@ $data = $cus->get_customer($customerid);
 //id of the product selected frm qs of quick buy
 $id = $_GET['id'];
 $prod = $cus->productbyId($id);
-$cartlist = $car->getcartitem($customerid);
+$cartlist = $car->getCartitem($customerid);
 // echo "<pre>";
 // echo print_r($prod);
 // echo "</pre>";
@@ -140,17 +140,17 @@ $_SESSION["counter"]= $counter;
                         <div class='container'>
                             <?php 
                                 foreach($cartlist as $cart){
-                                    $image = $cart['product_image'];
+                                    $image = $cart->product_image;
                             ?>
                                 <div class='row'>
                                     <div class='col-md-7 mb-3'>
                                         <img src= "admin/uploads/<?php echo $image?>" alt='image' class="img-fluid rounded me-3" style="width:40px; height:30px;">
-                                        <span class="me-2"><?php echo $cart['product_name']?></span>
-                                        <span class="ms-2"><?php  echo $cart['product_price']?></span>
-                                        <span class="ms-2"><?php echo $cart['quantity']?></span>
+                                        <span class="me-2"><?php echo $cart->product_name?></span>
+                                        <span class="ms-2"><?php  echo $cart->product_price?></span>
+                                        <span class="ms-2"><?php echo $cart->quantity?></span>
                                     </div>
                                     <div class="col-md-4">
-                                         <button class="btn btn-danger float-end"><a href="process/process_delete.php?id=<?php echo $cart['product_id']?>">Delete</a></button>
+                                         <button class="btn btn-danger float-end"><a href="process/process_delete.php?id=<?php echo $cart->product_id?>">Delete</a></button>
                                     </div>
                                 </div>
                             <?php

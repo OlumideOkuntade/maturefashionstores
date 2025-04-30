@@ -15,13 +15,10 @@ $prod = $cus->productbyId($productid);
 $cartlist = $car->getCartitem($customerid);
 $counter = count($cartlist);
 $_SESSION["counter"]= $counter;  
-$tot = $car->totalAmt($customerid); 
-$total= $tot[0]['totalamt']; 
-// echo $total;
+$tot = $car->sumAmount($customerid);
+$total= $tot[0]->totalamt; 
 $_SESSION['total']= $total;
-
-
-      
+     
 ?>
 <!DOCTYPE html>
 <html lang="en">

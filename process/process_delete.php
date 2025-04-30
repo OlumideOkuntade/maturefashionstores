@@ -5,7 +5,7 @@
       $car = new CartManager;
       $customerid = $_SESSION["useronline"];
       $id = $_GET['id'];
-      $car->deleteCart($id,$customerid);
+      $car->deleteCartItem($id,$customerid);
       header("Location:../confirm_purchase.php");
       
       

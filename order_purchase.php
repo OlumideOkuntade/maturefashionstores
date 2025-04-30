@@ -15,7 +15,9 @@ $cartlist = $car->getCartitem($customerid);
 
 $counter = count($cartlist);
 $_SESSION["counter"]= $counter;  
-$tot = $car->totalAmt($customerid); 
+$tot = $car->sumAmount($customerid); 
+print_r($tot);
+exit;
 $totalamt= $tot[0]['totalamt']; 
 // echo $total;
 $_SESSION['totalamt']= $totalamt;
