@@ -1,7 +1,7 @@
 <?php
     session_start();
     require_once "../classes/Customer.php";
-    $cus = new Customer;
+    $customer = new Customer;
     if(!isset($_POST["btn"])){
         $_SESSION['errormsg'] = "Please complete the form";
         header("Location:../register.php");

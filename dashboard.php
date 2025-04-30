@@ -2,10 +2,10 @@
     session_start();
     require_once "classes/Customer.php";
     require_once "customer_guard.php";    
-    $cus = new Customer;
+    $customer = new Customer;
     $id = $_SESSION["useronline"];
-    $data = $cus->get_customer($id);
-    $prod = $cus->allproduct();
+    $data = $customer->get_customer($id);
+    $prod = $customer->allProduct();
     // echo "<pre>";
     //   print_r($prod);
     // echo "</pre>";

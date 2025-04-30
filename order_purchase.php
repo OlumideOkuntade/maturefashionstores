@@ -3,24 +3,22 @@ session_start();
 require_once "classes/Customer.php";
 require_once "classes/CartManager.php";
 require_once "customer_guard.php"; 
-$cus = new Customer;
-$car = new CartManager;
-$customerid = $_SESSION["useronline"];
-$productid = $_SESSION['productid'];
+$customer = new Customer;
+$cartManager = new CartManager;
+$customerId = $_SESSION["useronline"];
+$productId = $_SESSION['productid'];
 $size = $_SESSION['size'];
-$data = $cus->get_customer($customerid);
-$prod = $cus->productbyId($productid);
+$data = $customer->get_customer($customerId);
+$prod = $customer->productbyId($productId);
 //print_r($_SESSION['counter']);
-$cartlist = $car->getCartitem($customerid);
+$cartlist = $cartManager->getCartitem($customerId);
 
 $counter = count($cartlist);
 $_SESSION["counter"]= $counter;  
-$tot = $car->sumAmount($customerid); 
-print_r($tot);
-exit;
-$totalamt= $tot[0]['totalamt']; 
+$tot = $cartManager->sumAmount($customerId); 
+$totalAmt= $tot[0]->totalamt; 
 // echo $total;
-$_SESSION['totalamt']= $totalamt;
+$_SESSION['totalamt']= $totalAmt;
       
 ?>
 <!DOCTYPE html>

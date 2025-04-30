@@ -3,19 +3,17 @@ session_start();
 require_once "classes/Customer.php";
 require_once "customer_guard.php"; 
 require_once "classes/CartManager.php";
-$cus = new Customer;
-//$pay = new Payment;
-$car = new CartManager;
-$customerid = $_SESSION["useronline"];
-$data = $cus->get_customer($customerid);
+$customer = new Customer;
+$cartManager = new CartManager;
+$customerId = $_SESSION["useronline"];
+$data = $customer->get_customer($customerId);
 //id of the product selected frm qs of quick buy
 $id = $_GET['id'];
-$prod = $cus->productbyId($id);
-$cartlist = $car->getCartitem($customerid);
+$prod = $customer->productbyId($id);
+$cartlist = $cartManager->getCartitem($customerId);
 // echo "<pre>";
 // echo print_r($prod);
 // echo "</pre>";
-
 $counter = count($cartlist);
 $_SESSION["counter"]= $counter;   
 

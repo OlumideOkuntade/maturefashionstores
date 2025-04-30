@@ -78,7 +78,7 @@
                 return false;
             }
         }
-        public function allproduct(){
+        public function allProduct(){
             try{
                 $sql = "SELECT * FROM products";
                 $stmt = $this->db->prepare($sql);
@@ -116,7 +116,7 @@
                 return false;
             }
         }
-        public function allorders($customerid){
+        public function allOrders($customerid){
             try{
                 $sql = "SELECT * FROM orders JOIN products ON products.product_id=orders.order_productid WHERE orders.order_customerID= ?";
                 $stmt = $this->connect()->prepare($sql);

@@ -3,21 +3,21 @@ session_start();
 require_once "classes/Customer.php";
 require_once "customer_guard.php"; 
 require_once "classes/CartManager.php";
-$cus = new Customer;
-$car = new CartManager;
+$customer = new Customer;
+$cartManager = new CartManager;
 
-$customerid = $_SESSION["useronline"];
-$productid = $_SESSION['productid'];
+$customerId = $_SESSION["useronline"];
+$productId = $_SESSION['productid'];
 $size = $_SESSION['size'];
-$data = $cus->get_customer($customerid);
-$prod = $cus->productbyId($productid);
+$data = $customer->get_customer($customerId);
+$prod = $customer->productbyId($productId);
 //print_r($_SESSION['counter']);
-$cartlist = $car->getCartitem($customerid);
+$cartlist = $cartManager->getCartitem($customerId);
 $counter = count($cartlist);
 $_SESSION["counter"]= $counter;  
-$tot = $car->sumAmount($customerid);
-$total= $tot[0]->totalamt; 
-$_SESSION['total']= $total;
+$tot = $cartManager->sumAmount($customerId);
+$totalAmt= $tot[0]->totalamt; 
+$_SESSION['total']= $totalAmt;
      
 ?>
 <!DOCTYPE html>
@@ -140,7 +140,7 @@ $_SESSION['total']= $total;
                             ?>
                         </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-dark"><a href="order_purchase.php">Checkout <?php echo "&#8358". "(". number_format($total) .")"?> </a></button>   
+                        <button type="submit" class="btn btn-dark"><a href="order_purchase.php">Checkout <?php echo "&#8358". "(". number_format($totalAmt) .")"?> </a></button>   
                     </div>
                 </div>
             </div>

@@ -3,38 +3,35 @@
     require_once "../classes/Customer.php";
     require_once "../customer_guard.php"; 
     require_once "../classes/CartManager.php";
-    $cus = new Customer;
-    $car = new CartManager;
+    $customer = new Customer;
+    $cartManager = new CartManager;
 
     if(isset($_POST['addcart'])){
         $size = $_POST["size"];
-        $productid = $_POST["product_id"]; 
+        $productId = $_POST["product_id"]; 
         $price = $_POST["product_price"]; 
         $qty = $_POST['qty'];
         if($qty == ""){
             $qty = 1;
         }
         $amt = $qty * $price;
-        $customerid = $_SESSION["useronline"];
-        $_SESSION['productid'] = $productid;
+        $customerId = $_SESSION["useronline"];
+        $_SESSION['productid'] = $productId;
         $_SESSION['size'] = $size;
-        $data = $car->getCustomerCartId($customerid);
-        // echo "<pre>";
-        // echo print_r($data->cart_id);
-        // echo "</pre>";
+        $data = $cartManager->getCustomerCartId($customerId);
         if($data->cart_id > 0){
-            $cartid = $data->cart_id;
+            $cartId = $data->cart_id;
         }else{
-            $car->insertIntoCart($customerid);
+            $cartManager->insertIntoCart($customerId);
         }
         //check if product and cartid are in items table
-        $dat = $car->checkProductInCart($productid);
+        $dat = $cartManager->checkProductInCart($productId);
         if($dat){
-            $car->updateCartProduct($amt,$qty,$cartid,$productid);
+            $cartManager->updateCartProduct($amt,$qty,$cartId,$productId);
             header('Location:../confirm_purchase.php');
             exit;
         }else{
-          $res= $car->insertIntoCartitem($qty,$customerid,$productid,$cartid,$amt);
+          $res= $cartManager->insertIntoCartitem($qty,$customerId,$productId,$cartId,$amt);
           if($res == true){             
                 header("Location:../confirm_purchase.php");
                 exit;

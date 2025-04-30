@@ -3,28 +3,27 @@ session_start();
 require_once "../classes/Customer.php";
 require_once "../classes/Payment.php";
 require_once "../customer_guard.php";
-$cus = new Customer; $pay = new Payment;
+$customer = new Customer; $payment = new Payment;
 
-$customerid = $_SESSION["useronline"];
-$productid = $_SESSION['productid'];
+$customerId = $_SESSION["useronline"];
+$productId = $_SESSION['productid'];
 $size = $_SESSION['size'];
-$totalamt = $_SESSION['totalamt'];
+$totalAmt = $_SESSION['totalamt'];
 
-$ordId = $pay->insertOrder($totalamt,$customerid,$size,$productid);
+$ordId = $payment->insertOrder($totalAmt,$customerId,$size,$productId);
 $_SESSION['orderId'] = $ordId;
 
 if(isset($_POST["btnorder"])){
-    // $orders = $pay->orderbyId($_SESSION["orderId"]);
-    $data = $cus->get_customer($_SESSION['useronline']);
+    $data = $customer->get_customer($_SESSION['useronline']);
     $email = $data['email'];
     $ordId = $_SESSION["orderId"];
     $ref = uniqid("REF");
     #we want to save $ref in session so that we can use it to verify status of the transaction
     $_SESSION["ref"] = $ref;
 
-    $payid = $pay->insertPayment($totalamt,$customerid,$ref,$ordId);
+    $payId = $payment->insertPayment($totalAmt,$customerId,$ref,$ordId);
       // next is to connect to paystack
-    $response = $pay->paystack_initialize_step1($email,$totalamt,$ref);
+    $response = $payment->paystack_initialize_step1($email,$totalAmt,$ref);
     if($response){
         $auth_url = $response->data->authorization_url;
        header("Location:$auth_url");

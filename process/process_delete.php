@@ -2,10 +2,10 @@
       session_start();
       require_once "../classes/CartManager.php";
       require_once "../customer_guard.php";
-      $car = new CartManager;
-      $customerid = $_SESSION["useronline"];
+      $cartManager = new CartManager;
+      $customerId = $_SESSION["useronline"];
       $id = $_GET['id'];
-      $car->deleteCartItem($id,$customerid);
+      $cartManager->deleteCartItem($id,$customerId);
       header("Location:../confirm_purchase.php");
       
       
