@@ -1,21 +1,21 @@
 <?php
 session_start();
 require_once "classes/Customer.php";
-require_once "classes/Payment.php";
+require_once "classes/CartManager.php";
 require_once "customer_guard.php"; 
 $cus = new Customer;
-$pay = new Payment;
+$car = new CartManager;
 $customerid = $_SESSION["useronline"];
 $productid = $_SESSION['productid'];
 $size = $_SESSION['size'];
 $data = $cus->get_customer($customerid);
 $prod = $cus->productbyId($productid);
 //print_r($_SESSION['counter']);
-$cartlist = $pay->getcartitem($customerid);
+$cartlist = $car->getCartitem($customerid);
 
 $counter = count($cartlist);
 $_SESSION["counter"]= $counter;  
-$tot = $pay->totalamt($customerid); 
+$tot = $car->totalAmt($customerid); 
 $totalamt= $tot[0]['totalamt']; 
 // echo $total;
 $_SESSION['totalamt']= $totalamt;
@@ -122,12 +122,12 @@ $_SESSION['totalamt']= $totalamt;
                         <tbody>
                               <?php 
                               foreach($cartlist as $cart){
-                                    $image = $cart['product_image'];
-                                    $amt = $cart['amount'];        
+                                    $image = $cart->product_image;
+                                    $amt = $cart->amount;        
                               ?>
                               <tr>
                                     <td class="text-center"><img src= "admin/uploads/<?php echo $image?>" alt='image' class="img-fluid rounded" style="width:40px; height:30px;"></td>
-                                    <td class="text-center"><?php echo $cart['product_name']?></td>
+                                    <td class="text-center"><?php echo $cart->product_name?></td>
                                     <td class="text-center">&#8358;<?php echo number_format($amt)?></td>
                               </tr>
                               <?php
@@ -156,7 +156,7 @@ $_SESSION['totalamt']= $totalamt;
 
 
         <!-- modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -167,13 +167,13 @@ $_SESSION['totalamt']= $totalamt;
                         <div class='container'>
                             <?php 
                                 foreach($cartlist as $cart){
-                                    $image = $cart['product_image'];
-                                    $amt = $cart['amount'];        
+                                    $image = $cart->product_image;
+                                    $amt = $cart->amount;        
                             ?>
                                 <div class='row'>
                                     <div class='col-md-8 mb-3'>
                                         <img src= "admin/uploads/<?php echo $image?>" alt='image' class="img-fluid rounded" style="width:40px; height:30px;">
-                                        <?php echo $cart['product_name']?>
+                                        <?php echo $cart->product_name?>
                                         <?php echo $amt?>
                                     </div>
                                     <div class="col-md-2">
@@ -193,7 +193,7 @@ $_SESSION['totalamt']= $totalamt;
                     </div>
                 </div>
             </div>
-        </div>  
+        </div>   -->
     </div>
     
 </body>

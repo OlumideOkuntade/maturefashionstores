@@ -1,12 +1,11 @@
 <?php
       session_start();
-      require_once "../classes/Payment.php";
+      require_once "../classes/CartManager.php";
       require_once "../customer_guard.php";
-      $pay = new Payment;
+      $car = new CartManager;
       $customerid = $_SESSION["useronline"];
       $id = $_GET['id'];
-      // echo $id;
-      $pay->deletecart($id,$customerid);
+      $car->deleteCart($id,$customerid);
       header("Location:../confirm_purchase.php");
       
       

@@ -1,20 +1,21 @@
 <?php
 session_start();
 require_once "classes/Customer.php";
-require_once "classes/Payment.php";
 require_once "customer_guard.php"; 
+require_once "classes/CartManager.php";
 $cus = new Customer;
-$pay = new Payment;
+$car = new CartManager;
+
 $customerid = $_SESSION["useronline"];
 $productid = $_SESSION['productid'];
 $size = $_SESSION['size'];
 $data = $cus->get_customer($customerid);
 $prod = $cus->productbyId($productid);
 //print_r($_SESSION['counter']);
-$cartlist = $pay->getcartitem($customerid);
+$cartlist = $car->getCartitem($customerid);
 $counter = count($cartlist);
 $_SESSION["counter"]= $counter;  
-$tot = $pay->totalamt($customerid); 
+$tot = $car->totalAmt($customerid); 
 $total= $tot[0]['totalamt']; 
 // echo $total;
 $_SESSION['total']= $total;
@@ -68,7 +69,7 @@ $_SESSION['total']= $total;
                             <a class="navbar-brand fw-bold me-auto fs-3 fst-italic" href="dashboard.php">Maturefashion</a>
 
                             <div class="dropdown user-menu d-flex align-items-center">
-                                <a class="btn dropdown-toggle fs-5" href="#" role="button"          data-bs-toggle="dropdown" aria-expanded="false">
+                                <a class="btn dropdown-toggle fs-5" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Hi, <?php echo $data["last_name"];?>
                                 </a>
                                 <ul class="dropdown-menu user-profile" style="border-radius:0px;background-color:white;">
@@ -125,16 +126,16 @@ $_SESSION['total']= $total;
                         <div class='container'>
                             <?php 
                                 foreach($cartlist as $cart){
-                                    $image = $cart['product_image'];      
+                                    $image = $cart->product_image;      
                             ?>
                                 <div class='row'>
                                     <div class='col-md-8 mb-3'>
                                         <img src= "admin/uploads/<?php echo $image?>" alt='image' class="img-fluid rounded me-3" style="width:40px; height:30px;">
-                                        <span class="me-3"><?php echo $cart['product_name']?></span>
-                                        <?php echo $cart['amount']; ?>
+                                        <span class="me-3"><?php echo $cart->product_name?></span>
+                                        <?php echo $cart->amount; ?>
                                     </div>
                                     <div class="col-md-4">
-                                            <button class="btn btn-danger float-end"><a href="process/process_delete.php?id=<?php echo $cart['product_id']?>">Delete</a></button>
+                                            <button class="btn btn-danger float-end"><a href="process/process_delete.php?id=<?php echo $cart->product_id?>">Delete</a></button>
                                     </div>
                                 </div>
                             <?php

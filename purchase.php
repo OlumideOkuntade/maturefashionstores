@@ -1,16 +1,17 @@
 <?php
 session_start();
 require_once "classes/Customer.php";
-require_once "classes/Payment.php";
 require_once "customer_guard.php"; 
+require_once "classes/CartManager.php";
 $cus = new Customer;
-$pay = new Payment;
+//$pay = new Payment;
+$car = new CartManager;
 $customerid = $_SESSION["useronline"];
 $data = $cus->get_customer($customerid);
 //id of the product selected frm qs of quick buy
 $id = $_GET['id'];
 $prod = $cus->productbyId($id);
-$cartlist = $pay->getcartitem($customerid);
+$cartlist = $car->getcartitem($customerid);
 // echo "<pre>";
 // echo print_r($prod);
 // echo "</pre>";

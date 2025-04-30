@@ -1,15 +1,15 @@
 <?php
-    define("DB_NAME","maturestores");
-    define("DB_USER","root");
-    define("DB_PASS","");
-    define("DB_HOST","localhost");
+    // define("DB_NAME","maturestores");
+    // define("DB_USER","root");
+    // define("DB_PASS","");
+    // define("DB_HOST","localhost");
 
     Class Db {
         private $conn;
-        private $dbname = DB_NAME;
-        private $dbuser = DB_USER;
-        private $dbpass = DB_PASS;
-        private $dbhost = DB_HOST;
+        private $dbname = "maturestores";
+        private $dbuser = "root";
+        private $dbpass = "";
+        private $dbhost = "localhost";
         
         public function connect(){
             $dsn = "mysql:dbhost=$this->dbhost;dbname=$this->dbname";

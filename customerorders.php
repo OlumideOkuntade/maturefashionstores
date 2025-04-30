@@ -5,13 +5,7 @@
     $cus = new Customer;
     $customerid = $_SESSION["useronline"];
     $data = $cus->get_customer($customerid);
-   // $prod = $cus->productbyId($productid);
     $orders = $cus->allorders($customerid);
-    // echo "<pre>";
-    // print_r($orders);
-    // echo "</pre>";
-    // exit;
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
