@@ -4,7 +4,7 @@
     require_once "customer_guard.php";    
     $customer = new Customer;
     $id = $_SESSION["useronline"];
-    $data = $customer->get_customer($id);
+    $data = $customer->getCustomer($id);
     $prod = $customer->allProduct();
     // echo "<pre>";
     //   print_r($prod);

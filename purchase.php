@@ -6,10 +6,10 @@ require_once "classes/CartManager.php";
 $customer = new Customer;
 $cartManager = new CartManager;
 $customerId = $_SESSION["useronline"];
-$data = $customer->get_customer($customerId);
+$data = $customer->getCustomer($customerId);
 //id of the product selected frm qs of quick buy
 $id = $_GET['id'];
-$prod = $customer->productbyId($id);
+$prod = $customer->productById($id);
 $cartlist = $cartManager->getCartitem($customerId);
 // echo "<pre>";
 // echo print_r($prod);

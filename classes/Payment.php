@@ -6,38 +6,11 @@
             $this->db = $this->connect();
         }
 
-        public function insertOrder($total,$customerid,$size,$productid){
-            try{
-                $sql = "INSERT INTO orders SET order_amount=?,order_customerID =?,order_size=?,order_productid=?";
-                $stmt = $this->db->prepare($sql);
-                $stmt->execute([$total,$customerid,$size,$productid]);
-                $data = $this->db->lastInsertId();
-                return $data;
-            }catch(Exception $e){
-                echo $e->getMessage();
-                // return false;
-            }
-        }
-
-        public function orderbyId($id){
-            try{
-                $sql ="SELECT * FROM orders JOIN products ON order_productid=product_id WHERE order_id =?";
-                $stmt = $this->db->prepare($sql);
-                $stmt->execute([$id]);
-                $data = $stmt->fetch(PDO::FETCH_ASSOC);
-                return $data;
-            }
-            catch(PDOException $e){
-                echo $e->getMessage();
-                return false;
-            }
-        }
-
-        public function insertPayment($totalamt,$customerid,$ref,$ordId){
+        public function insertPayment($totalAmt,$customerId,$ref,$ordId){
             try{
                 $sql = "INSERT INTO payment SET payment_amount=?,payment_cusid=?,payment_ref=?,payment_orderid=?";
                 $stmt = $this->db->prepare($sql);
-                $stmt->execute([$totalamt,$customerid,$ref,$ordId]);
+                $stmt->execute([$totalAmt,$customerId,$ref,$ordId]);
                 return $this->db->lastinsertId();
             }
             catch(Exception $e){
@@ -45,11 +18,11 @@
             }
         }
 
-        public function paystack_initialize_step1($email,$totalamt,$ref){
+        public function paystack_initialize_step1($email,$totalAmt,$ref){
             $url ="https://api.paystack.co/transaction/initialize";
             $fields = [
                 'email' => $email,
-                'amount' => $totalamt*100,
+                'amount' => $totalAmt*100,
                 'reference'=> $ref,
                 'callback_url' => "http://localhost/maturedFashion/paystack_landing.php"
               ];

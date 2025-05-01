@@ -2,10 +2,12 @@
     session_start();
     require_once "classes/Customer.php";
     require_once "customer_guard.php"; 
+    require_once "classes/OrderManager.php";
     $customer = new Customer;
+    $order = new Order;
     $customerId = $_SESSION["useronline"];
-    $data = $customer->get_customer($customerId);
-    $orders = $customer->allOrders($customerId);
+    $data = $customer->getCustomer($customerId);
+    $orders = $order->allOrders($customerId);
 ?>
 <!DOCTYPE html>
 <html lang="en">

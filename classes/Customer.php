@@ -6,11 +6,11 @@
         public function __construct(){
             $this->db = $this->connect();
         }
-        public function insertCustomer($firstname,$lastname,$phone,$email,$pass){
+        public function insertCustomer($firstName,$lastName,$phone,$email,$pass){
             $hashed = password_hash($pass,PASSWORD_DEFAULT);
             $sql = "INSERT INTO customers (first_name,last_name,phone_number,email,password) VALUES(?,?,?,?,?)";
             $stmt = $this->db->prepare($sql);
-            $res = $stmt->execute([$firstname,$lastname,$phone,$email,$hashed]);
+            $res = $stmt->execute([$firstName,$lastName,$phone,$email,$hashed]);
             return $res;
         }
         public function emailExits($email){
@@ -52,7 +52,7 @@
             unset($_SESSION["useronline"]);
             session_destroy();
         }
-        public function allcustomer(){
+        public function allCustomer(){
             try{
                 $sql = "SELECT * FROM customers";
                 $stmt = $this->db->prepare($sql);
@@ -65,11 +65,11 @@
                 return false;
             }
         }
-        public function get_customer($customer_id){
+        public function getCustomer($customerId){
             try{
                 $sql = "SELECT * FROM customers WHERE customer_id = ?";
                 $stmt = $this->db->prepare($sql);
-                $stmt->execute([$customer_id]);
+                $stmt->execute([$customerId]);
                 $data= $stmt->fetch(PDO::FETCH_ASSOC);
                 return $data;
             }
@@ -104,7 +104,7 @@
                 return false;
             }
         }
-        public function productbyId($id){
+        public function productById($id){
             try{
                 $sql = "SELECT * FROM products where product_id =?";
                 $stmt = $this->db->prepare($sql);
@@ -116,19 +116,7 @@
                 return false;
             }
         }
-        public function allOrders($customerid){
-            try{
-                $sql = "SELECT * FROM orders JOIN products ON products.product_id=orders.order_productid WHERE orders.order_customerID= ?";
-                $stmt = $this->connect()->prepare($sql);
-                $stmt->execute([$customerid]);
-                $data= $stmt->fetchAll(PDO::FETCH_ASSOC);
-                return $data;
-            }
-            catch(PDOException $e){
-               // echo $e->getMessage;
-                return false;
-            }
-        }    
+         
     }
 //     $obj = new Customer;
 //    // $resp = $obj->connect();

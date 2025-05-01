@@ -8,7 +8,7 @@ $cartManager = new CartManager;
 $customerId = $_SESSION["useronline"];
 $productId = $_SESSION['productid'];
 $size = $_SESSION['size'];
-$data = $customer->get_customer($customerId);
+$data = $customer->getCustomer($customerId);
 $prod = $customer->productbyId($productId);
 //print_r($_SESSION['counter']);
 $cartlist = $cartManager->getCartitem($customerId);
