@@ -2,14 +2,16 @@
 session_start();
 require_once "classes/Customer.php";
 require_once "classes/CartManager.php";
+require_once "classes/ProductManager.php";
 require_once "customer_guard.php"; 
 $customer = new Customer;
 $cartManager = new CartManager;
+$product = new ProductManager;
 $customerId = $_SESSION["useronline"];
 $productId = $_SESSION['productid'];
 $size = $_SESSION['size'];
 $data = $customer->getCustomer($customerId);
-$prod = $customer->productbyId($productId);
+$prod = $product->getProductbyId($productId);
 //print_r($_SESSION['counter']);
 $cartlist = $cartManager->getCartitem($customerId);
 
@@ -32,20 +34,20 @@ $_SESSION['totalamt']= $totalAmt;
     <title>MaturedfashionStores</title>
     <style>
          
-            #nav_head span{
-            color:white;
-            width:20px;
-            text-align:center;
-            /* height:20px; */ 
-            font-weight:bold;
-            background-color:red;
-            border-radius:50%;
-            font-size:15px;
-            margin-left:-28px;
-            display:block;
-            margin-top:25px;
-            
-            }
+        #nav_head span{
+        color:white;
+        width:20px;
+        text-align:center;
+        /* height:20px; */ 
+        font-weight:bold;
+        background-color:red;
+        border-radius:50%;
+        font-size:15px;
+        margin-left:-28px;
+        display:block;
+        margin-top:25px;
+        
+        }
     </style>
 </head>
 

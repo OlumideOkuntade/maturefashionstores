@@ -11,12 +11,12 @@ require_once("partials/header.php");
     <div class="login">
       <h6 class="fs-5 mt-4">Login</h6>
       <?php
-        if(isset($_SESSION{"errormsg"})){
+        if(isset($_SESSION["errormsg"])){
           echo  "<div class='alert alert-danger'><p>". $_SESSION["errormsg"] ."</p></div>";
           unset($_SESSION["errormsg"]);
         }
         
-        if(isset($_SESSION{"feedback"})){
+        if(isset($_SESSION["feedback"])){
           echo  "<div class='alert alert-info'><p>". $_SESSION["feedback"] ."</p></div>";
           unset($_SESSION["feedback"]);
         }

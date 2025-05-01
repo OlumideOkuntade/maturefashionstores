@@ -1,6 +1,6 @@
 <?php
       require_once "Db.php";
-      class Order extends Db{
+      class OrderManager extends Db{
             Private $db;
             Public function __construct(){
                   $this->db = $this->connect();
@@ -15,11 +15,10 @@
                       return $data;
                   }catch(Exception $e){
                       echo $e->getMessage();
-                      // return false;
                   }
             }
       
-              public function orderbyId($id){
+              public function getOrderbyId($id){
                   try{
                       $sql ="SELECT * FROM orders JOIN products ON order_productid=product_id WHERE order_id =?";
                       $stmt = $this->db->prepare($sql);
@@ -33,7 +32,7 @@
                   }
             }
 
-            public function allOrders($customerId){
+            public function getAllOrders($customerId){
                   try{
                       $sql = "SELECT * FROM orders JOIN products ON products.product_id=orders.order_productid WHERE orders.order_customerID= ?";
                       $stmt = $this->connect()->prepare($sql);
@@ -42,7 +41,6 @@
                       return $data;
                   }
                   catch(PDOException $e){
-                     // echo $e->getMessage;
                       return false;
                   }
               }

@@ -3,17 +3,16 @@ session_start();
 require_once "classes/Customer.php";
 require_once "customer_guard.php"; 
 require_once "classes/CartManager.php";
+require_once "classes/ProductManager.php";
 $customer = new Customer;
 $cartManager = new CartManager;
+$product = new ProductManager;
 $customerId = $_SESSION["useronline"];
 $data = $customer->getCustomer($customerId);
 //id of the product selected frm qs of quick buy
 $id = $_GET['id'];
-$prod = $customer->productById($id);
+$prod = $product->getProductById($id);
 $cartlist = $cartManager->getCartitem($customerId);
-// echo "<pre>";
-// echo print_r($prod);
-// echo "</pre>";
 $counter = count($cartlist);
 $_SESSION["counter"]= $counter;   
 
@@ -141,7 +140,7 @@ $_SESSION["counter"]= $counter;
                                     $image = $cart->product_image;
                             ?>
                                 <div class='row'>
-                                    <div class='col-md-7 mb-3'>
+                                    <div class='col-md-8 mb-3'>
                                         <img src= "admin/uploads/<?php echo $image?>" alt='image' class="img-fluid rounded me-3" style="width:40px; height:30px;">
                                         <span class="me-2"><?php echo $cart->product_name?></span>
                                         <span class="ms-2"><?php  echo $cart->product_price?></span>
@@ -159,9 +158,7 @@ $_SESSION["counter"]= $counter;
                 </div>
             </div>
         </div>
-        
     </div>
-    
 </body>
 </html>
 

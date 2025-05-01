@@ -1,6 +1,6 @@
 <?php
     require_once "Db.php";
-    class Payment extends Db{
+    class PaymentManager extends Db{
         Private $db;
         Public function __construct(){
             $this->db = $this->connect();
@@ -13,7 +13,7 @@
                 $stmt->execute([$totalAmt,$customerId,$ref,$ordId]);
                 return $this->db->lastinsertId();
             }
-            catch(Exception $e){
+            catch(PDOException $e){
                 echo $e->getMessage(); 
             }
         }
@@ -82,4 +82,3 @@
     }
  
 
-?>

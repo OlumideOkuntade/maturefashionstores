@@ -1,7 +1,7 @@
 <?php
     require_once "Db.php";
     Class Customer extends Db{
-        //method for inserting to database maturestores
+
         private $db;
         public function __construct(){
             $this->db = $this->connect();
@@ -44,7 +44,7 @@
                 }
             }
             catch(PDOException $e){
-                // echo $e->getMessage;
+            
                 return false;
             }     
         }
@@ -61,7 +61,6 @@
                 return $data;
             }
             catch(PDOException $e){
-               // echo $e->getMessage;
                 return false;
             }
         }
@@ -74,56 +73,13 @@
                 return $data;
             }
             catch(PDOException $e){
-               // echo $e->getMessage;
                 return false;
             }
         }
-        public function allProduct(){
-            try{
-                $sql = "SELECT * FROM products";
-                $stmt = $this->db->prepare($sql);
-                $stmt->execute();
-                $data= $stmt->fetchAll(PDO::FETCH_ASSOC);
-                return $data;
-            }
-            catch(PDOException $e){
-               // echo $e->getMessage;
-                return false;
-            }
-        }
-        public function product(){
-            try{
-                $sql = "SELECT * FROM products";
-                $stmt = $this->db->prepare($sql);
-                $stmt->execute();
-                $data= $stmt->fetchAll(PDO::FETCH_ASSOC);
-                return $data;
-            }
-            catch(PDOException $e){
-                //echo $e->getMessage;
-                return false;
-            }
-        }
-        public function productById($id){
-            try{
-                $sql = "SELECT * FROM products where product_id =?";
-                $stmt = $this->db->prepare($sql);
-                $stmt->execute([$id]);
-                $data= $stmt->fetchAll(PDO::FETCH_ASSOC);
-                return $data;
-            }
-            catch(PDOException $e){
-                return false;
-            }
-        }
+       
          
     }
-//     $obj = new Customer;
-//    // $resp = $obj->connect();
-//     echo "<pre>";
-//     print_r($obj);
-//     echo "</pre>";
 
 
 
-?>
+

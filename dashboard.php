@@ -1,14 +1,15 @@
 <?php
     session_start();
     require_once "classes/Customer.php";
-    require_once "customer_guard.php";    
+    require_once "customer_guard.php";
+    require_once "classes/ProductManager.php";
+       
     $customer = new Customer;
+    $product = new ProductManager;
     $id = $_SESSION["useronline"];
     $data = $customer->getCustomer($id);
-    $prod = $customer->allProduct();
-    // echo "<pre>";
-    //   print_r($prod);
-    // echo "</pre>";
+    $prod = $product->getAllProduct();
+ 
 ?>
 <!DOCTYPE html>
 <html lang="en">

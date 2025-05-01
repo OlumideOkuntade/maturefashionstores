@@ -3,9 +3,7 @@
     require_once "admin/classes/Admin.php";
     $admin = new Admin;
     $prod = $admin->allProduct();
-    // echo "<pre>";
-    // print_r($prod);
-    // echo "</pre>";
+
 ?>
 <style>
     

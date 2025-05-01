@@ -4,10 +4,10 @@
     require_once "customer_guard.php"; 
     require_once "classes/OrderManager.php";
     $customer = new Customer;
-    $order = new Order;
+    $order = new OrderManager;
     $customerId = $_SESSION["useronline"];
     $data = $customer->getCustomer($customerId);
-    $orders = $order->allOrders($customerId);
+    $orders = $order->getAllOrders($customerId);
 ?>
 <!DOCTYPE html>
 <html lang="en">
