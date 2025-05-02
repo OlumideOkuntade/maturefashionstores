@@ -1,9 +1,9 @@
 <?php
 session_start();
-require_once "classes/Customer.php";
-require_once "classes/PaymentManager.php";
+require_once "servicemanager/Customer.php";
+require_once "servicemanager/PaymentManager.php";
 require_once "customer_guard.php";
-require_once "classes/CartManager.php";
+require_once "servicemanager/CartManager.php";
 if(!isset($_SESSION['ref'])){
   $_SESSION["errormsg"] = "You need to start a transaction";
   header("Location:order_purchase.php");

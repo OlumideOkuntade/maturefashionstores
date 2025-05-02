@@ -1,5 +1,5 @@
 <?php
-    require_once __DIR__ . "/../../classes/Db.php";
+    require_once __DIR__ . "/../../servicemanager/Db.php";
     Class Admin extends Db{
         public function login($name,$pass){
             try{ $sql= "SELECT * FROM admin WHERE admin_username= ?";
@@ -19,9 +19,9 @@
                     $_SESSION["errormsg"] = "invalid username"; 
                 }
             }
-            catch(PDOException $e){}
-           // echo $e->getMessage;
-            return false;
+            catch(PDOException $e){
+                return false;
+            }  
         }
 
         public function logout(){
@@ -38,7 +38,6 @@
                 return $data;
             }
             catch(PDOException $e){
-               // echo $e->getMessage;
                 return false;
             }
         }
@@ -63,11 +62,10 @@
                 return $data;
             }
             catch(PDOException $e){
-               // echo $e->getMessage;
                 return false;
             }
         }
-        public function allproduct(){
+        public function getAllProducts(){
             try{
                 $sql = "SELECT * FROM products";
                 $stmt = $this->connect()->prepare($sql);
@@ -76,7 +74,6 @@
                 return $data;
             }
             catch(PDOException $e){
-               // echo $e->getMessage;
                 return false;
             }
         }
@@ -85,11 +82,10 @@
                 $sql = "SELECT * FROM products JOIN category ON product_categoryid= category_id WHERE product_id= ?";
                 $stmt = $this->connect()->prepare($sql);
                 $stmt->execute([$id]);
-                $data= $stmt->fetchAll(PDO::FETCH_ASSOC);
+                $data= $stmt->fetch(PDO::FETCH_ASSOC);
                 return $data;
             }
-            catch(PDOException $e){
-               // echo $e->getMessage;
+            catch(PDOException $e){  
                 return false;
             }
         }
@@ -105,8 +101,7 @@
                         return false;
                     }
                 }
-                catch(PDOException $e){
-                  //  echo $e->getMessage;
+                catch(PDOException $e){    
                     return false;
                 }
             }
@@ -121,7 +116,6 @@
                 return $data;
             }
             catch(PDOException $e){
-               // echo $e->getMessage;
                 return false;
             }
         }
@@ -134,7 +128,6 @@
                 return $data;
             }
             catch(PDOException $e){
-               // echo $e->getMessage;
                 return false;
             }
         }
@@ -147,7 +140,6 @@
                 return $data;
             }
             catch(PDOException $e){
-               // echo $e->getMessage;
                 return false;
             }
         }

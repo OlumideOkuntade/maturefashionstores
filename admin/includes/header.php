@@ -4,9 +4,6 @@
   $id =  $_SESSION["adminonline"];
   $ad = new Admin;
   $data = $ad->getAdmin($id);
-  // echo "<pre>";
-  // print_r($data['admin_username']);
-  // echo "</pre>";
 ?>
 <!DOCTYPE html>
 <html lang="en">

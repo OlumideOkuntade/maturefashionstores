@@ -1,8 +1,8 @@
 <?php
     session_start();
-    require_once "../classes/Customer.php";
+    require_once "../servicemanager/CustomerManager.php";
     
-    $customer = new Customer;
+    $customer = new CustomerManager;
     if(!isset($_POST["login"])){
         header("Location:../login.php");
         exit;

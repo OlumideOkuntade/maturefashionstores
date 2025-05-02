@@ -1,17 +1,17 @@
 <?php
 session_start();
-require_once "classes/Customer.php";
+require_once "servicemanager/CustomerManager.php";
 require_once "customer_guard.php"; 
-require_once "classes/CartManager.php";
-require_once "classes/ProductManager.php";
-$customer= new Customer;
+require_once "servicemanager/CartManager.php";
+require_once "servicemanager/ProductManager.php";
+$customer= new CustomerManager;
 $cartManager= new CartManager;
 $product= new ProductManager;
 
 $customerId = $_SESSION["useronline"];
 $productId = $_SESSION['productid'];
 $size = $_SESSION['size'];
-$data = $customer->getCustomer($customerId);
+$data = $customer->getCustomerById($customerId);
 $prod = $product->getProductbyId($productId);
 $cartlist = $cartManager->getCartitem($customerId);
 $counter = count($cartlist);
@@ -68,7 +68,7 @@ $_SESSION['total']= $totalAmt;
 
                             <div class="dropdown user-menu d-flex align-items-center">
                                 <a class="btn dropdown-toggle fs-5" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Hi, <?php echo $data["last_name"];?>
+                                    Hi, <?php echo $data->last_name?>
                                 </a>
                                 <ul class="dropdown-menu user-profile" style="border-radius:0px;background-color:white;">
                                     <li><a class="dropdown-item text-dark" href="#">Profile</a></li>
@@ -96,14 +96,14 @@ $_SESSION['total']= $totalAmt;
         <!-- purchase part -->
         <div class="row"> 
             <div class="col-md-6 ms-3 mt-5 mb-5">
-                <img src="admin/uploads/<?php echo $prod[0]["product_image"]?> "class="img-fluid" style="width:500px;">
+                <img src="admin/uploads/<?php echo $prod->product_image ?> "class="img-fluid" style="width:500px;">
             </div>
             <div class="col-md-5 pt-5">
-                <p class="fs-5 fw-bold"><?php echo $prod[0]["product_name"];?></p>
+                <p class="fs-5 fw-bold"><?php echo $prod->product_name ?></p>
                 <p class="fw-bold">Brand : Mature Fashion </p>
-                <p class="fw-bold">NGN <?php echo number_format($prod[0]["product_price"]);?></p>
+                <p class="fw-bold">NGN <?php echo number_format($prod->product_price);?></p>
                 <p class="fw-bold">Size: <?php echo $size;?></p>
-                <p><?php if($prod[0]["product_quantity"]>0){
+                <p><?php if($prod->product_quantity > 0){
                     echo "in stock";
                   }
                 else{

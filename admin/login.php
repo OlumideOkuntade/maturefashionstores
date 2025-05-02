@@ -27,7 +27,6 @@
       </div>
     </div>
     <!-- end navigation -->
-
     <div class="row">
       <div class="col-md-4 offset-4 mt-5 register">
         <h6 class="fs-5">Administrative login</h6>
@@ -56,9 +55,7 @@
       </div>
     </div> 
   <script src="scripts/jquery.js"></script>
-  <script>
-
-  </script>  
+  <script></script>  
 <body>
 </html>
 

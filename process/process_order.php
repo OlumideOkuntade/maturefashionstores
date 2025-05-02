@@ -1,10 +1,10 @@
 <?php
 session_start();
-require_once "../classes/Customer.php";
-require_once "../classes/PaymentManager.php";
+require_once "../servicemanager/CustomerManager.php";
+require_once "../servicemanager/PaymentManager.php";
 require_once "../customer_guard.php";
-require_once "../classes/OrderManager.php";
-$customer = new Customer; $payment = new PaymentManager; $order = new OrderManager;
+require_once "../servicemanager/OrderManager.php";
+$customer = new CustomerManager; $payment = new PaymentManager; $order = new OrderManager;
 
 $customerId = $_SESSION["useronline"];
 $productId = $_SESSION['productid'];
@@ -15,7 +15,7 @@ $ordId = $order->insertOrder($totalAmt,$customerId,$size,$productId);
 $_SESSION['orderId'] = $ordId;
 
 if(isset($_POST["btnorder"])){
-  $data = $customer->getCustomer($_SESSION['useronline']);
+  $data = $customer->getCustomerById($_SESSION['useronline']);
   $email = $data['email'];
   $ordId = $_SESSION["orderId"];
   $ref = uniqid("REF");

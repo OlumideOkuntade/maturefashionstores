@@ -1,14 +1,14 @@
 <?php
     session_start();
-    require_once "classes/Customer.php";
+    require_once "servicemanager/CustomerManager.php";
     require_once "customer_guard.php";
-    require_once "classes/ProductManager.php";
+    require_once "servicemanager/ProductManager.php";
        
-    $customer = new Customer;
+    $customer = new CustomerManager;
     $product = new ProductManager;
     $id = $_SESSION["useronline"];
-    $data = $customer->getCustomer($id);
-    $prod = $product->getAllProduct();
+    $data = $customer->getCustomerById($id);
+    $prod = $product->getAllProducts();
  
 ?>
 <!DOCTYPE html>
@@ -38,15 +38,13 @@
 
                             <div class="dropdown user-menu ">
                                 <a class="btn dropdown-toggle fs-5" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <strong>Hi, <?php echo $data["last_name"];?></strong>
+                                    <strong>Hi, <?php echo $data->last_name;?></strong>
                                 </a>
                                 <ul class="dropdown-menu user-profile" style="border-radius:0px;background-color:white;">
                                     <li><a class="dropdown-item text-dark" href="#">Profile</a></li>
                                     <li><a class="dropdown-item text-dark" href="customerorders.php">Orders</a></li>
                                     <li><a class="dropdown-item text-dark" href="logout.php">Logout</a></li>
                                 </ul>
-                                <!-- <a href="#"><i class="fa-solid fa-magnifying-glass"></i></a>  
-                                <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>  -->
                             </div>
                       </div>
                     </div>
@@ -57,7 +55,7 @@
         <div class="row mb-5">
             <div class="col-md-12 ">
                 <h3 style="margin-bottom:20px;" class="text-center heading-title mt-2">Dashboard</h3> 
-                <h4 class="mx-5">Welcome <?php echo $data["last_name"];?></h4>
+                <h4 class="mx-5">Welcome <?php echo $data->last_name ;?></h4>
                 <p class="mx-5">You are logged in, Please select any cloth of choice for purchase.</p>
             </div>
         </div>
@@ -68,12 +66,12 @@
             ?>        
                 <div class="col-md-4 mb-3 ">
                     <div class="card" >
-                        <img src="admin/uploads/<?php echo $pro['product_image'] ?>" class="img-fluid rounded" style="width:500px; height:400px;" alt="responsive image">
+                        <img src="admin/uploads/<?php echo $pro->product_image ?>" class="img-fluid rounded" style="width:500px; height:400px;" alt="responsive image">
                         <div class="card-body ">
-                            <p class="fs-6 fw-bold lh-1"><?php echo $pro['product_name']?></p>
+                            <p class="fs-6 fw-bold lh-1"><?php echo $pro->product_name?></p>
                             <div class="d-flex justify-content-between align-items-start">
-                                <p class="fs-4 fw-bold lh-1 ">&#8358;<?php echo $pro['product_price']?></p>
-                                <button class="btn btn-success round"><a href="purchase.php?id=<?php echo $pro['product_id']?>">Quick Buy</a></button>  
+                                <p class="fs-4 fw-bold lh-1 ">&#8358;<?php echo $pro->product_price ?></p>
+                                <button class="btn btn-success round"><a href="purchase.php?id=<?php echo $pro->product_id ?>">Quick Buy</a></button>  
                             </div>
                         </div>
                     </div>

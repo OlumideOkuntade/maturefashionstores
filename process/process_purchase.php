@@ -1,9 +1,7 @@
 <?php
     session_start();
-    require_once "../classes/Customer.php";
     require_once "../customer_guard.php"; 
-    require_once "../classes/CartManager.php";
-    $customer = new Customer;
+    require_once "../servicemanager/CartManager.php";
     $cartManager = new CartManager;
 
     if(isset($_POST['addcart'])){

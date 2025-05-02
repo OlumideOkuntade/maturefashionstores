@@ -1,6 +1,6 @@
 <?php
       session_start();
-      require_once "../classes/CartManager.php";
+      require_once "../servicemanager/CartManager.php";
       require_once "../customer_guard.php";
       $cartManager = new CartManager;
       $customerId = $_SESSION["useronline"];

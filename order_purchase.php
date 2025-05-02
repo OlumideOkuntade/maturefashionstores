@@ -1,20 +1,18 @@
 <?php
 session_start();
-require_once "classes/Customer.php";
-require_once "classes/CartManager.php";
-require_once "classes/ProductManager.php";
+require_once "servicemanager/CustomerManager.php";
+require_once "servicemanager/CartManager.php";
+require_once "servicemanager/ProductManager.php";
 require_once "customer_guard.php"; 
-$customer = new Customer;
+$customer = new CustomerManager;
 $cartManager = new CartManager;
 $product = new ProductManager;
 $customerId = $_SESSION["useronline"];
 $productId = $_SESSION['productid'];
 $size = $_SESSION['size'];
-$data = $customer->getCustomer($customerId);
+$data = $customer->getCustomerById($customerId);
 $prod = $product->getProductbyId($productId);
-//print_r($_SESSION['counter']);
 $cartlist = $cartManager->getCartitem($customerId);
-
 $counter = count($cartlist);
 $_SESSION["counter"]= $counter;  
 $tot = $cartManager->sumAmount($customerId); 
@@ -66,7 +64,7 @@ $_SESSION['totalamt']= $totalAmt;
 
                             <div class="dropdown user-menu d-flex align-items-center">
                                 <a class="btn dropdown-toggle fs-5" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Hi, <?php echo $data["last_name"];?>
+                                    Hi, <?php echo $data->last_name ?>
                                 </a>
                                 <ul class="dropdown-menu user-profile" style="border-radius:0px;background-color:white;">
                                     <li><a class="dropdown-item text-dark" href="#">Profile</a></li>
@@ -90,28 +88,8 @@ $_SESSION['totalamt']= $totalAmt;
             </div>
         </div>
         <!-- end navigation -->
-
-        <!-- purchase part -->
-        <!-- <div class="row"> 
-            <div class="col-md-6 ms-3 mt-5 mb-5">
-                <img src="admin/uploads/<?php echo $prod[0]["product_image"]?> "class="img-fluid" style="width:500px;">
-            </div>
-            <div class="col-md-5 pt-5">
-                <p class="fs-5 fw-bold"><?php echo $prod[0]["product_name"];?></p>
-                <p class="fw-bold">Brand : Mature Fashion </p>
-                <p class="fw-bold">NGN <?php echo number_format($prod[0]["product_price"]);?></p>
-                <p class="fw-bold">Size: <?php echo $size;?></p>
-                <p><?php if($prod[0]["product_quantity"]>0){
-                    echo "in stock";
-                  }
-                else{
-                    echo "out of stock";
-                  } ?>
-                </p>
-            </div>
-        </div> -->
         <!-- cart table -->
-         <div class="row">
+        <div class="row">
             <div class="col-md-10 offset-1 mt-5">
                   <table class="table table-bordered">
                         <thead>
@@ -128,8 +106,8 @@ $_SESSION['totalamt']= $totalAmt;
                                     $amt = $cart->amount;        
                               ?>
                               <tr>
-                                    <td class="text-center"><img src= "admin/uploads/<?php echo $image?>" alt='image' class="img-fluid rounded" style="width:40px; height:30px;"></td>
-                                    <td class="text-center"><?php echo $cart->product_name?></td>
+                                    <td class="text-center"><img src= "admin/uploads/<?php echo $image ?>" alt='image' class="img-fluid rounded" style="width:40px; height:30px;"></td>
+                                    <td class="text-center"><?php echo $cart->product_name ?></td>
                                     <td class="text-center">&#8358;<?php echo number_format($amt)?></td>
                               </tr>
                               <?php
@@ -140,62 +118,17 @@ $_SESSION['totalamt']= $totalAmt;
                   </table>
             </div>
             <div class="col-md-11">
-                  <p class="text-end">
-                        Total amount: <?php if(isset($_SESSION['totalamt'])){
-                              echo "&#8358;".number_format($_SESSION['totalamt']);
-                        }else{ echo 0 ;} ?>
-                  
-                  </p>
-                  <form action="process/process_order.php" method="post">
-                         <button class="btn btn-dark float-end" name="btnorder">Confirm order</button>
-                  </form>
-                  
+                <p class="text-end">
+                    Total amount: <?php if(isset($_SESSION['totalamt'])){
+                        echo "&#8358;".number_format($_SESSION['totalamt']);
+                    }else{ echo 0 ;} ?>
+                </p>
+                <form action="process/process_order.php" method="post">
+                    <button class="btn btn-dark float-end" name="btnorder">Confirm order</button>
+                </form>
             </div>
-         </div>
-            
-
-
-
-
-        <!-- modal -->
-        <!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Modal</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class='container'>
-                            <?php 
-                                foreach($cartlist as $cart){
-                                    $image = $cart->product_image;
-                                    $amt = $cart->amount;        
-                            ?>
-                                <div class='row'>
-                                    <div class='col-md-8 mb-3'>
-                                        <img src= "admin/uploads/<?php echo $image?>" alt='image' class="img-fluid rounded" style="width:40px; height:30px;">
-                                        <?php echo $cart->product_name?>
-                                        <?php echo $amt?>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <button class="btn btn-danger mb-2 btn-sm">Remove</button>
-                                    </div>
-                                </div>
-                            <?php
-                              }   
-                            ?>
-                        </div>
-                    <div class="modal-footer">
-                 
-                        <input type="hidden" name="customer_id" value="<?php echo $customerid?>">
-                        <button type="submit" class="btn btn-dark"></button>
-                        
-                        
-                    </div>
-                </div>
-            </div>
-        </div>   -->
+        </div>
+        <!-- end cart table -->
     </div>
     
 </body>

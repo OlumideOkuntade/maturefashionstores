@@ -1,14 +1,14 @@
 <?php
 session_start();
-require_once "classes/Customer.php";
+require_once "servicemanager/CustomerManager.php";
 require_once "customer_guard.php"; 
-require_once "classes/CartManager.php";
-require_once "classes/ProductManager.php";
-$customer = new Customer;
+require_once "servicemanager/CartManager.php";
+require_once "servicemanager/ProductManager.php";
+$customer = new CustomerManager;
 $cartManager = new CartManager;
 $product = new ProductManager;
 $customerId = $_SESSION["useronline"];
-$data = $customer->getCustomer($customerId);
+$data = $customer->getCustomerById($customerId);
 //id of the product selected frm qs of quick buy
 $id = $_GET['id'];
 $prod = $product->getProductById($id);
@@ -63,7 +63,7 @@ $_SESSION["counter"]= $counter;
 
                             <div class="dropdown user-menu d-flex align-items-center">
                                 <a class="btn dropdown-toggle fs-5" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Hi, <?php echo $data["last_name"];?>
+                                    Hi, <?php echo $data->last_name ?>
                                 </a>
                                 <ul class="dropdown-menu user-profile" style="border-radius:0px;background-color:white;">
                                     <li><a class="dropdown-item text-dark" href="#">Profile</a></li>
@@ -90,13 +90,13 @@ $_SESSION["counter"]= $counter;
         <!-- purchase part -->
         <div class="row"> 
             <div class="col-md-6 ms-3 mt-5 mb-5">
-                <img src="admin/uploads/<?php echo $prod[0]["product_image"]?> "class="img-fluid" style="width:500px;">
+                <img src="admin/uploads/<?php echo $prod->product_image ?> "class="img-fluid" style="width:500px;">
             </div>
             <div class="col-md-5 pt-5">
-                <p class="fs-5 fw-bold"><?php echo $prod[0]["product_name"];?></p>
+                <p class="fs-5 fw-bold"><?php echo $prod->product_name ?></p>
                 <p class="fw-bold">Brand : Mature Fashion </p>
-                <p class="fw-bold">NGN <?php echo number_format($prod[0]["product_price"]);?> </p>
-                <p><?php if($prod[0]["product_quantity"]>0){
+                <p class="fw-bold">NGN <?php echo number_format($prod->product_price );?> </p>
+                <p><?php if($prod->product_quantity > 0){
                     echo "in stock";
                 }
                 else{
@@ -113,8 +113,8 @@ $_SESSION["counter"]= $counter;
                             <option value="large">L</option>
                             <option value="extra large">XL</option>
                         </select>
-                        <input type="hidden"name="product_id" value="<?php echo $prod[0]["product_id"]?>">
-                        <input type="hidden"name="product_price" value="<?php echo $prod[0]["product_price"]?>">
+                        <input type="hidden"name="product_id" value="<?php echo $prod->product_id ?>">
+                        <input type="hidden"name="product_price" value="<?php echo $prod->product_price ?>">
                     </div>
                     <div class="mb-3 d-flex justify-content-between">
                         <input type="number" min='1' name="qty" class="col-4 rounded text-center" >

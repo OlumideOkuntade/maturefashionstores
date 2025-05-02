@@ -1,7 +1,7 @@
 <?php
     session_start();
-    require_once "../classes/Customer.php";
-    $customer = new Customer;
+    require_once "../servicemanager/CustomerManager.php";
+    $customer = new CustomerManager;
     if(!isset($_POST["btn"])){
         $_SESSION['errormsg'] = "Please complete the form";
         header("Location:../register.php");
@@ -28,9 +28,9 @@
         $err = "Please choose a valid email";
     }elseif(strlen($pass) > 8){
         $err= "Password must be less than 8 character"; 
-    }elseif($cus->emailExits($email) === true){
+    }elseif($customer->checkEmailExit($email) === true){
         $err= "Email already in use";
-    }else{$resp = $cus->insertCustomer($firstname,$lastname,$phone,$email,$pass);
+    }else{$resp = $customer->insertCustomer($firstname,$lastname,$phone,$email,$pass);
         if($resp){
            $_SESSION["feedback"]= "An account has been created for you, please login";
            header("Location:../login.php");

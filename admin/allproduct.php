@@ -1,13 +1,10 @@
 <?php
     session_start();
-    require_once "classes/Admin.php";
+    require_once __DIR__ . "/../servicemanager/ProductManager.php";
     require_once "includes/header.php";
     require_once "admin_guard.php";
-    $ad = new Admin;
-    $prod = $ad->allproduct();
-    // echo "<pre>";
-    // print_r($prod);
-    // echo "</pre>";
+    $product = new ProductManager;
+    $prod = $product->getAllProducts(); 
 
 ?>
 <!DOCTYPE html>
@@ -100,16 +97,16 @@
                         <?php
                                 $m =1;
                             foreach($prod as $p){
-                                $productid = $p['product_id'];
-                                $productname = $p['product_name'];
-                                $productimage = $p['product_image'];
-                                $productprice = $p['product_price'];
-                                $productquantity = $p['product_quantity'];
-                                $productstatus = $p['product_status'];
+                                $productid = $p->product_id;
+                                $productname = $p->product_name;
+                                $productimage = $p->product_image;
+                                $productprice = $p->product_price;
+                                $productquantity = $p->product_quantity;
+                                $productstatus = $p->product_status;
                                echo "<tr>
                                         <td>$m</td>
                                         <td>$productname</td>
-                                        <td><img src='uploads/$p[product_image]'></td>
+                                        <td><img src='uploads/$productimage'></td>
                                         <td>$productprice</td>
                                         <td>$productquantity</td>
                                         <td>$productstatus</td>

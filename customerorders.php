@@ -1,12 +1,12 @@
 <?php
     session_start();
-    require_once "classes/Customer.php";
+    require_once "servicemanager/CustomerManager.php";
     require_once "customer_guard.php"; 
-    require_once "classes/OrderManager.php";
-    $customer = new Customer;
+    require_once "servicemanager/OrderManager.php";
+    $customer = new CustomerManager;
     $order = new OrderManager;
     $customerId = $_SESSION["useronline"];
-    $data = $customer->getCustomer($customerId);
+    $data = $customer->getCustomerById($customerId);
     $orders = $order->getAllOrders($customerId);
 ?>
 <!DOCTYPE html>
@@ -50,16 +50,13 @@
 
                             <div class="dropdown user-menu d-flex align-items-center">
                                 <a class="btn dropdown-toggle fs-5" href="#" role="button"          data-bs-toggle="dropdown" aria-expanded="false">
-                                    Hi, <?php echo $data["last_name"];?>
+                                    Hi, <?php echo $data->last_name?>
                                 </a>
                                 <ul class="dropdown-menu user-profile" style="border-radius:0px;background-color:white;">
                                     <li><a class="dropdown-item text-dark" href="#">Profile</a></li>
                                     <li><a class="dropdown-item text-dark" href="customerorders.php">Orders</a></li>
                                     <li><a class="dropdown-item text-dark" href="logout.php">Logout</a></li>
                                 </ul>
-                                
-                                    <!-- <a href="#"><i class="fa-solid fa-magnifying-glass mx-4"></i></a>   -->
-                                    <!-- <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-cart-shopping me-4"></i></a> -->
                                     <span><?php 
                                     if(isset($_SESSION['counter'])){
                                         echo $_SESSION['counter'];
@@ -90,16 +87,16 @@
                         <?php
                                 $m =1;
                             foreach($orders as $order){
-                                $date = $order['order_date'];
-                                $productname = $order['product_name'];
-                                $productimage = $order['product_image'];
-                                $size = $order['order_size'];
-                                $amount = $order['order_amount'];
+                                $date = $order->order_date;
+                                $productname = $order->product_name;
+                                $productimage = $order->product_image;
+                                $size = $order->order_size;
+                                $amount = $order->order_amount;
                             echo "<tr>
                                     <td>$m</td>
                                     <td>$date</td>
                                     <td>$productname</td>
-                                    <td><img src='Admin/uploads/$order[product_image]'></td>
+                                    <td><img src='Admin/uploads/$order->product_image'></td>
                                     <td>$size</td>
                                     <td>$amount</td>
                                 </tr>";

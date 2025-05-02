@@ -26,7 +26,6 @@
         width: 80px;
         height:50px;
     }
-    
     button a{
         color:white;
         text-decoration:none;

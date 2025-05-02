@@ -1,8 +1,9 @@
 <?php
     require_once("partials/header.php");
-    require_once "admin/classes/Admin.php";
-    $admin = new Admin;
-    $prod = $admin->allProduct();
+    //require_once "admin/classes/Admin.php";
+    require_once "servicemanager/ProductManager.php";
+    $product = new ProductManager;
+    $prod = $product->getAllProducts();
 
 ?>
 <style>
@@ -44,11 +45,11 @@
         ?>        
             <div class="col-md-4 mb-3 ">
                 <div class="card" >
-                    <img src="admin/uploads/<?php echo $p['product_image'] ?>" class="img-fluid rounded" style="width:500px; height:400px;" alt="responsive image">
+                    <img src="admin/uploads/<?php echo $p->product_image ?>" class="img-fluid rounded" style="width:500px; height:400px;" alt="responsive image">
                     <div class="card-body ">
-                        <p class="fs-6 fw-bold lh-1"><?php echo $p['product_name']?></p>
+                        <p class="fs-6 fw-bold lh-1"><?php echo $p->product_name ?></p>
                         <div class="d-flex justify-content-between align-items-start">
-                            <p class="fs-4 fw-bold lh-1 ">&#8358;<?php echo $p['product_price']?></p>
+                            <p class="fs-4 fw-bold lh-1 ">&#8358;<?php echo $p->product_price ?></p>
                             <button class="btn btn-success round "><a href="#">Quick Buy</a></button>  
                         </div>
                     </div>
