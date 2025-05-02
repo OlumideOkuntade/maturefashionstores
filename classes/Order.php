@@ -1,4 +1,5 @@
 <?php
+      declare(strict_types = 1);
       class Order {
             private  int $order_id;
             private string $order_amount;
@@ -7,23 +8,31 @@
             private int $order_customerId;
             private int $order_productId;
 
-            public function __construct(int $Id, string $amt, string $size, DateTime $date)
+            public function __construct(int $Id, string $amt, string $size, DateTime $date,int $ordId, int $prodId)
             {     $this->order_id = $Id;
                   $this->order_amount = $amt;
                   $this->order_size= $size;
                   $this->order_date= $date;
+                  $this->order_customerId= $ordId;
+                  $this->order_productId= $prodId;
             }
-            public function getId(): int {
+            public function getOrderId(): int {
                   return $this->order_id;
             }
-            public function getAmt() : string {
+            public function getOrderAmt() : string {
                   return $this->order_amount;
             }
-            public function getSize() : string {
+            public function getOrderSize() : string {
                   return $this->order_size;
             }
-            public function getDate() : DateTime {
+            public function getOrderDate() : DateTime {
                   return $this->order_date;
+            }
+            public function getOrderCustomerId() : int{
+                  return $this->order_customerId;
+            }
+            public function getOrderProductId() : int{
+                  return $this->order_productId;
             }
 
 
