@@ -1,14 +1,11 @@
 <?php
     session_start();
-    require_once "classes/Admin.php";
+    require_once __DIR__ . "/../servicemanager/PaymentManager.php";
     require_once "includes/header.php";
     require_once "admin_guard.php";
-    $ad = new Admin;
-    $payment = $ad->paidPayment();
-//     echo "<pre>";
-//     print_r($payment);
-//     echo "</pre>";
-// ?>
+    $payment = new PaymentManager;
+    $pay = $payment->getPaidPayment();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -99,15 +96,15 @@
                     <tbody>
                         <?php
                                 $m =1;
-                            foreach($payment as $pay){
-                                $date = $pay['payment_date'];
-                                $customerid = $pay['customer_id'];
-                                $customername = $pay['first_name'].' '.$pay['last_name'];
-                                $amount = $pay['payment_amount'];
-                                $status = $pay['payment_status'];
-                                $ref = $pay['payment_ref'];
-                                $ordernum = $pay['payment_orderid'];
-                                $phone = $pay['phone_number'];
+                            foreach($pay as $p){
+                                $date = $p->payment_date;
+                                $customerid = $p->customer_id;
+                                $customername = $p->first_name.' '.$p->last_name;
+                                $amount = $p->payment_amount;
+                                $status = $p->payment_status;
+                                $ref = $p->payment_ref;
+                                $ordernum = $p->payment_orderid;
+                                $phone = $p->phone_number;
                                echo "<tr>
                                         <td>$m</td>
                                         <td>$date</td>

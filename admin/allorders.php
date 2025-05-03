@@ -1,14 +1,10 @@
 <?php
     session_start();
-    require_once "classes/Admin.php";
+    require_once __DIR__ . "/../servicemanager/OrderManager.php";
     require_once "includes/header.php";
     require_once "admin_guard.php";
-    $ad = new Admin;
-    $orders = $ad->allorders();
-    // echo "<pre>";
-    // print_r($orders);
-    // echo "</pre>";
-
+    $order = new OrderManager;
+    $orders = $order->getAllOrders();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -98,17 +94,17 @@
                     <tbody>
                         <?php
                                 $m =1;
-                            foreach($orders as $order){
-                                $date = $order['order_date'];
-                                $productname = $order['product_name'];
-                                $productimage = $order['product_image'];
-                                $size = $order['order_size'];
-                                $amount = $order['order_amount'];
+                            foreach($orders as $or){
+                                $date = $or->order_date;
+                                $productname = $or->product_name;
+                                $productimage = $or->product_image;
+                                $size = $or->order_size;
+                                $amount = $or->order_amount;
                                echo "<tr>
                                         <td>$m</td>
                                         <td>$date</td>
                                         <td>$productname</td>
-                                        <td><img src='uploads/$order[product_image]'></td>
+                                        <td><img src='uploads/$or->product_image'></td>
                                          <td>$size</td>
                                         <td>$amount</td>
                                         

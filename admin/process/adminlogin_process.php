@@ -1,10 +1,7 @@
 <?php
       session_start();
-//     echo "<pre>";
-//     print_r($_POST);
-//     echo "</pre>";
-      require_once "../classes/Admin.php";
-      $admin = new Admin;
+      require_once __DIR__ . "/../../servicemanager/AdminManager.php";
+      $admin = new AdminManager;
       if(!isset($_POST['btn'])){
             $_SESSION['errormsg']="Please login";
             header("Location:../login.php");
@@ -31,4 +28,3 @@
 
 
 
-?>

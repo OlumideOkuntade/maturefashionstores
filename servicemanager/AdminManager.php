@@ -1,8 +1,8 @@
 <?php
-    require_once __DIR__ . "/../../servicemanager/Db.php";
-    Class Admin extends Db{
+    require_once __DIR__ . "/Db.php";
+    Class AdminManager extends Db{
         public function login($name,$pass){
-            try{ $sql= "SELECT * FROM admin WHERE admin_username= ?";
+            try{ $sql= "SELECT * FROM admins WHERE admin_username= ?";
                 $stmt = $this->connect()->prepare($sql);
                 $stmt->execute([$name]);
                 $data = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -31,7 +31,7 @@
         }
         public function getAdmin($id){
             try{
-                $sql = "SELECT * FROM admin WHERE admin_id = ?";
+                $sql = "SELECT * FROM admins WHERE admin_id = ?";
                 $stmt = $this->connect()->prepare($sql);
                 $stmt->execute([$id]);
                 $data= $stmt->fetch(PDO::FETCH_ASSOC);
@@ -55,7 +55,7 @@
         }
         public function fetchCatergory(){
             try{
-                $sql = "SELECT * FROM category";
+                $sql = "SELECT * FROM categories";
                 $stmt = $this->connect()->prepare($sql);
                 $stmt->execute();
                 $data= $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -79,7 +79,7 @@
         }
         public function fetchproductbyId($id){
             try{
-                $sql = "SELECT * FROM products JOIN category ON product_categoryid= category_id WHERE product_id= ?";
+                $sql = "SELECT * FROM products JOIN categories ON product_categoryid= category_id WHERE product_id= ?";
                 $stmt = $this->connect()->prepare($sql);
                 $stmt->execute([$id]);
                 $data= $stmt->fetch(PDO::FETCH_ASSOC);
@@ -107,42 +107,8 @@
             }
            
         }
-        public function allcustomer(){
-            try{
-                $sql = "SELECT * FROM customers";
-                $stmt = $this->connect()->prepare($sql);
-                $stmt->execute();
-                $data= $stmt->fetchAll(PDO::FETCH_ASSOC);
-                return $data;
-            }
-            catch(PDOException $e){
-                return false;
-            }
-        }
-        public function allorders(){
-            try{
-                $sql = "SELECT * FROM orders JOIN products ON products.product_id=orders.order_productid";
-                $stmt = $this->connect()->prepare($sql);
-                $stmt->execute();
-                $data= $stmt->fetchAll(PDO::FETCH_ASSOC);
-                return $data;
-            }
-            catch(PDOException $e){
-                return false;
-            }
-        }
-        public function paidPayment(){
-            try{
-                $sql = "SELECT * FROM payment JOIN customers ON customers.customer_id= payment.payment_cusid WHERE payment.payment_status= 'paid' ";
-                $stmt = $this->connect()->prepare($sql);
-                $stmt->execute();
-                $data= $stmt->fetchAll(PDO::FETCH_ASSOC);
-                return $data;
-            }
-            catch(PDOException $e){
-                return false;
-            }
-        }
+      
+        
     }
     // $admin = new Admin;
     // $rsp = $admin->connect();

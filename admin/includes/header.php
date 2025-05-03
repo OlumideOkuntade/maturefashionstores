@@ -1,9 +1,9 @@
 <?php
-  require_once "classes/Admin.php";
+  require_once __DIR__ . "/../../servicemanager/AdminManager.php";
   require_once "admin_guard.php";
   $id =  $_SESSION["adminonline"];
-  $ad = new Admin;
-  $data = $ad->getAdmin($id);
+  $admin = new AdminManager;
+  $data = $admin->getAdmin($id);
 ?>
 <!DOCTYPE html>
 <html lang="en">

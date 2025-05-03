@@ -7,7 +7,7 @@
     $order = new OrderManager;
     $customerId = $_SESSION["useronline"];
     $data = $customer->getCustomerById($customerId);
-    $orders = $order->getAllOrders($customerId);
+    $orders = $order->getAllOrdersByCustomerId($customerId);
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -16,22 +16,22 @@
                   $this->product_status = $status;
                   $this->product_categoryId = $catId;
             }
-            public function getId(): int {
+            public function getProductId(): int {
                   return $this->product_id;
             }
-            public function getName() : string {
+            public function getProductName() : string {
                   return $this->product_name;
             }
-            public function getPrice() : string {
+            public function getProductPrice() : string {
                   return $this->product_price;
             }
-            public function getQuantity() : string {
+            public function getProductQuantity() : string {
                   return $this->product_qauntity;
             }
-            public function getStatus() : string {
+            public function getProductStatus() : string {
                   return $this->product_status;
             }
-            public function getCategoryId() : int {
+            public function getProductCategoryId() : int {
                   return $this->product_categoryId;
             }
 

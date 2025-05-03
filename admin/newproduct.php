@@ -1,14 +1,10 @@
 <?php
       session_start();
-      require_once "classes/Admin.php";
+      require_once __DIR__ . "/../servicemanager/AdminManager.php";
       require_once "includes/header.php";
       require_once "admin_guard.php";
-
-      $ad = new Admin;
-      $data = $ad->fetchCatergory(); 
-      // echo "<pre>";
-      // print_r($data);
-      // echo "</pre>";
+      $admin = new AdminManager;
+      $data = $admin->fetchCatergory(); 
 ?>
 
 <!DOCTYPE html>

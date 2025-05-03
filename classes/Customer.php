@@ -9,32 +9,35 @@
             private string $password;
             private int $cus_stateid;
 
-            public function __construct(int $Id, string $firstName, string $lastName,string $email, string $pass)
+            public function __construct(int $Id, string $firstName, string $lastName,string $email, string $pass,int $stateId)
             {     $this->customer_id = $Id;
                   $this->first_name = $firstName;
                   $this->last_name = $lastName;
                   $this->email= $email;
                   $this->password= $pass;
+                  $this->cus_stateid= $stateId;
             }
-            public function getCusId(): int {
+            public function getCustomerId(): int {
                   return $this->customer_id;
             }
-            public function getFirstName() : string {
+            public function getCustomerFirstName() : string {
                   return $this->first_name;
             }
-            public function getLastName() : string {
+            public function getCustomerLastName() : string {
                   return $this->last_name;
             }
-            public function getEmail() : string {
+            public function getCustomerEmail() : string {
                   return $this->email;
             }
-            public function getPassword() : string {
+            public function getCustomerPassword() : string {
                   return $this->password;
             }
-            public function getPhone() : string {
+            public function getCustomerPhoneNumber() : string {
                   return $this->phone_number;
             }
-
+            public function getCustomerStateId() : int {
+                  return $this->cus_stateid;
+            }
 
       }
 

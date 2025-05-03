@@ -7,7 +7,7 @@
         }
         public function getCustomerCartId($customerId){
             try{
-                $sql = "SELECT cart_id FROM cart WHERE cart_userid =?";
+                $sql = "SELECT cart_id FROM carts WHERE cart_userid =?";
                 $stmt = $this->db->prepare($sql);
                 $stmt->execute([$customerId]);
                 $data= $stmt->fetch(PDO::FETCH_OBJ);
@@ -18,7 +18,7 @@
         }
         public function checkProductInCart($productId){
             try{
-                $sql = "SELECT item_id FROM cartitem WHERE product_id=?";
+                $sql = "SELECT item_id FROM cartitems WHERE product_id=?";
                 $stmt = $this->db->prepare($sql);
                 $stmt->execute([$productId]);
                 $data= $stmt->fetch(PDO::FETCH_OBJ);
@@ -30,7 +30,7 @@
         }
         public function updateCartProduct($amt,$qty,$cartId,$productId){   
             try{
-                $sql = "UPDATE cartitem SET amount = amount + ? ,quantity = quantity + ? WHERE item_cartid=? AND product_id=?";
+                $sql = "UPDATE cartitems SET amount = amount + ? ,quantity = quantity + ? WHERE item_cartid=? AND product_id=?";
                 $stmt = $this->db->prepare($sql);
                 $stmt->execute([$amt,$qty,$cartId,$productId]);
                 $data= $stmt->fetch(PDO::FETCH_OBJ);
@@ -42,7 +42,7 @@
     
         public function insertIntoCart($customerId){
             try{
-                $sql = "INSERT INTO cart SET cart_userid = ?";
+                $sql = "INSERT INTO carts SET cart_userid = ?";
                 $stmt = $this->db->prepare($sql);
                 $stmt->execute([$customerId]);
                 $data = $this->db->lastInsertId();
@@ -55,7 +55,7 @@
     
         public function insertIntoCartitem($qty,$customerId,$productId,$cartId,$amt){
             try{
-                $sql = "INSERT INTO cartitem SET quantity=?,user_id=?,product_id=?,item_cartid =?,amount=?";
+                $sql = "INSERT INTO cartitems SET quantity=?,user_id=?,product_id=?,item_cartid =?,amount=?";
                 $stmt = $this->db->prepare($sql);
                 $data= $stmt->execute([$qty,$customerId,$productId,$cartId,$amt]);
                 if($data){
@@ -73,7 +73,7 @@
             
         public function getCartitem($customerId){
             try{
-                $sql = "SELECT products.product_id,products.product_image,products.product_name,products.product_price,cartitem.quantity,cartitem.amount FROM cartitem JOIN products ON products.product_id= cartitem.product_id WHERE cartitem.user_id=?";
+                $sql = "SELECT products.product_id,products.product_image,products.product_name,products.product_price,cartitems.quantity,cartitems.amount FROM cartitems JOIN products ON products.product_id= cartitems.product_id WHERE cartitems.user_id=?";
                 $stmt = $this->db->prepare($sql);
                 $stmt->execute([$customerId]);
                 $data= $stmt->fetchAll(PDO::FETCH_OBJ);
@@ -86,7 +86,7 @@
     
         public function sumAmount($customerId){
             try{
-                $sql = "SELECT sum(amount) AS totalamt from cartitem WHERE cartitem.user_id=?";
+                $sql = "SELECT sum(amount) AS totalamt from cartitems WHERE cartitems.user_id=?";
                 $stmt = $this->db->prepare($sql);
                 $stmt->execute([$customerId]);
                 $data= $stmt->fetchAll(PDO::FETCH_OBJ);
@@ -99,7 +99,7 @@
     
         public function deleteCartItem($id,$customerId){
             try{
-                $sql = "DELETE from cartitem WHERE cartitem.product_id=? AND cartitem.user_id=?";
+                $sql = "DELETE from cartitems WHERE cartitems.product_id=? AND cartitems.user_id=?";
                 $stmt = $this->db->prepare($sql);
                 $stmt->execute([$id,$customerId]);
                 $data= $stmt->fetch(PDO::FETCH_OBJ);
@@ -112,7 +112,7 @@
         }
         public function deleteAllCartItem($customerId){
             try{
-                $sql = "DELETE from cartitem WHERE cartitem.user_id=?";
+                $sql = "DELETE from cartitems WHERE cartitems.user_id=?";
                 $stmt = $this->db->prepare($sql);
                 $stmt->execute([$customerId]);
                 $data= $stmt->fetchAll(PDO::FETCH_OBJ);

@@ -1,13 +1,13 @@
 <?php
 session_start();
-require_once "classes/Admin.php";
+require_once __DIR__ . "/../servicemanager/AdminManager.php";
 require_once "includes/header.php";
 require_once "admin_guard.php";
 
 // get the id from the qs
 $id = $_GET["id"];
-$ad = new Admin;
-$dat = $ad->fetchproductbyId($id);
+$admin = new AdminManager;
+$dat = $admin->fetchproductbyId($id);
 // echo "<pre>";
 // print_r($dat);
 // echo "</pre>";
@@ -88,35 +88,35 @@ $dat = $ad->fetchproductbyId($id);
                         }
                   ?>
                   <form action="process/process_editproduct.php" method="post"enctype="multipart/form-data">
-                        <input type="hidden" name="pro" value="<?php echo $dat[0]["product_id"] ?>">
+                        <input type="hidden" name="pro" value="<?php echo $dat["product_id"] ?>">
                         <div>
                               <label for="name">Product name</label>
-                              <input type="text" name="name" id="name" class="form-control mb-3" value="<?php echo $dat[0]['product_name'] ?>" >
+                              <input type="text" name="name" id="name" class="form-control mb-3" value="<?php echo $dat['product_name'] ?>" >
                         </div>
                         <div>
                               <label for="qty">Quantity</label>
-                              <input type="number" name="qty" id="qty" class="form-control mb-3" value="<?php echo $dat[0]['product_quantity'] ?>">
+                              <input type="number" name="qty" id="qty" class="form-control mb-3" value="<?php echo $dat['product_quantity'] ?>">
                         </div>
                         <div>
                               <label for="price">Price</label>
-                              <input type="text" name="price" id="price" class="form-control mb-3" value="<?php echo $dat[0]['product_price'] ?>">
+                              <input type="text" name="price" id="price" class="form-control mb-3" value="<?php echo $dat['product_price'] ?>">
                         </div>
                         <div>
                               <label for="file">Upload Image</label>
-                              <input type="file" name="file" id="file" class="form-control mb-3" value="<?php echo $dat[0]['product_image'] ?>">
+                              <input type="file" name="file" id="file" class="form-control mb-3" value="<?php echo $dat['product_image'] ?>">
 
                         </div>
                         <div>
                               <label for="status">Status</label>
                               <select name="status" id="status" class="form-select mb-3">
                               <?php
-                                    if($dat[0]["product_status"]== "active"){
+                                    if($dat["product_status"]== "active"){
                               ?>
-                                    <option value="<?php echo $dat[0]['product_status']?>"> Active </option>
+                                    <option value="<?php echo $dat['product_status']?>"> Active </option>
                               <?php
                                     }else{
                               ?>    
-                                    <option value="<?php echo $dat[0]['product_status']?>"> Inactve </option>
+                                    <option value="<?php echo $dat['product_status']?>"> Inactve </option>
                               <?php
                                     }
                               ?>
@@ -125,7 +125,7 @@ $dat = $ad->fetchproductbyId($id);
                         <div>
                               <label for="cat">Product category</label>
                               <select name="cat" id="cat"class="form-select mb-3">
-                                    <option value="<?php echo $dat[0]['category_id']?>"><?php echo $dat[0]['category_name']?></option>
+                                    <option value="<?php echo $dat['category_id']?>"><?php echo $dat['category_name']?></option>
                               </select>
                         </div>
                         <button class="btn btn-dark col-12 mb-3 round-4"type="submit" name="btn">Edit product</button>  

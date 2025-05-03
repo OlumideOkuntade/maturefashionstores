@@ -8,7 +8,7 @@
 
         public function insertPayment($totalAmt,$customerId,$ref,$ordId){
             try{
-                $sql = "INSERT INTO payment SET payment_amount=?,payment_cusid=?,payment_ref=?,payment_orderid=?";
+                $sql = "INSERT INTO payments SET payment_amount=?,payment_cusid=?,payment_ref=?,payment_orderid=?";
                 $stmt = $this->db->prepare($sql);
                 $stmt->execute([$totalAmt,$customerId,$ref,$ordId]);
                 return $this->db->lastinsertId();
@@ -70,12 +70,24 @@
 
         public function updatePayment($paystatus,$data,$ref){
             try{
-                $sql ="UPDATE payment SET payment_status=?,payment_data=? WHERE payment_ref=?";
+                $sql ="UPDATE payments SET payment_status=?,payment_data=? WHERE payment_ref=?";
                 $stmt= $this->db->prepare($sql);
                 $stmt->execute([$paystatus,$data,$ref]);
                 return true;
             }catch(PDOException $e){
                 echo $e->getMessage();
+                return false;
+            }
+        }
+        public function getPaidPayment(){
+            try{
+                $sql = "SELECT * FROM payments JOIN customers ON customers.customer_id= payments.payment_cusid WHERE payments.payment_status= 'paid' ";
+                $stmt = $this->db->prepare($sql);
+                $stmt->execute();
+                $data= $stmt->fetchAll(PDO::FETCH_OBJ);
+                return $data;
+            }
+            catch(PDOException $e){
                 return false;
             }
         }

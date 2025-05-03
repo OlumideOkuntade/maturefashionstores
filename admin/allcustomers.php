@@ -1,11 +1,11 @@
 
 <?php
     session_start();
-    require_once "classes/Admin.php";
+    require_once __DIR__ . "/../servicemanager/CustomerManager.php";
     require_once "includes/header.php";
     require_once "admin_guard.php";
-    $ad = new Admin;
-    $cus = $ad->allcustomer();
+    $customer = new CustomerManager;
+    $cus = $customer->getAllCustomers();
     // echo "<pre>";
     // print_r($cus);
     // echo "</pre>";
@@ -100,11 +100,11 @@
                         <?php
                                 $m =1;
                             foreach($cus as $c){
-                                $id = $c['customer_id'];
-                                $firstname = $c['first_name'];
-                                $lastname = $c['last_name'];
-                                $phonenumber = $c['phone_number'];
-                                $email = $c['email'];
+                                $id = $c->customer_id;
+                                $firstname = $c->first_name;
+                                $lastname = $c->last_name;
+                                $phonenumber = $c->phone_number;
+                                $email = $c->email;
                                echo "<tr>
                                         <td>$m</td>
                                         <td> $firstname </td>
@@ -116,7 +116,6 @@
                                         <td><button class='btn btn-danger'><a href='editcustomer.php?id=$id'>Delete</a></buton></td>
                                     </tr>";
                                     $m++;
-
                             }
                         ?>
                     </tbody>
