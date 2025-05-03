@@ -1,8 +1,8 @@
 <?php
 session_start();
-require_once __DIR__ . "/../../servicemanager/AdminManager.php";
+require_once __DIR__ . "/../../servicemanager/ProductManager.php";
 require_once "../admin_guard.php";
-$admin = new AdminManager;
+$product = new ProductManager;
 
 if(!isset($_POST["btn"])){
   header('Location:../newproduct.php');
@@ -42,7 +42,7 @@ if($fileerror != 0){
   }
    // or upload to a folder
     $to = "../uploads/". $filename;
-    $res = $ad->updateProduct($pname,$filetmpname,$to,$price,$qty,$status,$cat,$id);
+    $res = $product->updateProduct($pname,$filetmpname,$to,$price,$qty,$status,$cat,$id);
     if($res){
       $_SESSION['adminfeedback']= "Product updated successfully";
       header('Location:../newproduct.php');

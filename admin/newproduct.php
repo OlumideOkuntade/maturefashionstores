@@ -1,10 +1,10 @@
 <?php
       session_start();
-      require_once __DIR__ . "/../servicemanager/AdminManager.php";
+      require_once __DIR__ . "/../servicemanager/CategoryManager.php";
       require_once "includes/header.php";
       require_once "admin_guard.php";
-      $admin = new AdminManager;
-      $data = $admin->fetchCatergory(); 
+      $category = new CategoryManager;
+      $data = $category->fetchAllCatergory(); 
 ?>
 
 <!DOCTYPE html>
@@ -111,10 +111,10 @@
                                     <label for="cat">Product category</label>
                                     <select name="cat" id="cat"class="form-select mb-3">
                                            <option value="#">Please select category</option>
-                                          <option value="<?php echo $data[0]['category_id']?>"><?php echo $data[0]['category_name']?></option>
-                                          <option value="<?php echo $data[1]['category_id']?>"><?php echo $data[1]['category_name']?></option>
-                                          <option value="<?php echo $data[2]['category_id']?>"><?php echo $data[2]['category_name']?></option>
-                                          <option value="<?php echo $data[3]['category_id']?>"><?php echo $data[3]['category_name']?></option>
+                                          <option value="<?php echo $data[0]->category_id ?>"><?php echo $data[0]->category_name ?></option>
+                                          <option value="<?php echo $data[1]->category_id ?>"><?php echo $data[1]->category_name ?></option>
+                                          <option value="<?php echo $data[2]->category_id ?>"><?php echo $data[2]->category_name ?></option>
+                                          <option value="<?php echo $data[3]->category_id ?>"><?php echo $data[3]->category_name ?></option>
                                     </select>
                               </div>
                               <button class="btn btn-dark col-12 mb-3 round-4"type="submit" name="btn">Add product</button>  

@@ -1,7 +1,7 @@
 <?php
 session_start();
-require_once __DIR__ . "/../../servicemanager/AdminManager.php";
-$admin = new AdminManager;
+require_once __DIR__ . "/../../servicemanager/ProductManager.php";
+$product = new ProductManager;
 if(!isset($_POST["btn"])){
     $_SESSION["errormsg"]= "Please fill the form";
     header('Location:../newproduct.php');
@@ -38,7 +38,7 @@ if($fileerror != 0){
     }
    // or upload to a folder
     $to = "../uploads/". $filename;
-    $res = $ad->insertproduct($pname,$filetmpname,$to,$price,$qty,$status,$cat);
+    $res = $product->insertProduct($pname,$filetmpname,$to,$price,$qty,$status,$cat);
     if($res){
         $_SESSION['adminfeedback']= "Product uploaded sucessfully";
        header('Location:../newproduct.php');

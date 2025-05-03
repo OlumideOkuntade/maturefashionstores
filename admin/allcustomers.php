@@ -6,9 +6,6 @@
     require_once "admin_guard.php";
     $customer = new CustomerManager;
     $cus = $customer->getAllCustomers();
-    // echo "<pre>";
-    // print_r($cus);
-    // echo "</pre>";
 
 ?>
 <!DOCTYPE html>
