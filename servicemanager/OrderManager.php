@@ -23,7 +23,7 @@
                 $sql ="SELECT * FROM orders JOIN products ON order_productid=product_id WHERE order_id =?";
                 $stmt = $this->db->prepare($sql);
                 $stmt->execute([$id]);
-                $data = $stmt->fetch(PDO::FETCH_OBJ);
+                $data = $stmt->fetch(PDO::FETCH_CLASS, 'OrderManager');
                 return $data;
             }
             catch(PDOException $e){
@@ -37,7 +37,7 @@
                 $sql = "SELECT * FROM orders JOIN products ON products.product_id=orders.order_productid WHERE orders.order_customerID= ?";
                 $stmt = $this->connect()->prepare($sql);
                 $stmt->execute([$customerId]);
-                $data= $stmt->fetchAll(PDO::FETCH_OBJ);
+                $data= $stmt->fetchAll(PDO::FETCH_CLASS, 'OrderManager');
                 return $data;
             }
             catch(PDOException $e){
@@ -50,7 +50,7 @@
                 $sql = "SELECT * FROM orders JOIN products ON products.product_id=orders.order_productid";
                 $stmt = $this->db->prepare($sql);
                 $stmt->execute();
-                $data= $stmt->fetchAll(PDO::FETCH_OBJ);
+                $data= $stmt->fetchAll(PDO::FETCH_CLASS, 'OrderManager');
                 return $data;
             }
             catch(PDOException $e){

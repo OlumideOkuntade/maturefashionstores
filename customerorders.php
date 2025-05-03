@@ -8,6 +8,9 @@
     $customerId = $_SESSION["useronline"];
     $data = $customer->getCustomerById($customerId);
     $orders = $order->getAllOrdersByCustomerId($customerId);
+    echo "<pre>";
+    print_r($orders);
+    echo "</pre>";
 ?>
 <!DOCTYPE html>
 <html lang="en">
