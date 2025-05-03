@@ -30,7 +30,7 @@
               <div class="nav_form">
                 <div class="dropdown user-menu">
                   <a class="btn dropdown-toggle fs-5" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Hi <?php echo $data['admin_username'] ?>
+                    Hi <?php echo $data->admin_username ?>
                   </a>
                   <ul class="dropdown-menu user-profile">
                     <li><a class="dropdown-item text-dark" href="logout.php">Logout</a></li>

@@ -5,12 +5,12 @@
             try{ $sql= "SELECT * FROM admins WHERE admin_username= ?";
                 $stmt = $this->connect()->prepare($sql);
                 $stmt->execute([$name]);
-                $data = $stmt->fetch(PDO::FETCH_ASSOC);
+                $data = $stmt->fetch(PDO::FETCH_OBJ);
                 if($data){
-                    $hashed_password = $data['admin_pwd'];
+                    $hashed_password = $data->admin_pwd ;
                     $check = password_verify($pass, $hashed_password);
                     if($check){
-                        return $data["admin_id"];
+                        return $data->admin_id ;
                     }else{
                         $_SESSION["errormsg"] = "Invalid password";
                         return false;
@@ -34,7 +34,7 @@
                 $sql = "SELECT * FROM admins WHERE admin_id = ?";
                 $stmt = $this->connect()->prepare($sql);
                 $stmt->execute([$id]);
-                $data= $stmt->fetch(PDO::FETCH_ASSOC);
+                $data= $stmt->fetch(PDO::FETCH_OBJ);
                 return $data;
             }
             catch(PDOException $e){
