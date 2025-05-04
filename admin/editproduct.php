@@ -1,13 +1,14 @@
 <?php
 session_start();
+$pdo = require_once __DIR__ . "/../servicemanager/Db.php";
 require_once __DIR__ . "/../servicemanager/ProductManager.php";
 require_once "includes/header.php";
 require_once "admin_guard.php";
 
 // get the id from the qs
 $id = $_GET["id"];
-$product = new ProductManager;
-$dat = $product->fetchProductById($id);
+$productManager = new ProductManager($pdo);
+$dat = $productManager->fetchProductById($id);
 ?>
 
 <!DOCTYPE html>

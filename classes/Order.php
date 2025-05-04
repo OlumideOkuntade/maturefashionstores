@@ -4,18 +4,18 @@
             private  int $order_id;
             private string $order_amount;
             private string $order_size;
-            private DateTime $order_date;
+            private DateTime|string $order_date;
             private int $order_customerId;
             private int $order_productId;
 
-            public function __construct(int $Id, string $amt, string $size, DateTime $date,int $ordId, int $prodId)
-            {     $this->order_id = $Id;
-                  $this->order_amount = $amt;
-                  $this->order_size= $size;
-                  $this->order_date= $date;
-                  $this->order_customerId= $ordId;
-                  $this->order_productId= $prodId;
-            }
+            // public function __construct(int $Id = 0, string $amt= '0', string $size ='', DateTime|string $date = '',int $ordId = 0, int $prodId = 0)
+            // {     $this->order_id = $Id;
+            //       $this->order_amount = $amt;
+            //       $this->order_size= $size;
+            //       $this->order_date= $date;
+            //       $this->order_customerId= $ordId;
+            //       $this->order_productId= $prodId;
+            // }
             public function getOrderId(): int {
                   return $this->order_id;
             }

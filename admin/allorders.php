@@ -1,10 +1,11 @@
 <?php
     session_start();
+    $pdo = require_once __DIR__ . "/../servicemanager/Db.php";
     require_once __DIR__ . "/../servicemanager/OrderManager.php";
     require_once "includes/header.php";
     require_once "admin_guard.php";
-    $order = new OrderManager;
-    $orders = $order->getAllOrders();
+    $orderManager = new OrderManager($pdo);
+    $orders = $orderManager->getAllOrders();
 ?>
 <!DOCTYPE html>
 <html lang="en">

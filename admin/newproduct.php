@@ -1,10 +1,11 @@
 <?php
       session_start();
+      $pdo = require_once __DIR__ . "/../servicemanager/Db.php";
       require_once __DIR__ . "/../servicemanager/CategoryManager.php";
       require_once "includes/header.php";
       require_once "admin_guard.php";
-      $category = new CategoryManager;
-      $data = $category->fetchAllCatergory(); 
+      $categoryManager = new CategoryManager($pdo);
+      $data = $categoryManager->fetchAllCatergory(); 
 ?>
 
 <!DOCTYPE html>

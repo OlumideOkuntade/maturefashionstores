@@ -1,16 +1,14 @@
 <?php
     session_start();
+    $pdo = require __DIR__. "/servicemanager/Db.php";
     require_once "servicemanager/CustomerManager.php";
     require_once "customer_guard.php"; 
     require_once "servicemanager/OrderManager.php";
-    $customer = new CustomerManager;
-    $order = new OrderManager;
+    $customerManager = new CustomerManager($pdo);
+    $orderManager = new OrderManager($pdo);
     $customerId = $_SESSION["useronline"];
-    $data = $customer->getCustomerById($customerId);
-    $orders = $order->getAllOrdersByCustomerId($customerId);
-    echo "<pre>";
-    print_r($orders);
-    echo "</pre>";
+    $data = $customerManager->getCustomerById($customerId);
+    $orders = $orderManager->getAllOrdersByCustomerId($customerId);
 ?>
 <!DOCTYPE html>
 <html lang="en">

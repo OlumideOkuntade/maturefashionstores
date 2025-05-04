@@ -1,7 +1,8 @@
 <?php
     session_start();
+    $pdo = require __DIR__. "/../servicemanager/Db.php";
     require_once "../servicemanager/CustomerManager.php";
-    $customer = new CustomerManager;
+    $customerManager = new CustomerManager($pdo);
     if(!isset($_POST["btn"])){
         $_SESSION['errormsg'] = "Please complete the form";
         header("Location:../register.php");
@@ -28,9 +29,9 @@
         $err = "Please choose a valid email";
     }elseif(strlen($pass) > 8){
         $err= "Password must be less than 8 character"; 
-    }elseif($customer->checkEmailExit($email) === true){
+    }elseif($customerManager->checkEmailExit($email) === true){
         $err= "Email already in use";
-    }else{$resp = $customer->insertCustomer($firstname,$lastname,$phone,$email,$pass);
+    }else{$resp = $customerManager->insertCustomer($firstname,$lastname,$phone,$email,$pass);
         if($resp){
            $_SESSION["feedback"]= "An account has been created for you, please login";
            header("Location:../login.php");

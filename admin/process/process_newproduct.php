@@ -1,7 +1,8 @@
 <?php
 session_start();
+$pdo = require_once __DIR__ . "/../../servicemanager/Db.php";
 require_once __DIR__ . "/../../servicemanager/ProductManager.php";
-$product = new ProductManager;
+$productManager = new ProductManager($pdo);
 if(!isset($_POST["btn"])){
     $_SESSION["errormsg"]= "Please fill the form";
     header('Location:../newproduct.php');
@@ -38,7 +39,7 @@ if($fileerror != 0){
     }
    // or upload to a folder
     $to = "../uploads/". $filename;
-    $res = $product->insertProduct($pname,$filetmpname,$to,$price,$qty,$status,$cat);
+    $res = $productManager->insertProduct($pname,$filetmpname,$to,$price,$qty,$status,$cat);
     if($res){
         $_SESSION['adminfeedback']= "Product uploaded sucessfully";
        header('Location:../newproduct.php');

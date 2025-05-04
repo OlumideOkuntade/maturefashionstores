@@ -1,14 +1,15 @@
 <?php
     session_start();
+    $pdo = require __DIR__. "/servicemanager/Db.php";
     require_once "servicemanager/CustomerManager.php";
     require_once "customer_guard.php";
     require_once "servicemanager/ProductManager.php";
        
-    $customer = new CustomerManager;
-    $product = new ProductManager;
+    $customerManager = new CustomerManager($pdo);
+    $productManager = new ProductManager($pdo);
     $id = $_SESSION["useronline"];
-    $data = $customer->getCustomerById($id);
-    $prod = $product->getAllProducts();
+    $data = $customerManager->getCustomerById($id);
+    $prod = $productManager->getAllProducts();
  
 ?>
 <!DOCTYPE html>

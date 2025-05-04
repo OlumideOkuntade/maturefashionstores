@@ -1,17 +1,17 @@
 <?php
-    require_once "Db.php";
-    class PaymentManager extends Db{
-        private $db;
-        public function __construct(){
-            $this->db = $this->connect();
+
+    class PaymentManager{
+        private $pdo;
+        public function __construct(PDO $pdo){
+            $this->pdo = $pdo;
         }
 
         public function insertPayment($totalAmt,$customerId,$ref,$ordId){
             try{
                 $sql = "INSERT INTO payments SET payment_amount=?,payment_cusid=?,payment_ref=?,payment_orderid=?";
-                $stmt = $this->db->prepare($sql);
+                $stmt = $this->pdo->prepare($sql);
                 $stmt->execute([$totalAmt,$customerId,$ref,$ordId]);
-                return $this->db->lastinsertId();
+                return $this->pdo->lastinsertId();
             }
             catch(PDOException $e){
                 echo $e->getMessage(); 
@@ -71,7 +71,7 @@
         public function updatePayment($paystatus,$data,$ref){
             try{
                 $sql ="UPDATE payments SET payment_status=?,payment_data=? WHERE payment_ref=?";
-                $stmt= $this->db->prepare($sql);
+                $stmt= $this->pdo->prepare($sql);
                 $stmt->execute([$paystatus,$data,$ref]);
                 return true;
             }catch(PDOException $e){
@@ -82,7 +82,7 @@
         public function getPaidPayment(){
             try{
                 $sql = "SELECT * FROM payments JOIN customers ON customers.customer_id= payments.payment_cusid WHERE payments.payment_status= 'paid' ";
-                $stmt = $this->db->prepare($sql);
+                $stmt = $this->pdo->prepare($sql);
                 $stmt->execute();
                 $data= $stmt->fetchAll(PDO::FETCH_OBJ);
                 return $data;

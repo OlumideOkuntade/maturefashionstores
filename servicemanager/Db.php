@@ -1,6 +1,5 @@
 <?php
-    Class Db {
-        private $conn;
+    class Db {
         private $dbname = "maturestores";
         private $dbuser = "root";
         private $dbpass = "";
@@ -9,16 +8,16 @@
         public function connect(){
             $dsn = "mysql:dbhost=$this->dbhost;dbname=$this->dbname";
             $options = [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION];
-        
+
             try{
-                $this->conn = new PDO($dsn, $this->dbuser, $this->dbpass, $options);
-                return $this->conn;
-                
+                return new PDO($dsn, $this->dbuser, $this->dbpass, $options);
             }
             catch(PDOException $e){
                 echo  $e->getMessage();
             }
         }   
-
     }
+
+  return (new Db)->connect(); 
+    
     

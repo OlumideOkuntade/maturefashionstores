@@ -1,9 +1,8 @@
 <?php
-    require_once "Db.php";
-    class CategoryManager extends Db{
+    class CategoryManager {
         private $db;
-        public function __construct(){
-            $this->db = $this->connect();
+        public function __construct(PDO $pdo){
+            $this->db = $pdo;
         }
 
         public function fetchAllCatergory(){

@@ -1,10 +1,11 @@
 <?php
     session_start();
+    $pdo = require_once __DIR__ . "/../servicemanager/Db.php";
     require_once __DIR__ . "/../servicemanager/PaymentManager.php";
     require_once "includes/header.php";
     require_once "admin_guard.php";
-    $payment = new PaymentManager;
-    $pay = $payment->getPaidPayment();
+    $paymentManager = new PaymentManager($pdo);
+    $pay = $paymentManager->getPaidPayment();
 ?>
 <!DOCTYPE html>
 <html lang="en">

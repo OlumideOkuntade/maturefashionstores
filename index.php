@@ -1,9 +1,9 @@
 <?php
     require_once("partials/header.php");
-    //require_once "admin/classes/Admin.php";
+    $pdo = require __DIR__. "/servicemanager/Db.php";
     require_once "servicemanager/ProductManager.php";
-    $product = new ProductManager;
-    $prod = $product->getAllProducts();
+    $productManager = new ProductManager($pdo);
+    $prod = $productManager->getAllProducts();
 
 ?>
 <style>

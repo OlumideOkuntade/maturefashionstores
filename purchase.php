@@ -1,17 +1,18 @@
 <?php
 session_start();
+$pdo = require __DIR__. "/servicemanager/Db.php";
 require_once "servicemanager/CustomerManager.php";
 require_once "customer_guard.php"; 
 require_once "servicemanager/CartManager.php";
 require_once "servicemanager/ProductManager.php";
-$customer = new CustomerManager;
-$cartManager = new CartManager;
-$product = new ProductManager;
+$customerManager = new CustomerManager($pdo);
+$cartManager = new CartManager($pdo);
+$productManager = new ProductManager($pdo);
 $customerId = $_SESSION["useronline"];
-$data = $customer->getCustomerById($customerId);
+$data = $customerManager->getCustomerById($customerId);
 //id of the product selected frm qs of quick buy
 $id = $_GET['id'];
-$prod = $product->getProductById($id);
+$prod = $productManager->getProductById($id);
 $cartlist = $cartManager->getCartitem($customerId);
 $counter = count($cartlist);
 $_SESSION["counter"]= $counter;   
@@ -145,9 +146,6 @@ $_SESSION["counter"]= $counter;
                                         <span class="me-2"><?php echo $cart->product_name?></span>
                                         <span class="ms-2"><?php  echo $cart->product_price?></span>
                                         <span class="ms-2"><?php echo $cart->quantity?></span>
-                                    </div>
-                                    <div class="col-md-4">
-                                         <button class="btn btn-danger float-end"><a href="process/process_delete.php?id=<?php echo $cart->product_id?>">Delete</a></button>
                                     </div>
                                 </div>
                             <?php

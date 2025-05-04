@@ -1,18 +1,19 @@
 <?php
 session_start();
+$pdo = require __DIR__. "/servicemanager/Db.php";
 require_once "servicemanager/CustomerManager.php";
 require_once "customer_guard.php"; 
 require_once "servicemanager/CartManager.php";
 require_once "servicemanager/ProductManager.php";
-$customer= new CustomerManager;
-$cartManager= new CartManager;
-$product= new ProductManager;
+$customerManager= new CustomerManager($pdo);
+$cartManager= new CartManager($pdo);
+$productManager= new ProductManager($pdo);
 
 $customerId = $_SESSION["useronline"];
 $productId = $_SESSION['productid'];
 $size = $_SESSION['size'];
-$data = $customer->getCustomerById($customerId);
-$prod = $product->getProductbyId($productId);
+$data = $customerManager->getCustomerById($customerId);
+$prod = $productManager->getProductbyId($productId);
 $cartlist = $cartManager->getCartitem($customerId);
 $counter = count($cartlist);
 $_SESSION["counter"]= $counter;  
@@ -133,7 +134,7 @@ $_SESSION['total']= $totalAmt;
                                         <?php echo $cart->amount; ?>
                                     </div>
                                     <div class="col-md-4">
-                                            <button class="btn btn-danger float-end"><a href="process/process_delete.php?id=<?php echo $cart->product_id?>">Delete</a></button>
+                                        <button class="btn btn-danger float-end"><a href="process/process_delete.php?id=<?php echo $cart->product_id?>">Delete</a></button>
                                     </div>
                                 </div>
                             <?php

@@ -1,8 +1,9 @@
 <?php
 session_start();
+$pdo = require_once __DIR__ . "/../../servicemanager/Db.php";
 require_once __DIR__ . "/../../servicemanager/ProductManager.php";
 require_once "../admin_guard.php";
-$product = new ProductManager;
+$productManager = new ProductManager($pdo);
 
 if(!isset($_POST["btn"])){
   header('Location:../newproduct.php');
@@ -42,7 +43,7 @@ if($fileerror != 0){
   }
    // or upload to a folder
     $to = "../uploads/". $filename;
-    $res = $product->updateProduct($pname,$filetmpname,$to,$price,$qty,$status,$cat,$id);
+    $res = $productManager->updateProduct($pname,$filetmpname,$to,$price,$qty,$status,$cat,$id);
     if($res){
       $_SESSION['adminfeedback']= "Product updated successfully";
       header('Location:../newproduct.php');

@@ -1,10 +1,11 @@
 <?php
     session_start();
+    $pdo = require_once __DIR__ . "/../servicemanager/Db.php";
     require_once __DIR__ . "/../servicemanager/ProductManager.php";
     require_once "includes/header.php";
     require_once "admin_guard.php";
-    $product = new ProductManager;
-    $prod = $product->getAllProducts(); 
+    $productManager = new ProductManager($pdo);
+    $prod = $productManager->getAllProducts(); 
 
 ?>
 <!DOCTYPE html>

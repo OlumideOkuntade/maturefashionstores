@@ -1,9 +1,13 @@
 <?php
-    require_once __DIR__ . "/Db.php";
-    Class AdminManager extends Db{
+    Class AdminManager {
+        private $pdo;
+        public function __construct(PDO $pdo){
+            $this->pdo = $pdo;
+        }
+
         public function login($name,$pass){
             try{ $sql= "SELECT * FROM admins WHERE admin_username= ?";
-                $stmt = $this->connect()->prepare($sql);
+                $stmt = $this->pdo->prepare($sql);
                 $stmt->execute([$name]);
                 $data = $stmt->fetch(PDO::FETCH_OBJ);
                 if($data){
@@ -32,7 +36,7 @@
         public function getAdmin($id){
             try{
                 $sql = "SELECT * FROM admins WHERE admin_id = ?";
-                $stmt = $this->connect()->prepare($sql);
+                $stmt = $this->pdo->prepare($sql);
                 $stmt->execute([$id]);
                 $data= $stmt->fetch(PDO::FETCH_OBJ);
                 return $data;

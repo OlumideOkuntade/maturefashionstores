@@ -1,11 +1,12 @@
 
 <?php
     session_start();
+    $pdo = require_once __DIR__ . "/../servicemanager/Db.php";
     require_once __DIR__ . "/../servicemanager/CustomerManager.php";
     require_once "includes/header.php";
     require_once "admin_guard.php";
-    $customer = new CustomerManager;
-    $cus = $customer->getAllCustomers();
+    $customerManager = new CustomerManager($pdo);
+    $cus = $customerManager->getAllCustomers();
 
 ?>
 <!DOCTYPE html>

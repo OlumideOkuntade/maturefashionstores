@@ -1,7 +1,8 @@
 <?php
       session_start();
+      $pdo = require_once __DIR__ . "/../../servicemanager/Db.php";
       require_once __DIR__ . "/../../servicemanager/AdminManager.php";
-      $admin = new AdminManager;
+      $adminManager = new AdminManager($pdo);
       if(!isset($_POST['btn'])){
             $_SESSION['errormsg']="Please login";
             header("Location:../login.php");
@@ -15,7 +16,7 @@
            header("Location:../login.php");
           exit; 
       }
-      $log = $admin->login($name,$pass);
+      $log = $adminManager->login($name,$pass);
       if($log){
             $_SESSION["adminonline"] = $log;
            header("location:../dashboard.php");

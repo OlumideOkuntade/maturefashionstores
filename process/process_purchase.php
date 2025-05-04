@@ -1,8 +1,9 @@
 <?php
     session_start();
+    $pdo = require __DIR__. "/../servicemanager/Db.php";
     require_once "../customer_guard.php"; 
     require_once "../servicemanager/CartManager.php";
-    $cartManager = new CartManager;
+    $cartManager = new CartManager($pdo);
 
     if(isset($_POST['addcart'])){
         $size = $_POST["size"];

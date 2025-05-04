@@ -1,5 +1,6 @@
 <?php
 session_start();
+$pdo = require __DIR__. "/servicemanager/Db.php";
 require_once "servicemanager/Customer.php";
 require_once "servicemanager/PaymentManager.php";
 require_once "customer_guard.php";
@@ -9,12 +10,12 @@ if(!isset($_SESSION['ref'])){
   header("Location:order_purchase.php");
   exit;
 }
-$payment = new PaymentManager;
-$cartManager = new CartManager;
+$paymentManager = new PaymentManager($pdo);
+$cartManager = new CartManager($pdo);
 $ref = $_SESSION["ref"];
 $customerId = $_SESSION["useronline"];
 #connect to paystack api to verify the transaction status
-$rsp = $payment->paystack_verify_step2($ref);
+$rsp = $paymentManager->paystack_verify_step2($ref);
 if($rsp && ($rsp->status)){
     #transaction was successful
     $paystatus = "paid";
@@ -28,7 +29,7 @@ if($rsp && ($rsp->status)){
     $data = json_encode($rsp);
     $_SESSION["errormsg"]= "Payment failed";
   }
- $payment->updatePayment($paystatus,$data,$ref);
+ $paymentManager->updatePayment($paystatus,$data,$ref);
  $cartManager->deleteAllCartItem($customerid);
 
   header("Location:dashboard.php");
