@@ -7,9 +7,6 @@
   $id =  $_SESSION["adminonline"];
   $adminManager = new AdminManager($pdo);
   $data = $adminManager->getAdmin($id);
-  // echo "<pre>";
-  // print_r($data['admin_username']);
-  // echo "</pre>";
 
 ?>
 <!doctype html>

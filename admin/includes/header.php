@@ -1,9 +1,10 @@
 <?php
+  require_once __DIR__ . "/../../servicemanager/Db.php";
   require_once __DIR__ . "/../../servicemanager/AdminManager.php";
   require_once "admin_guard.php";
   $id =  $_SESSION["adminonline"];
-  $admin = new AdminManager;
-  $data = $admin->getAdmin($id);
+  $adminManager = new AdminManager($pdo);
+  $data = $adminManager->getAdmin($id);
 ?>
 <!DOCTYPE html>
 <html lang="en">

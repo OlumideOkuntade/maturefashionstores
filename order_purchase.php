@@ -13,15 +13,14 @@ $productId = $_SESSION['productid'];
 $size = $_SESSION['size'];
 $data = $customerManager->getCustomerById($customerId);
 $prod = $productManager->getProductbyId($productId);
-$cartlist = $cartManager->getCartitem($customerId);
-$counter = count($cartlist);
+$cartList = $cartManager->getCartitem($customerId);
+$counter = count($cartList);
 $_SESSION["counter"]= $counter;  
 $tot = $cartManager->sumAmount($customerId); 
 $totalAmt= $tot[0]->totalamt; 
-// echo $total;
-$_SESSION['totalamt']= $totalAmt;
-      
+$_SESSION['totalamt']= $totalAmt;    
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,7 +31,6 @@ $_SESSION['totalamt']= $totalAmt;
     <link rel="stylesheet" href="css/style.css">
     <title>MaturedfashionStores</title>
     <style>
-         
         #nav_head span{
         color:white;
         width:20px;
@@ -101,20 +99,20 @@ $_SESSION['totalamt']= $totalAmt;
                               </tr>
                         </thead>
                         <tbody>
-                              <?php 
-                              foreach($cartlist as $cart){
-                                    $image = $cart->product_image;
-                                    $amt = $cart->amount;        
-                              ?>
-                              <tr>
-                                    <td class="text-center"><img src= "admin/uploads/<?php echo $image ?>" alt='image' class="img-fluid rounded" style="width:40px; height:30px;"></td>
-                                    <td class="text-center"><?php echo $cart->product_name ?></td>
-                                    <td class="text-center">&#8358;<?php echo number_format($amt)?></td>
-                              </tr>
-                              <?php
-                              }   
-                              ?>
-                              
+                            <?php 
+                            foreach($cartList as $cart){
+                                $image = $cart->product_image;
+                                $amt = $cart->amount;        
+                            ?>
+                            <tr>
+                                <td class="text-center"><img src= "admin/uploads/<?php echo $image ?>" alt='image' class="img-fluid rounded" style="width:40px; height:30px;"></td>
+                                <td class="text-center"><?php echo $cart->product_name ?></td>
+                                <td class="text-center">&#8358;<?php echo number_format($amt)?></td>
+                            </tr>
+                            <?php
+                            }   
+                            ?>
+                            
                         </tbody>
                   </table>
             </div>
@@ -131,10 +129,8 @@ $_SESSION['totalamt']= $totalAmt;
         </div>
         <!-- end cart table -->
     </div>
-    
 </body>
 </html>
-
 <?php
 require_once "partials/footer.php";
 

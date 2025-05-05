@@ -49,7 +49,7 @@
                 $sql = "SELECT * FROM orders JOIN products ON products.product_id=orders.order_productid";
                 $stmt = $this->pdo->prepare($sql);
                 $stmt->execute();
-                $data= $stmt->fetchAll(PDO::FETCH_CLASS, 'OrderManager');
+                $data= $stmt->fetchAll(PDO::FETCH_OBJ);
                 return $data;
             }
             catch(PDOException $e){

@@ -10,14 +10,13 @@ $cartManager = new CartManager($pdo);
 $productManager = new ProductManager($pdo);
 $customerId = $_SESSION["useronline"];
 $data = $customerManager->getCustomerById($customerId);
-//id of the product selected frm qs of quick buy
 $id = $_GET['id'];
 $prod = $productManager->getProductById($id);
-$cartlist = $cartManager->getCartitem($customerId);
-$counter = count($cartlist);
+$cartList = $cartManager->getCartitem($customerId);
+$counter = count($cartList);
 $_SESSION["counter"]= $counter;   
-
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -48,7 +47,6 @@ $_SESSION["counter"]= $counter;
         }
     </style>
 </head>
-
 <body>
     <div class="container-fluid">
         <!-- navigation -->
@@ -159,8 +157,6 @@ $_SESSION["counter"]= $counter;
     </div>
 </body>
 </html>
-
 <?php
 require_once "partials/footer.php";
-
 ?>

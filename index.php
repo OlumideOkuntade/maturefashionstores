@@ -6,10 +6,6 @@
     $prod = $productManager->getAllProducts();
 
 ?>
-<style>
-    
-</style>
-
 <!-- end navigation -->
 <div class="row mb-5">
     <div class="col-md-12" >
@@ -40,30 +36,25 @@
 </div>
 <!-- start card -->
 <div class="row ms-5 me-5 card_container" id="all">
-        <?php 
-            foreach($prod as $p){
-        ?>        
-            <div class="col-md-4 mb-3 ">
-                <div class="card" >
-                    <img src="admin/uploads/<?php echo $p->product_image ?>" class="img-fluid rounded" style="width:500px; height:400px;" alt="responsive image">
-                    <div class="card-body ">
-                        <p class="fs-6 fw-bold lh-1"><?php echo $p->product_name ?></p>
-                        <div class="d-flex justify-content-between align-items-start">
-                            <p class="fs-4 fw-bold lh-1 ">&#8358;<?php echo $p->product_price ?></p>
-                            <button class="btn btn-success round "><a href="#">Quick Buy</a></button>  
-                        </div>
+    <?php 
+        foreach($prod as $p){
+    ?>        
+        <div class="col-md-4 mb-3 ">
+            <div class="card" >
+                <img src="admin/uploads/<?php echo $p->product_image ?>" class="img-fluid rounded" style="width:500px; height:400px;" alt="responsive image">
+                <div class="card-body ">
+                    <p class="fs-6 fw-bold lh-1"><?php echo $p->product_name ?></p>
+                    <div class="d-flex justify-content-between align-items-start">
+                        <p class="fs-4 fw-bold lh-1 ">&#8358;<?php echo $p->product_price ?></p>
+                        <button class="btn btn-success round "><a href="#">Quick Buy</a></button>  
                     </div>
                 </div>
             </div>
-        <?php
-            }
-        ?>
-    
-   
+        </div>
+    <?php
+        }
+    ?>
 </div>
-
-
-        
 <?php
     require_once("partials/footer.php");
 

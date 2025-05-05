@@ -97,14 +97,14 @@
                                 $m =1;
                             foreach($orders as $or){
                                 $date = $or->order_date;
-                                $productname = $or->product_name;
-                                $productimage = $or->product_image;
+                                $productName = $or->product_name;
+                                $productImage = $or->product_image;
                                 $size = $or->order_size;
                                 $amount = $or->order_amount;
                                echo "<tr>
                                         <td>$m</td>
                                         <td>$date</td>
-                                        <td>$productname</td>
+                                        <td>$productName</td>
                                         <td><img src='uploads/$or->product_image'></td>
                                          <td>$size</td>
                                         <td>$amount</td>

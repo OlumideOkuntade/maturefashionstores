@@ -98,19 +98,19 @@
                         <?php
                                 $m =1;
                             foreach($prod as $p){
-                                $productid = $p->product_id;
-                                $productname = $p->product_name;
-                                $productimage = $p->product_image;
-                                $productprice = $p->product_price;
-                                $productquantity = $p->product_quantity;
+                                $productId = $p->product_id;
+                                $productName = $p->product_name;
+                                $productImage = $p->product_image;
+                                $productPrice = $p->product_price;
+                                $productQuantity = $p->product_quantity;
                                 $productstatus = $p->product_status;
                                echo "<tr>
                                         <td>$m</td>
-                                        <td>$productname</td>
-                                        <td><img src='uploads/$productimage'></td>
-                                        <td>$productprice</td>
-                                        <td>$productquantity</td>
-                                        <td>$productstatus</td>
+                                        <td>$productName</td>
+                                        <td><img src='uploads/$productImage'></td>
+                                        <td>$productPrice</td>
+                                        <td>$productQuantity</td>
+                                        <td>$productStatus</td>
                                         <td><button class='btn btn-primary'><a href='editproduct.php?id=$productid'>Edit</a></buton></td>
                                         <td><button class='btn btn-primary'><a href='editproduct.php?id=$productid'>Details</a></buton></td>
                                         <td><button class='btn btn-danger'><a href='editproduct.php?id=$productid'>Delete</a></buton></td>

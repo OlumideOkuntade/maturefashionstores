@@ -1,4 +1,5 @@
 <?php
+
     class Db {
         private $dbname = "maturestores";
         private $dbuser = "root";

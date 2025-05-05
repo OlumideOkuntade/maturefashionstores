@@ -99,22 +99,22 @@
                                 $m =1;
                             foreach($pay as $p){
                                 $date = $p->payment_date;
-                                $customerid = $p->customer_id;
-                                $customername = $p->first_name.' '.$p->last_name;
+                                $customerId = $p->customer_id;
+                                $customerName = $p->first_name.' '.$p->last_name;
                                 $amount = $p->payment_amount;
                                 $status = $p->payment_status;
                                 $ref = $p->payment_ref;
-                                $ordernum = $p->payment_orderid;
+                                $orderNum = $p->payment_orderid;
                                 $phone = $p->phone_number;
                                echo "<tr>
                                         <td>$m</td>
                                         <td>$date</td>
-                                        <td>$customerid </td>
-                                        <td>$customername</td>
+                                        <td>$customerId </td>
+                                        <td>$customerName</td>
                                         <td>$amount </td>
                                         <td>$status</td>
                                         <td>$ref</td>
-                                        <td>$ordernum</td>
+                                        <td>$orderNum</td>
                                         <td>$phone</td>
                                         
                                     </tr>";

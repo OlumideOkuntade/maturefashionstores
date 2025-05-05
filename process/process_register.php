@@ -9,21 +9,21 @@
         exit;
     }
 
-    $firstname = $_POST["firstname"];
-    $lastname = $_POST["lastname"];
+    $firstName = $_POST["firstname"];
+    $lastName = $_POST["lastname"];
     $email = $_POST["email"];
     $phone = $_POST["phone"];
     $pass = $_POST["pass"];
     $radio = isset($_POST["radio"])? $_POST["radio"]:'';
 
-    $_SESSION['firstname']= $firstname;
-    $_SESSION['lastname']= $lastname;
+    $_SESSION['firstname']= $firstName;
+    $_SESSION['lastname']= $lastName;
     $_SESSION['email']= $email;
     $_SESSION['phone']= $phone;
     $_SESSION['pass']= $pass;
     $_SESSION['radio']= $radio;
     
-    if(empty($firstname) || empty($lastname) || empty($email)|| empty($phone)|| empty($pass)|| empty($radio)){
+    if(empty($firstName) || empty($lastName) || empty($email)|| empty($phone)|| empty($pass)|| empty($radio)){
         $err = "All fields are required";
     }elseif(!filter_var($email,FILTER_VALIDATE_EMAIL)){
         $err = "Please choose a valid email";

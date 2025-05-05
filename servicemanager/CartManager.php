@@ -59,11 +59,9 @@
                 $data= $stmt->execute([$qty,$customerId,$productId,$cartId,$amt]);
                 if($data){
                     return true;
-                    exit;
                 }else{
                     return false;
-                    exit;
-                };
+                }
             }
             catch(PDOException $e){
                 echo $e->getMessage();

@@ -72,11 +72,7 @@ session_start();
       </div>
   </div>
   </div> 
-  <script src="scripts/jquery.js"></script>
-  <script>
-
-  </script>  
-
+  <script src="scripts/jquery.js"></script> 
 <?php
   
   require_once("partials/footer.php");

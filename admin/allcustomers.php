@@ -99,15 +99,15 @@
                                 $m =1;
                             foreach($cus as $c){
                                 $id = $c->customer_id;
-                                $firstname = $c->first_name;
-                                $lastname = $c->last_name;
-                                $phonenumber = $c->phone_number;
+                                $firstName = $c->first_name;
+                                $lastName = $c->last_name;
+                                $phoneNumber = $c->phone_number;
                                 $email = $c->email;
                                echo "<tr>
                                         <td>$m</td>
-                                        <td> $firstname </td>
-                                        <td> $lastname</td>
-                                        <td> $phonenumber</td>
+                                        <td> $firstName </td>
+                                        <td> $lastName</td>
+                                        <td> $phoneNumber</td>
                                         <td>$email</td>
                                         <td><button class='btn btn-primary'><a href='editcustomer.php?id= $id'>Edit</a></buton></td>
                                         <td><button class='btn btn-primary'><a href='editcustomer.php?id=$id'>Details</a></buton></td>
