@@ -1,8 +1,7 @@
 <?php
     session_start();
     $pdo = require __DIR__. "/../servicemanager/Db.php";
-    require_once "../servicemanager/CustomerManager.php";
-    
+    require_once "../servicemanager/CustomerManager.php"; 
     $customerManager = new CustomerManager($pdo);
     if(!isset($_POST["login"])){
         header("Location:../login.php");

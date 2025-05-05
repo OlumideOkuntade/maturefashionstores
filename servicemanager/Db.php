@@ -4,20 +4,20 @@
         private $dbuser = "root";
         private $dbpass = "";
         private $dbhost = "localhost";
+
         
         public function connect(){
             $dsn = "mysql:dbhost=$this->dbhost;dbname=$this->dbname";
             $options = [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION];
 
             try{
-                return new PDO($dsn, $this->dbuser, $this->dbpass, $options);
+                return $pdo = new PDO($dsn, $this->dbuser, $this->dbpass, $options);
             }
             catch(PDOException $e){
                 echo  $e->getMessage();
             }
         }   
     }
-
-  return (new Db)->connect(); 
+    return (new Db)->connect(); 
     
     
