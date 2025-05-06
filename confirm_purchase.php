@@ -1,15 +1,14 @@
 <?php
 session_start();
-use servicemanager\ProductManager;
 $pdo = require __DIR__. "/servicemanager/Db.php";
 require_once "servicemanager/CustomerManager.php";
 require_once "customer_guard.php"; 
 require_once "servicemanager/CartManager.php";
 require_once "servicemanager/ProductManager.php";
+use servicemanager\ProductManager;
 $customerManager= new CustomerManager($pdo);
 $cartManager= new CartManager($pdo);
 $productManager= new ProductManager($pdo);
-
 $customerId = $_SESSION["useronline"];
 $productId = $_SESSION['productid'];
 $size = $_SESSION['size'];

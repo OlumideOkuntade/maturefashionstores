@@ -3,7 +3,7 @@ session_start();
 $pdo = require_once __DIR__ . "/../../servicemanager/Db.php";
 require_once __DIR__ . "/../../servicemanager/ProductManager.php";
 require_once "../admin_guard.php";
-$productManager = new ProductManager($pdo);
+$productManager = new \servicemanager\ProductManager($pdo);
 
 if(!isset($_POST["btn"])){
   header('Location:../newproduct.php');

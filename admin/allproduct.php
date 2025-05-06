@@ -4,7 +4,7 @@
     require_once __DIR__ . "/../servicemanager/ProductManager.php";
     require_once "includes/header.php";
     require_once "admin_guard.php";
-    $productManager = new ProductManager($pdo);
+    $productManager = new \servicemanager\ProductManager($pdo);
     $prod = $productManager->getAllProducts(); 
 
 ?>

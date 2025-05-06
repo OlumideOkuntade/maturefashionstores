@@ -2,7 +2,7 @@
 session_start();
 $pdo = require_once __DIR__ . "/../../servicemanager/Db.php";
 require_once __DIR__ . "/../../servicemanager/ProductManager.php";
-$productManager = new ProductManager($pdo);
+$productManager = new \servicemanager\ProductManager($pdo);
 if(!isset($_POST["btn"])){
     $_SESSION["errormsg"]= "Please fill the form";
     header('Location:../newproduct.php');
