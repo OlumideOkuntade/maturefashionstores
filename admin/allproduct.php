@@ -103,7 +103,7 @@
                                 $productImage = $p->product_image;
                                 $productPrice = $p->product_price;
                                 $productQuantity = $p->product_quantity;
-                                $productstatus = $p->product_status;
+                                $productStatus = $p->product_status;
                                echo "<tr>
                                         <td>$m</td>
                                         <td>$productName</td>
@@ -111,9 +111,9 @@
                                         <td>$productPrice</td>
                                         <td>$productQuantity</td>
                                         <td>$productStatus</td>
-                                        <td><button class='btn btn-primary'><a href='editproduct.php?id=$productid'>Edit</a></buton></td>
-                                        <td><button class='btn btn-primary'><a href='editproduct.php?id=$productid'>Details</a></buton></td>
-                                        <td><button class='btn btn-danger'><a href='editproduct.php?id=$productid'>Delete</a></buton></td>
+                                        <td><button class='btn btn-primary'><a href='editproduct.php?id=$productId'>Edit</a></buton></td>
+                                        <td><button class='btn btn-primary'><a href='editproduct.php?id=$productId'>Details</a></buton></td>
+                                        <td><button class='btn btn-danger'><a href='editproduct.php?id=$productId'>Delete</a></buton></td>
                                     </tr>";
                                     $m++;
 

@@ -1,5 +1,7 @@
 <?php
-
+    namespace servicemanager;
+    use PDO;
+    use PDOException;
     class Db {
         private $dbname = "maturestores";
         private $dbuser = "root";
