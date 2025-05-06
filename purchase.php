@@ -1,5 +1,6 @@
 <?php
 session_start();
+use servicemanager\ProductManager;
 $pdo = require __DIR__. "/servicemanager/Db.php";
 require_once "servicemanager/CustomerManager.php";
 require_once "customer_guard.php"; 

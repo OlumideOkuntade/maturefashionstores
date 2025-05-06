@@ -1,4 +1,7 @@
 <?php
+    namespace maturefashion\index;
+    use servicemanager\productManager;
+    
     require_once("partials/header.php");
     $pdo = require __DIR__. "/servicemanager/Db.php";
     require_once "servicemanager/ProductManager.php";

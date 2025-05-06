@@ -1,4 +1,7 @@
 <?php
+    namespace servicemanager;
+    use PDO;
+    use PDOException;
     class ProductManager {
         Private $pdo;
         Public function __construct(PDO $pdo){
