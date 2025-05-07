@@ -1,5 +1,6 @@
 <?php
       declare(strict_types = 1);
+      namespace classes;
       class Cart {
             private  int $item_id;
             private int $user_id;

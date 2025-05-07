@@ -1,17 +1,20 @@
 <?php
-    Class CustomerManager{
+    namespace servicemanager;
+    use PDO;
+    use PDOException;
+    class CustomerManager{
         private $pdo;
         public function __construct(PDO $pdo){
             $this->pdo = $pdo;
         }
-        public function insertCustomer($firstName,$lastName,$phone,$email,$pass){
+        public function insertCustomer($firstName,$lastName,$phone,$email,$pass):bool{
             $hashed = password_hash($pass,PASSWORD_DEFAULT);
             $sql = "INSERT INTO customers (first_name,last_name,phone_number,email,password) VALUES(?,?,?,?,?)";
             $stmt = $this->pdo->prepare($sql);
             $res = $stmt->execute([$firstName,$lastName,$phone,$email,$hashed]);
             return $res;
         }
-        public function checkEmailExit($email){
+        public function checkEmailExit($email):bool{
             $sql= "SELECT * FROM customers WHERE email = ?";
             $stmt = $this->pdo->prepare($sql);
             $stmt->execute([$email]);
@@ -22,7 +25,7 @@
                 return true;
             }
         }
-        public function login($email,$pass){
+        public function login($email,$pass):string|bool{
             try{ $sql= "SELECT * FROM customers WHERE email= ?";
                 $stmt = $this->pdo->prepare($sql);
                 $stmt->execute([$email]);
@@ -49,7 +52,7 @@
             unset($_SESSION["useronline"]);
             session_destroy();
         }
-        public function getAllCustomers(){
+        public function getAllCustomers():array|bool{
             try{
                 $sql = "SELECT * FROM customers";
                 $stmt = $this->pdo->prepare($sql);
@@ -61,7 +64,7 @@
                 return false;
             }
         }
-        public function getCustomerById($customerId){
+        public function getCustomerById($customerId):object|bool{
             try{
                 $sql = "SELECT * FROM customers WHERE customer_id = ?";
                 $stmt = $this->pdo->prepare($sql);

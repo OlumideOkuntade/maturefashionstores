@@ -1,10 +1,13 @@
 <?php
+    namespace servicemanager;
+    use PDO;
+    use PDOException;
     class CartManager{
         private $pdo;
         public function __construct(PDO $pdo){
             $this->pdo = $pdo;
         }
-        public function getCustomerCartId($customerId){
+        public function getCustomerCartId($customerId):object|bool{
             try{
                 $sql = "SELECT cart_id FROM carts WHERE cart_userid =?";
                 $stmt = $this->pdo->prepare($sql);
@@ -12,10 +15,11 @@
                 $data= $stmt->fetch(PDO::FETCH_OBJ);
                 return $data;
             } catch(PDOException $e){
-                echo $e->getMessage(); 
+                echo $e->getMessage();
+                return false; 
             }
         }
-        public function checkProductInCart($productId){
+        public function checkProductInCart($productId):object|bool{
             try{
                 $sql = "SELECT item_id FROM cartitems WHERE product_id=?";
                 $stmt = $this->pdo->prepare($sql);
@@ -27,7 +31,7 @@
                 return false; 
             }
         }
-        public function updateCartProduct($amt,$qty,$cartId,$productId){   
+        public function updateCartProduct($amt,$qty,$cartId,$productId):object|bool{   
             try{
                 $sql = "UPDATE cartitems SET amount = amount + ? ,quantity = quantity + ? WHERE item_cartid=? AND product_id=?";
                 $stmt = $this->pdo->prepare($sql);
@@ -35,11 +39,12 @@
                 $data= $stmt->fetch(PDO::FETCH_OBJ);
                 return true;
             } catch(PDOException $e){
-                echo $e->getMessage(); 
+                echo $e->getMessage();
+                return false; 
             }
         }
     
-        public function insertIntoCart($customerId){
+        public function insertIntoCart($customerId):object|bool{
             try{
                 $sql = "INSERT INTO carts SET cart_userid = ?";
                 $stmt = $this->pdo->prepare($sql);
@@ -49,10 +54,11 @@
             } 
             catch(PDOException $e){
                 echo $e->getMessage();
+                return false;
             }
         }
     
-        public function insertIntoCartitem($qty,$customerId,$productId,$cartId,$amt){
+        public function insertIntoCartitem($qty,$customerId,$productId,$cartId,$amt):bool{
             try{
                 $sql = "INSERT INTO cartitems SET quantity=?,user_id=?,product_id=?,item_cartid =?,amount=?";
                 $stmt = $this->pdo->prepare($sql);
@@ -65,10 +71,11 @@
             }
             catch(PDOException $e){
                 echo $e->getMessage();
+                return false;
             }
         }
             
-        public function getCartitem($customerId){
+        public function getCartitem($customerId):array|bool{
             try{
                 $sql = "SELECT products.product_id,products.product_image,products.product_name,products.product_price,cartitems.quantity,cartitems.amount FROM cartitems JOIN products ON products.product_id= cartitems.product_id WHERE cartitems.user_id=?";
                 $stmt = $this->pdo->prepare($sql);
@@ -77,11 +84,12 @@
                 return $data;
             }
             catch(PDOException $e){
-                echo $e->getMessage(); 
+                echo $e->getMessage();
+                return false; 
             }        
         }
     
-        public function sumAmount($customerId){
+        public function sumAmount($customerId):array|bool{
             try{
                 $sql = "SELECT sum(amount) AS totalamt from cartitems WHERE cartitems.user_id=?";
                 $stmt = $this->pdo->prepare($sql);
@@ -91,10 +99,11 @@
             }
             catch(PDOException $e){
                 echo $e->getMessage();
+                return false;
             }         
         }
     
-        public function deleteCartItem($id,$customerId){
+        public function deleteCartItem($id,$customerId):object|bool{
             try{
                 $sql = "DELETE from cartitems WHERE cartitems.product_id=? AND cartitems.user_id=?";
                 $stmt = $this->pdo->prepare($sql);
@@ -104,10 +113,11 @@
             }
             catch(PDOException $e){
                 echo $e->getMessage();
+                return false;
             } 
     
         }
-        public function deleteAllCartItem($customerId){
+        public function deleteAllCartItem($customerId):array|bool{
             try{
                 $sql = "DELETE from cartitems WHERE cartitems.user_id=?";
                 $stmt = $this->pdo->prepare($sql);
@@ -116,7 +126,8 @@
                 return true;
             }
             catch(PDOException $e){
-                echo $e->getMessage(); 
+                echo $e->getMessage();
+                return false; 
             } 
         }
     }

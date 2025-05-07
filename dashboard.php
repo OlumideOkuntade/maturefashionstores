@@ -5,6 +5,7 @@
     require_once "customer_guard.php";
     require_once "servicemanager/ProductManager.php";
     use servicemanager\ProductManager; 
+    use servicemanager\CustomerManager;
     $customerManager = new CustomerManager($pdo);
     $productManager = new ProductManager($pdo);
     $id = $_SESSION["useronline"];

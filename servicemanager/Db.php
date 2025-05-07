@@ -9,7 +9,7 @@
         private $dbhost = "localhost";
 
         
-        public function connect(){
+        public function connect():object|bool{
             $dsn = "mysql:dbhost=$this->dbhost;dbname=$this->dbname";
             $options = [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION];
 
@@ -18,6 +18,7 @@
             }
             catch(PDOException $e){
                 echo  $e->getMessage();
+                return false;
             }
         }   
     }

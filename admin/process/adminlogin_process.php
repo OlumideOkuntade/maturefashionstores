@@ -2,6 +2,7 @@
       session_start();
       $pdo = require_once __DIR__ . "/../../servicemanager/Db.php";
       require_once __DIR__ . "/../../servicemanager/AdminManager.php";
+      use servicemanager\AdminManager;
       $adminManager = new AdminManager($pdo);
       if(!isset($_POST['btn'])){
             $_SESSION['errormsg']="Please login";

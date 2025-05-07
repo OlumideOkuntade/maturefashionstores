@@ -6,6 +6,8 @@ require_once "customer_guard.php";
 require_once "servicemanager/CartManager.php";
 require_once "servicemanager/ProductManager.php";
 use servicemanager\ProductManager;
+use servicemanager\CartManager;
+use servicemanager\CustomerManager;
 $customerManager= new CustomerManager($pdo);
 $cartManager= new CartManager($pdo);
 $productManager= new ProductManager($pdo);

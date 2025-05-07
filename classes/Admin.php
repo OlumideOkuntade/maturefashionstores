@@ -1,5 +1,7 @@
 <?php
       declare(strict_types = 1);
+      namespace classes;
+      use DateTime;
       class Admin {
             private  int $admin_id;
             private string $admin_username;

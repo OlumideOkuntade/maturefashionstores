@@ -4,6 +4,7 @@
       require_once __DIR__ . "/../servicemanager/CategoryManager.php";
       require_once "includes/header.php";
       require_once "admin_guard.php";
+      use servicemanager\CategoryManager;
       $categoryManager = new CategoryManager($pdo);
       $data = $categoryManager->fetchAllCatergory(); 
 ?>

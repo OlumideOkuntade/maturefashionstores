@@ -1,5 +1,6 @@
 <?php
       declare(strict_types = 1);
+      namespace classes;
       class Category {
             private  int $category_id;
             private string $category_name;

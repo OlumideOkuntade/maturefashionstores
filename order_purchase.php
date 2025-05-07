@@ -5,10 +5,10 @@ require_once "servicemanager/CustomerManager.php";
 require_once "servicemanager/CartManager.php";
 require_once "servicemanager/ProductManager.php";
 require_once "customer_guard.php"; 
-use servicemanager\ProductManager;
-$customerManager = new CustomerManager($pdo);
-$cartManager = new CartManager($pdo);
-$productManager = new ProductManager($pdo);
+
+$customerManager = new \servicemanager\CustomerManager($pdo);
+$cartManager = new \servicemanager\CartManager($pdo);
+$productManager = new \servicemanager\ProductManager($pdo);
 $customerId = $_SESSION["useronline"];
 $productId = $_SESSION['productid'];
 $size = $_SESSION['size'];

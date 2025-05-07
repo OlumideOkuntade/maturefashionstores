@@ -4,6 +4,7 @@
     require_once __DIR__ . "/../servicemanager/OrderManager.php";
     require_once "includes/header.php";
     require_once "admin_guard.php";
+    use servicemanager\OrderManager;
     $orderManager = new OrderManager($pdo);
     $orders = $orderManager->getAllOrders();
 ?>

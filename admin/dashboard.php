@@ -5,6 +5,7 @@
   require_once "admin_guard.php";
   require_once "includes/header.php";
   $id =  $_SESSION["adminonline"];
+  use servicemanager\AdminManager;
   $adminManager = new AdminManager($pdo);
   $data = $adminManager->getAdmin($id);
 

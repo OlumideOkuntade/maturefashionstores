@@ -4,6 +4,7 @@
     require_once __DIR__ . "/../servicemanager/PaymentManager.php";
     require_once "includes/header.php";
     require_once "admin_guard.php";
+    use servicemanager\PaymentManager;
     $paymentManager = new PaymentManager($pdo);
     $pay = $paymentManager->getPaidPayment();
 ?>

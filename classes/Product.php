@@ -1,5 +1,6 @@
 <?php
       declare(strict_types = 1);
+      namespace classes;
       class Product {
             private  int $product_id;
             private string $product_name;

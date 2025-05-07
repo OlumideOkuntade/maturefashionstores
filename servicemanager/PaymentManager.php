@@ -1,12 +1,14 @@
 <?php
-
+    namespace servicemanager;
+    use PDO;
+    use PDOException;
     class PaymentManager{
         private $pdo;
         public function __construct(PDO $pdo){
             $this->pdo = $pdo;
         }
 
-        public function insertPayment($totalAmt,$customerId,$ref,$ordId){
+        public function insertPayment($totalAmt,$customerId,$ref,$ordId):string|bool{
             try{
                 $sql = "INSERT INTO payments SET payment_amount=?,payment_cusid=?,payment_ref=?,payment_orderid=?";
                 $stmt = $this->pdo->prepare($sql);
@@ -15,10 +17,11 @@
             }
             catch(PDOException $e){
                 echo $e->getMessage(); 
+                return false;
             }
         }
 
-        public function paystack_initialize_step1($email,$totalAmt,$ref){
+        public function paystack_initialize_step1($email,$totalAmt,$ref):object|bool{
             $url ="https://api.paystack.co/transaction/initialize";
             $fields = [
                 'email' => $email,
@@ -46,7 +49,7 @@
             }
         }
 
-        public function paystack_verify_step2($ref){
+        public function paystack_verify_step2($ref):object|bool{
             // die($ref);
             $url ="https://api.paystack.co/transaction/verify/$ref";
             $headers =['Content-Type: application/json','Authorization: Bearer sk_test_256d10e136606fc3c89d7a4ffdf7c6562ba4d880'];
@@ -68,7 +71,7 @@
  
         }
 
-        public function updatePayment($paystatus,$data,$ref){
+        public function updatePayment($paystatus,$data,$ref):bool{
             try{
                 $sql ="UPDATE payments SET payment_status=?,payment_data=? WHERE payment_ref=?";
                 $stmt= $this->pdo->prepare($sql);
@@ -79,7 +82,7 @@
                 return false;
             }
         }
-        public function getPaidPayment(){
+        public function getPaidPayment():array|bool{
             try{
                 $sql = "SELECT * FROM payments JOIN customers ON customers.customer_id= payments.payment_cusid WHERE payments.payment_status= 'paid' ";
                 $stmt = $this->pdo->prepare($sql);

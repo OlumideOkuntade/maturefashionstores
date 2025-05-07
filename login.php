@@ -1,10 +1,7 @@
 <?php
 session_start();
 require_once("partials/header.php");
-
-
 ?>
-
 <!-- login form -->
 <div class="row">
   <div class="col-md-4 mb-5 offset-4 ">

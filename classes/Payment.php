@@ -1,5 +1,7 @@
 <?php
       declare(strict_types = 1);
+      namespace classes;
+      use DateTime;
       class Payment {
             private  int $payment_id;
             private DateTime $payment_date;

@@ -5,6 +5,7 @@
     require_once __DIR__ . "/../servicemanager/CustomerManager.php";
     require_once "includes/header.php";
     require_once "admin_guard.php";
+    use servicemanager\CustomerManager;
     $customerManager = new CustomerManager($pdo);
     $cus = $customerManager->getAllCustomers();
 
