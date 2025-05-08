@@ -45,19 +45,19 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="allorders.php">
+                                <a class="nav-link" href="all_orders.php">
                                 <span data-feather="file"></span>
                                 Orders
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="allproduct.php">
+                                <a class="nav-link" href="all_product.php">
                                 <span data-feather="shopping-cart"></span>
                                 Products
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="allcustomers.php">
+                                <a class="nav-link" href="all_customers.php">
                                 <span data-feather="users"></span>
                                 Customers
                                 </a>
@@ -69,7 +69,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="allpayment.php">
+                                <a class="nav-link" href="all_payment.php">
                                 <span data-feather="layers"></span>
                                 Payment status
                                 </a>
@@ -81,7 +81,7 @@
                 <h3 class="fw-4 mt-3">Product listings</h3>
                 <hr>
                 <!-- <canvas class="my-4 w-100" id="myChart" width="2500" height="180"></canvas> -->
-                <button class="btn btn-dark mb-5 float-end"><a href="newproduct.php">Add product</a></button>
+                <button class="btn btn-dark mb-5 float-end"><a href="new_product.php">Add product</a></button>
                 <table class="table table-striped table-sm">
                     <thead>
                         <tr>

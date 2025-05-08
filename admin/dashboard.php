@@ -71,31 +71,31 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="allorders.php">
+            <a class="nav-link" href="all_orders.php">
               <span data-feather="file"></span>
               Orders
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="allproduct.php">
+            <a class="nav-link" href="all_product.php">
               <span data-feather="shopping-cart"></span>
               Products
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="allcustomers.php">
+            <a class="nav-link" href="all_customers.php">
               <span data-feather="users"></span>
               Customers
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="allorders.php">
+            <a class="nav-link" href="all_orders.php">
               <span data-feather="bar-chart-2"></span>
               Reports
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="allpayment.php">
+            <a class="nav-link" href="all_payment.php">
               <span data-feather="layers"></span>
               Payment Status
             </a>
