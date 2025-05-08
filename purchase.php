@@ -138,7 +138,7 @@ $_SESSION["counter"]= $counter;
                     <div class="modal-body">
                         <div class='container'>
                             <?php 
-                                foreach($cartlist as $cart){
+                                foreach($cartList as $cart){
                                     $image = $cart->product_image;
                             ?>
                                 <div class='row'>

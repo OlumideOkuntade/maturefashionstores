@@ -5,6 +5,9 @@ require_once "../servicemanager/CustomerManager.php";
 require_once "../servicemanager/PaymentManager.php";
 require_once "../customer_guard.php";
 require_once "../servicemanager/OrderManager.php";
+use servicemanager\OrderManager;
+use servicemanager\PaymentManager;
+use servicemanager\CustomerManager;
 $customerManager = new CustomerManager($pdo); $paymentManager = new PaymentManager($pdo); $orderManager = new OrderManager($pdo);
 
 $customerId = $_SESSION["useronline"];

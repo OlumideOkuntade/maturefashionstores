@@ -3,6 +3,7 @@
     $pdo = require __DIR__. "/../servicemanager/Db.php";
     require_once "../customer_guard.php"; 
     require_once "../servicemanager/CartManager.php";
+    use servicemanager\CartManager;
     $cartManager = new CartManager($pdo);
 
     if(isset($_POST['addcart'])){

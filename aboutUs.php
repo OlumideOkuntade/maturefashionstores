@@ -10,8 +10,6 @@ require_once("partials/header.php");
       <p>Mature represents the pinnacle of Fashion-forward in Lagos, Johannesburg and Florida with the grand vision to merge quality, youthful aesthetics and timeless designs across accessories, ready to wear and seasonal collections.</p>
   </div>
 </div>
-
-       
 <?php
   require_once("partials/footer.php");
 ?>

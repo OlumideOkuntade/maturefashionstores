@@ -2,6 +2,7 @@
     session_start();
     $pdo = require __DIR__. "/../servicemanager/Db.php";
     require_once "../servicemanager/CustomerManager.php";
+    use servicemanager\CustomerManager;
     $customerManager = new CustomerManager($pdo);
     if(!isset($_POST["btn"])){
         $_SESSION['errormsg'] = "Please complete the form";
