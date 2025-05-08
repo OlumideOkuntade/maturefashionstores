@@ -6,7 +6,7 @@ require_once "../admin_guard.php";
 $productManager = new \servicemanager\ProductManager($pdo);
 
 if(!isset($_POST["btn"])){
-  header('Location:../newproduct.php');
+  header('Location:../new_product.php');
   exit;
 }
 $name = $_POST['name'];
@@ -46,10 +46,10 @@ if($fileError != 0){
     $res = $productManager->updateProduct($name,$fileTmpName,$to,$price,$qty,$status,$cat,$id);
     if($res){
       $_SESSION['adminfeedback']= "Product updated successfully";
-      header('Location:../newproduct.php');
+      header('Location:../new_product.php');
     }else{
       $_SESSION['errormsg']= "Not Updated";
-      header('Location:../newproduct.php');
+      header('Location:../new_product.php');
     }
    
 

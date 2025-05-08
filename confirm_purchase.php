@@ -75,7 +75,7 @@ $_SESSION['total']= $totalAmt;
                                 </a>
                                 <ul class="dropdown-menu user-profile" style="border-radius:0px;background-color:white;">
                                     <li><a class="dropdown-item text-dark" href="#">Profile</a></li>
-                                    <li><a class="dropdown-item text-dark" href="customerorders.php">Orders</a></li>
+                                    <li><a class="dropdown-item text-dark" href="customer_orders.php">Orders</a></li>
                                     <li><a class="dropdown-item text-dark" href="logout.php">Logout</a></li>
                                 </ul>
                                 

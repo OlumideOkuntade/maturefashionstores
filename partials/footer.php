@@ -15,7 +15,7 @@
             <div class="col-md-2 mt-4">
                 <h6>Company</h6>
                 <ul>
-                    <li><a href="../maturedfashion/aboutUs.php">About Us</a></li>
+                    <li><a href="../maturedfashion/about_us.php">About Us</a></li>
                     <li><a href="../maturedfashion/contact.php">Contact Us</a></li>
                 </ul>
             </div>

@@ -3,6 +3,7 @@
   require_once __DIR__ . "/../../servicemanager/AdminManager.php";
   require_once "admin_guard.php";
   $id =  $_SESSION["adminonline"];
+  use servicemanager\AdminManager;
   $adminManager = new AdminManager($pdo);
   $data = $adminManager->getAdmin($id);
 ?>

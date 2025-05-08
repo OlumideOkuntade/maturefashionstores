@@ -22,7 +22,7 @@
                       <div class="collapse navbar-collapse" id="navbarSupportedContent" >
                         <ul class="navbar-nav  pe-2 fs-7  me-auto m-2 ">
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="../maturedfashion/aboutUs.php">ABOUT</a>
+                                <a class="nav-link active" aria-current="page" href="../maturedfashion/about_us.php">ABOUT</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="#arrivals">NEW ARRIVALS</a>
