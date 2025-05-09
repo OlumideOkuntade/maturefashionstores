@@ -21,7 +21,7 @@
         }
         public function checkProductInCart($productId,$customerId):object|bool{
             try{
-                $sql = "SELECT item_id FROM cartitems WHERE product_id=? AND user_id=?";
+                $sql = "SELECT item_id FROM cart_items WHERE product_id=? AND user_id=?";
                 $stmt = $this->pdo->prepare($sql);
                 $stmt->execute([$productId,$customerId]);
                 $data= $stmt->fetch(PDO::FETCH_OBJ);
@@ -33,7 +33,7 @@
         }
         public function updateCartProduct($amt,$qty,$cartId,$productId):object|bool{   
             try{
-                $sql = "UPDATE cartitems SET amount = amount + ? ,quantity = quantity + ? WHERE item_cartid=? AND product_id=?";
+                $sql = "UPDATE cart_items SET amount = amount + ? ,quantity = quantity + ? WHERE item_cartid=? AND product_id=?";
                 $stmt = $this->pdo->prepare($sql);
                 $stmt->execute([$amt,$qty,$cartId,$productId]);
                 $data= $stmt->fetch(PDO::FETCH_OBJ);
@@ -60,7 +60,7 @@
     
         public function insertIntoCartitem($qty,$customerId,$productId,$cartId,$amt):bool{
             try{
-                $sql = "INSERT INTO cartitems SET quantity=?,user_id=?,product_id=?,item_cartid =?,amount=?";
+                $sql = "INSERT INTO cart_items SET quantity=?,user_id=?,product_id=?,item_cartid =?,amount=?";
                 $stmt = $this->pdo->prepare($sql);
                 $data= $stmt->execute([$qty,$customerId,$productId,$cartId,$amt]);
                 if($data){
@@ -77,7 +77,7 @@
             
         public function getCartItem($customerId):array|bool{
             try{
-                $sql = "SELECT products.product_id,products.product_image,products.product_name,products.product_price,cartitems.quantity,cartitems.amount FROM cartitems JOIN products ON products.product_id= cartitems.product_id WHERE cartitems.user_id=?";
+                $sql = "SELECT products.product_id,products.product_image,products.product_name,products.product_price,cart_items.quantity,cart_items.amount FROM cart_items JOIN products ON products.product_id= cart_items.product_id WHERE cart_items.user_id=?";
                 $stmt = $this->pdo->prepare($sql);
                 $stmt->execute([$customerId]);
                 $data= $stmt->fetchAll(PDO::FETCH_OBJ);
@@ -91,7 +91,7 @@
     
         public function sumAmount($customerId):array|bool{
             try{
-                $sql = "SELECT sum(amount) AS totalamt from cartitems WHERE cartitems.user_id=?";
+                $sql = "SELECT sum(amount) AS totalamt from cart_items WHERE cart_items.user_id=?";
                 $stmt = $this->pdo->prepare($sql);
                 $stmt->execute([$customerId]);
                 $data= $stmt->fetchAll(PDO::FETCH_OBJ);
@@ -105,7 +105,7 @@
     
         public function deleteCartItem($id,$customerId):object|bool{
             try{
-                $sql = "DELETE from cartitems WHERE cartitems.product_id=? AND cartitems.user_id=?";
+                $sql = "DELETE from cart_items WHERE cart_items.product_id=? AND cart_items.user_id=?";
                 $stmt = $this->pdo->prepare($sql);
                 $stmt->execute([$id,$customerId]);
                 $data= $stmt->fetch(PDO::FETCH_OBJ);
@@ -119,7 +119,7 @@
         }
         public function deleteAllCartItem($customerId):array|bool{
             try{
-                $sql = "DELETE from cartitems WHERE cartitems.user_id=?";
+                $sql = "DELETE from cart_items WHERE cart_items.user_id=?";
                 $stmt = $this->pdo->prepare($sql);
                 $stmt->execute([$customerId]);
                 $data= $stmt->fetchAll(PDO::FETCH_OBJ);

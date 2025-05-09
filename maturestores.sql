@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 09, 2025 at 12:04 PM
+-- Generation Time: May 09, 2025 at 12:20 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -44,37 +44,6 @@ INSERT INTO `admins` (`admin_id`, `admin_username`, `admin_pwd`, `admin_loggedin
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cartitems`
---
-
-CREATE TABLE `cartitems` (
-  `item_id` int(11) NOT NULL,
-  `user_id` int(11) DEFAULT NULL,
-  `product_id` int(11) DEFAULT NULL,
-  `item_cartid` int(11) DEFAULT NULL,
-  `quantity` int(11) DEFAULT NULL,
-  `amount` float DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Dumping data for table `cartitems`
---
-
-INSERT INTO `cartitems` (`item_id`, `user_id`, `product_id`, `item_cartid`, `quantity`, `amount`) VALUES
-(6, 10, 8, 4, 1, 85000),
-(12, 13, 2, 6, 1, 15000),
-(22, 12, 3, 5, 3, 30000),
-(35, 14, 11, 8, 1, 35000),
-(40, 12, 4, 5, 1, 8000),
-(42, 15, 4, 10, 2, 16000),
-(43, 15, 7, 10, 1, 35000),
-(45, 9, 5, 9, 1, 30000),
-(46, 9, 6, 9, 1, 28000),
-(47, 15, 3, 10, 1, 10000);
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `carts`
 --
 
@@ -99,6 +68,38 @@ INSERT INTO `carts` (`cart_id`, `cart_userid`, `cart_date`) VALUES
 (9, 9, '2025-05-09 05:39:22'),
 (10, 15, '2025-05-09 06:49:21'),
 (11, 16, '2025-05-09 09:44:17');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cart_items`
+--
+
+CREATE TABLE `cart_items` (
+  `item_id` int(11) NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `product_id` int(11) DEFAULT NULL,
+  `item_cartid` int(11) DEFAULT NULL,
+  `quantity` int(11) DEFAULT NULL,
+  `amount` float DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `cart_items`
+--
+
+INSERT INTO `cart_items` (`item_id`, `user_id`, `product_id`, `item_cartid`, `quantity`, `amount`) VALUES
+(6, 10, 8, 4, 1, 85000),
+(12, 13, 2, 6, 1, 15000),
+(22, 12, 3, 5, 3, 30000),
+(35, 14, 11, 8, 1, 35000),
+(40, 12, 4, 5, 1, 8000),
+(42, 15, 4, 10, 2, 16000),
+(43, 15, 7, 10, 1, 35000),
+(45, 9, 5, 9, 1, 30000),
+(46, 9, 6, 9, 1, 28000),
+(47, 15, 3, 10, 1, 10000),
+(52, 16, 7, 11, 1, 35000);
 
 -- --------------------------------------------------------
 
@@ -287,18 +288,18 @@ ALTER TABLE `admins`
   ADD PRIMARY KEY (`admin_id`);
 
 --
--- Indexes for table `cartitems`
---
-ALTER TABLE `cartitems`
-  ADD PRIMARY KEY (`item_id`),
-  ADD KEY `FK_CartItem` (`item_cartid`),
-  ADD KEY `product_id` (`product_id`);
-
---
 -- Indexes for table `carts`
 --
 ALTER TABLE `carts`
   ADD PRIMARY KEY (`cart_id`);
+
+--
+-- Indexes for table `cart_items`
+--
+ALTER TABLE `cart_items`
+  ADD PRIMARY KEY (`item_id`),
+  ADD KEY `FK_CartItem` (`item_cartid`),
+  ADD KEY `product_id` (`product_id`);
 
 --
 -- Indexes for table `categories`
@@ -350,16 +351,16 @@ ALTER TABLE `admins`
   MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `cartitems`
---
-ALTER TABLE `cartitems`
-  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
-
---
 -- AUTO_INCREMENT for table `carts`
 --
 ALTER TABLE `carts`
   MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT for table `cart_items`
+--
+ALTER TABLE `cart_items`
+  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT for table `customers`
@@ -390,11 +391,11 @@ ALTER TABLE `products`
 --
 
 --
--- Constraints for table `cartitems`
+-- Constraints for table `cart_items`
 --
-ALTER TABLE `cartitems`
+ALTER TABLE `cart_items`
   ADD CONSTRAINT `FK_CartItem` FOREIGN KEY (`item_cartid`) REFERENCES `carts` (`cart_id`),
-  ADD CONSTRAINT `cartitems_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`);
+  ADD CONSTRAINT `cart_items_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`);
 
 --
 -- Constraints for table `customers`
