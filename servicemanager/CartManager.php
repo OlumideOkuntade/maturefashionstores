@@ -19,11 +19,11 @@
                 return false; 
             }
         }
-        public function checkProductInCart($productId):object|bool{
+        public function checkProductInCart($productId,$customerId):object|bool{
             try{
-                $sql = "SELECT item_id FROM cartitems WHERE product_id=?";
+                $sql = "SELECT item_id FROM cartitems WHERE product_id=? AND user_id=?";
                 $stmt = $this->pdo->prepare($sql);
-                $stmt->execute([$productId]);
+                $stmt->execute([$productId,$customerId]);
                 $data= $stmt->fetch(PDO::FETCH_OBJ);
                 return $data;
             } catch(PDOException $e){

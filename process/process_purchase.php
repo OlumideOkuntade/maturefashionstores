@@ -25,18 +25,16 @@
             $cartManager->insertIntoCart($customerId);
         }
         //check if product and cartid are in items table
-        $dat = $cartManager->checkProductInCart($productId);
+        $dat = $cartManager->checkProductInCart($productId,$customerId);
         if($dat){
             $cartManager->updateCartProduct($amt,$qty,$cartId,$productId);
             header('Location:../confirm_purchase.php');
             exit;
         }else{
           $res= $cartManager->insertIntoCartitem($qty,$customerId,$productId,$cartId,$amt);
-          if($res == true){             
+          if($res){             
                 header("Location:../confirm_purchase.php");
                 exit;
-            }else{
-                echo "not successful";
             }
         }  
     }else{

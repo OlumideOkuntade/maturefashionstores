@@ -32,7 +32,7 @@
         $err= "Password must be less than 8 character"; 
     }elseif($customerManager->checkEmailExit($email) === true){
         $err= "Email already in use";
-    }else{$resp = $customerManager->insertCustomer($firstname,$lastname,$phone,$email,$pass);
+    }else{$resp = $customerManager->insertCustomer($firstName,$lastName,$phone,$email,$pass);
         if($resp){
            $_SESSION["feedback"]= "An account has been created for you, please login";
            header("Location:../login.php");
