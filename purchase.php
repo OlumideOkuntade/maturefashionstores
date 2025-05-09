@@ -136,22 +136,35 @@ $_SESSION["counter"]= $counter;
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <div class='container'>
-                            <?php 
-                                foreach($cartList as $cart){
-                                    $image = $cart->product_image;
-                            ?>
-                                <div class='row'>
-                                    <div class='col-md-8 mb-3'>
-                                        <img src= "admin/uploads/<?php echo $image?>" alt='image' class="img-fluid rounded me-3" style="width:40px; height:30px;">
-                                        <span class="me-2"><?php echo $cart->product_name?></span>
-                                        <span class="ms-2"><?php  echo $cart->product_price?></span>
-                                        <span class="ms-2"><?php echo $cart->quantity?></span>
-                                    </div>
+                    <div class='container'>
+                            <div class='row'>
+                                <div class='col-md-12 mb-3'>
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Image</th><th>Description</th><th>Qty</th><th>Amount</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php 
+                                                foreach($cartList as $cart){
+                                                    $image = $cart->product_image; 
+                                                    $amt  = $cart->amount     
+                                            ?>
+                                                <tr>
+                                                    <td><img src= "admin/uploads/<?php echo $image?>" alt='image' class="img-fluid rounded me-3" style="width:40px; height:30px;"></td>
+                                                    <td><?php echo $cart->product_name?></td>
+                                                    <td class="text-center"><?php echo $cart->quantity?></td>
+                                                    <td class="text-center"><?php echo number_format($amt)?></td>
+                                                    <td><button class="btn btn-danger float-end"><a href="process/process_delete.php?id=<?php echo $cart->product_id?>">Delete</a></button></td>
+                                                </tr>
+                                            <?php
+                                            }   
+                                            ?>
+                                        </tbody>
+                                    </table>
                                 </div>
-                            <?php
-                                }   
-                            ?>
+                            </div>
                         </div>
                     <div class="modal-footer"></div>
                 </div>

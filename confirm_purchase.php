@@ -16,8 +16,8 @@ $productId = $_SESSION['productid'];
 $size = $_SESSION['size'];
 $data = $customerManager->getCustomerById($customerId);
 $prod = $productManager->getProductbyId($productId);
-$cartlist = $cartManager->getCartitem($customerId);
-$counter = count($cartlist);
+$cartList = $cartManager->getCartItem($customerId);
+$counter = count($cartList);
 $_SESSION["counter"]= $counter;  
 $tot = $cartManager->sumAmount($customerId);
 $totalAmt= $tot[0]->totalamt; 
@@ -125,23 +125,34 @@ $_SESSION['total']= $totalAmt;
                     </div>
                     <div class="modal-body">
                         <div class='container'>
-                            <?php 
-                                foreach($cartlist as $cart){
-                                    $image = $cart->product_image;      
-                            ?>
-                                <div class='row'>
-                                    <div class='col-md-8 mb-3'>
-                                        <img src= "admin/uploads/<?php echo $image?>" alt='image' class="img-fluid rounded me-3" style="width:40px; height:30px;">
-                                        <span class="me-3"><?php echo $cart->product_name?></span>
-                                        <?php echo $cart->amount; ?>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <button class="btn btn-danger float-end"><a href="process/process_delete.php?id=<?php echo $cart->product_id?>">Delete</a></button>
-                                    </div>
+                            <div class='row'>
+                                <div class='col-md-12 mb-3'>
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Image</th><th>Description</th><th>Qty</th><th>Amount</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php 
+                                                foreach($cartList as $cart){
+                                                    $image = $cart->product_image; 
+                                                    $amt  = $cart->amount     
+                                            ?>
+                                                <tr>
+                                                    <td><img src= "admin/uploads/<?php echo $image?>" alt='image' class="img-fluid rounded me-3" style="width:40px; height:30px;"></td>
+                                                    <td><?php echo $cart->product_name?></td>
+                                                    <td style="text-align: right;"><?php echo $cart->quantity?></td>
+                                                    <td style="text-align: right;"><?php echo number_format($amt)?></td>
+                                                    <td><button class="btn btn-danger btn-sm float-end"><a href="process/process_delete.php?id=<?php echo $cart->product_id?>">Delete</a></button></td>
+                                                </tr>
+                                            <?php
+                                            }   
+                                            ?>
+                                        </tbody>
+                                    </table>
                                 </div>
-                            <?php
-                              }   
-                            ?>
+                            </div>
                         </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-dark"><a href="order_purchase.php">Checkout <?php echo "&#8358". "(". number_format($totalAmt) .")"?> </a></button>   
