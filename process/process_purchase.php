@@ -19,10 +19,12 @@
         $_SESSION['productid'] = $productId;
         $_SESSION['size'] = $size;
         $data = $cartManager->getCustomerCartId($customerId);
-        if($data->cart_id > 0){
+        if($data === false){
+           $cartManager->insertIntoCart($customerId);
+           $data = $cartManager->getCustomerCartId($customerId);
+           $cartId = $data->cart_id;
+        }elseif($data){
             $cartId = $data->cart_id;
-        }else{
-            $cartManager->insertIntoCart($customerId);
         }
         //check if product and cartid are in items table
         $dat = $cartManager->checkProductInCart($productId,$customerId);

@@ -5,18 +5,18 @@
             <div class="col-md-2 mt-4">
                 <h6>Customer services</h6>
                 <ul>
-                    <li><a href="../maturedfashion/contact.php">Customer Care</a></li>
-                    <li><a href="../maturedfashion/product.php">Product</a></li>
-                    <li><a href="../maturedfashion/product.php">Returns</a></li>
-                    <li><a href="../maturedfashion/product.php">FAQ</a></li>
-                    <li><a href="../maturedfashion/login.php">My Account</a></li>
+                    <li><a href="../contact.php">Customer Care</a></li>
+                    <li><a href="../product.php">Product</a></li>
+                    <li><a href="../product.php">Returns</a></li>
+                    <li><a href="../product.php">FAQ</a></li>
+                    <li><a href="../login.php">My Account</a></li>
                 </ul>
             </div>
             <div class="col-md-2 mt-4">
                 <h6>Company</h6>
                 <ul>
-                    <li><a href="../maturedfashion/about_us.php">About Us</a></li>
-                    <li><a href="../maturedfashion/contact.php">Contact Us</a></li>
+                    <li><a href="../about_us.php">About Us</a></li>
+                    <li><a href="../contact.php">Contact Us</a></li>
                 </ul>
             </div>
             <div class="col-md-2 mt-4">
@@ -43,10 +43,10 @@
                 <input type="checkbox" name="men" value="men"class="ms-4 "> Men
                 <input type="checkbox" name="women" value="women" class="ms-4"> Woman
                 <input type="email" name="email" placeholder="Enter Email"class="form-control mt-3 ms-4"> 
-                <a href="../maturedfashion/login.php"><i class="fa-brands fa-facebook ms-4 mt-5 "></i></a>
-                <a href="../maturedfashion/login.php"><i class="fa-brands fa-instagram ps-2"></i></a>
-                <a href="../maturedfashion/login.php"><i class="fa-brands fa-x-twitter ps-2"></i></a>
-                <a href="../maturedfashion/login.php"><i class="fa-brands fa-tiktok ps-2" ></i></i></a>
+                <a href="../login.php"><i class="fa-brands fa-facebook ms-4 mt-5 "></i></a>
+                <a href="../login.php"><i class="fa-brands fa-instagram ps-2"></i></a>
+                <a href="../login.php"><i class="fa-brands fa-x-twitter ps-2"></i></a>
+                <a href="../login.php"><i class="fa-brands fa-tiktok ps-2" ></i></i></a>
             </div>
         
         <hr>
