@@ -142,9 +142,9 @@ $_SESSION['total']= $totalAmt;
                                                 <tr>
                                                     <td><img src= "admin/uploads/<?php echo $image?>" alt='image' class="img-fluid rounded me-3" style="width:40px; height:30px;"></td>
                                                     <td><?php echo $cart->product_name?></td>
-                                                    <td style="text-align: right;"><?php echo $cart->quantity?></td>
+                                                    <td style="text-align:center;"><?php echo $cart->quantity?></td>
                                                     <td style="text-align: right;"><?php echo number_format($amt)?></td>
-                                                    <td><button class="btn btn-danger btn-sm float-end"><a href="process/process_delete.php?id=<?php echo $cart->product_id?>">Delete</a></button></td>
+                                                    <td><button class="btn btn-danger float-end"><a href="process/process_delete.php?id=<?php echo $cart->product_id?>">Delete</a></button></td>
                                                 </tr>
                                             <?php
                                             }   
