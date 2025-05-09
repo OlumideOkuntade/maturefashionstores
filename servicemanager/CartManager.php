@@ -75,7 +75,7 @@
             }
         }
             
-        public function getCartitem($customerId):array|bool{
+        public function getCartItem($customerId):array|bool{
             try{
                 $sql = "SELECT products.product_id,products.product_image,products.product_name,products.product_price,cartitems.quantity,cartitems.amount FROM cartitems JOIN products ON products.product_id= cartitems.product_id WHERE cartitems.user_id=?";
                 $stmt = $this->pdo->prepare($sql);

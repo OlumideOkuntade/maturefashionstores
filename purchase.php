@@ -15,7 +15,7 @@ $customerId = $_SESSION["useronline"];
 $data = $customerManager->getCustomerById($customerId);
 $id = $_GET['id'];
 $prod = $productManager->getProductById($id);
-$cartList = $cartManager->getCartitem($customerId);
+$cartList = $cartManager->getCartItem($customerId);
 $counter = count($cartList);
 $_SESSION["counter"]= $counter;   
 ?>
