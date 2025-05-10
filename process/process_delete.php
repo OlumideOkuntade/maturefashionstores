@@ -8,7 +8,7 @@
       $customerId = $_SESSION["useronline"];
       $id = $_GET['id'];
       $cartManager->deleteCartItem($id,$customerId);
-      header("Location:../confirm_purchase.php");
+     header("Location:../dashboard.php");
       
       
 

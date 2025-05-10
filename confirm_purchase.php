@@ -19,10 +19,7 @@ $prod = $productManager->getProductbyId($productId);
 $cartList = $cartManager->getCartItem($customerId);
 $counter = count($cartList);
 $_SESSION["counter"]= $counter;  
-$tot = $cartManager->sumAmount($customerId);
-$totalAmt= $tot[0]->totalamt; 
-$_SESSION['total']= $totalAmt;
-     
+ 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -116,50 +113,10 @@ $_SESSION['total']= $totalAmt;
             </div>
         </div>
         <!-- modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" id="modal">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Modal</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class='container'>
-                            <div class='row'>
-                                <div class='col-md-12 mb-3'>
-                                    <table class="table table-hover">
-                                        <thead>
-                                            <tr>
-                                                <th>Image</th><th>Description</th><th>Qty</th><th>Amount</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php 
-                                                foreach($cartList as $cart){
-                                                    $image = $cart->product_image; 
-                                                    $amt  = $cart->amount     
-                                            ?>
-                                                <tr>
-                                                    <td><img src= "admin/uploads/<?php echo $image?>" alt='image' class="img-fluid rounded me-3" style="width:40px; height:30px;"></td>
-                                                    <td><?php echo $cart->product_name?></td>
-                                                    <td style="text-align:center;"><?php echo $cart->quantity?></td>
-                                                    <td style="text-align: right;"><?php echo number_format($amt)?></td>
-                                                    <td><button class="btn btn-danger float-end"><a href="process/process_delete.php?id=<?php echo $cart->product_id?>">Delete</a></button></td>
-                                                </tr>
-                                            <?php
-                                            }   
-                                            ?>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-dark"><a href="order_purchase.php">Checkout <?php echo "&#8358". "(". number_format($totalAmt) .")"?> </a></button>   
-                    </div>
-                </div>
-            </div>
-        </div>
+        <?php
+        include("modal.php");
+        ?>
+        <!-- end Modal -->
         
     </div>
     
