@@ -48,7 +48,7 @@
                     <p class="fs-6 fw-bold lh-1"><?php echo $p->product_name ?></p>
                     <div class="d-flex justify-content-between align-items-start">
                         <p class="fs-4 fw-bold lh-1 ">&#8358;<?php echo $p->product_price ?></p>
-                        <button class="btn btn-success round "><a href="#">Quick Buy</a></button>  
+                        <button class="btn btn-success round mt-4">Mature Stores Fashion</button>  
                     </div>
                 </div>
             </div>
