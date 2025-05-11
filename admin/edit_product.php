@@ -1,10 +1,11 @@
 <?php
 session_start();
-$pdo = require_once __DIR__ . "/../servicemanager/Db.php";
-require_once __DIR__ . "/../servicemanager/ProductManager.php";
+require_once __DIR__ . "/../autoload.php";
 require_once "includes/header.php";
 require_once "admin_guard.php";
 $id = $_GET["id"];
+use servicemanager\Db;
+$pdo = (new Db)->connect();
 $productManager = new \servicemanager\ProductManager($pdo);
 $dat = $productManager->fetchProductById($id);
 ?>
@@ -37,19 +38,19 @@ $dat = $productManager->fetchProductById($id);
                               </a>
                         </li>
                         <li class="nav-item">
-                              <a class="nav-link" href="allorders.php">
+                              <a class="nav-link" href="all_orders.php">
                               <span data-feather="file"></span>
                               Orders
                               </a>
                         </li>
                         <li class="nav-item">
-                              <a class="nav-link" href="allproduct.php">
+                              <a class="nav-link" href="all_product.php">
                               <span data-feather="shopping-cart"></span>
                               Products
                               </a>
                         </li>
                         <li class="nav-item">
-                              <a class="nav-link" href="allcustomers.php">
+                              <a class="nav-link" href="all_customers.php">
                               <span data-feather="users"></span>
                               Customers
                               </a>
@@ -61,7 +62,7 @@ $dat = $productManager->fetchProductById($id);
                               </a>
                         </li>
                         <li class="nav-item">
-                              <a class="nav-link" href="allpayment.php">
+                              <a class="nav-link" href="all_payment.php">
                               <span data-feather="layers"></span>
                               Payment status
                               </a>
@@ -71,7 +72,7 @@ $dat = $productManager->fetchProductById($id);
             </nav>
             <div class="col-6">
                   <h4 class="mb-5 pt-3">Edit Product</h4>
-                  <button class="btn btn-dark mb-5 float-end"><a href="allproduct.php">All products</a></button><br><br><br>
+                  <button class="btn btn-dark mb-5 float-end"><a href="all_product.php">All products</a></button><br><br><br>
                   <?php
                         if(isset($_SESSION["adminfeedback"])){
                               echo "<div class='alert alert-success'>" . $_SESSION["adminfeedback"]. " </div>";

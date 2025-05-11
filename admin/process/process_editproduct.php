@@ -1,8 +1,9 @@
 <?php
 session_start();
-$pdo = require_once __DIR__ . "/../../servicemanager/Db.php";
-require_once __DIR__ . "/../../servicemanager/ProductManager.php";
+require_once __DIR__ . "/../../autoload.php";
 require_once "../admin_guard.php";
+use servicemanager\Db;
+$pdo = (new Db)->connect();
 $productManager = new \servicemanager\ProductManager($pdo);
 
 if(!isset($_POST["btn"])){

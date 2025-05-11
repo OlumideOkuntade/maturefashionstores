@@ -1,11 +1,11 @@
 <?php
     session_start();
-    $pdo = require __DIR__. "/servicemanager/Db.php";
-    require_once "servicemanager/CustomerManager.php";
+    require __DIR__. "/autoload.php";
     require_once "customer_guard.php"; 
-    require_once "servicemanager/OrderManager.php";
     use servicemanager\CustomerManager;
     use servicemanager\OrderManager;
+    use servicemanager\Db;
+    $pdo = (new Db)->connect();
     $customerManager = new CustomerManager($pdo);
     $orderManager = new OrderManager($pdo);
     $customerId = $_SESSION["useronline"];

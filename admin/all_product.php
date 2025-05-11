@@ -1,9 +1,10 @@
 <?php
     session_start();
-    $pdo = require_once __DIR__ . "/../servicemanager/Db.php";
-    require_once __DIR__ . "/../servicemanager/ProductManager.php";
+    require_once __DIR__ . "/../autoload.php";
     require_once "includes/header.php";
     require_once "admin_guard.php";
+    use servicemanager\Db;
+    $pdo = (new Db)->connect();
     $productManager = new \servicemanager\ProductManager($pdo);
     $prod = $productManager->getAllProducts(); 
 
@@ -111,9 +112,9 @@
                                         <td>$productPrice</td>
                                         <td>$productQuantity</td>
                                         <td>$productStatus</td>
-                                        <td><button class='btn btn-primary'><a href='editproduct.php?id=$productId'>Edit</a></buton></td>
-                                        <td><button class='btn btn-primary'><a href='editproduct.php?id=$productId'>Details</a></buton></td>
-                                        <td><button class='btn btn-danger'><a href='editproduct.php?id=$productId'>Delete</a></buton></td>
+                                        <td><button class='btn btn-primary'><a href='edit_product.php?id=$productId'>Edit</a></buton></td>
+                                        <td><button class='btn btn-primary'><a href='edit_product.php?id=$productId'>Details</a></buton></td>
+                                        <td><button class='btn btn-danger'><a href='edit_product.php?id=$productId'>Delete</a></buton></td>
                                     </tr>";
                                     $m++;
 

@@ -1,13 +1,11 @@
 <?php
 session_start();
-$pdo = require __DIR__. "/servicemanager/Db.php";
-require_once "servicemanager/CustomerManager.php";
-require_once "customer_guard.php"; 
-require_once "servicemanager/CartManager.php";
-require_once "servicemanager/ProductManager.php";
+require __DIR__. "/autoload.php";
 use servicemanager\ProductManager;
 use servicemanager\CartManager;
 use servicemanager\CustomerManager;
+use servicemanager\Db;
+$pdo = (new Db)->connect();
 $customerManager = new CustomerManager($pdo);
 $cartManager = new CartManager($pdo);
 $productManager = new ProductManager($pdo);

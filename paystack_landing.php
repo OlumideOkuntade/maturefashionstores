@@ -1,12 +1,11 @@
 <?php
 session_start();
-$pdo = require __DIR__. "/servicemanager/Db.php";
-require_once "servicemanager/Customer.php";
-require_once "servicemanager/PaymentManager.php";
-require_once "customer_guard.php";
-require_once "servicemanager/CartManager.php";
+require __DIR__. "/autoload.php";
 use servicemanager\PaymentManager;
 use servicemanager\CartManager;
+use servicemanager\Db;
+$pdo = (new Db)->connect();
+
 if(!isset($_SESSION['ref'])){
   $_SESSION["errormsg"] = "You need to start a transaction";
   header("Location:order_purchase.php");

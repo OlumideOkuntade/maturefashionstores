@@ -1,8 +1,9 @@
 <?php
       session_start();
-      $pdo = require_once __DIR__ . "/../servicemanager/Db.php";
-      require_once __DIR__ . "/../servicemanager/AdminManager.php";
+      require_once __DIR__ . "/../autoload.php";
       use servicemanager\AdminManager;
+      use servicemanager\Db;
+      $pdo = (new Db)->connect();
       $adminManager = new AdminManager($pdo);
       $adminManager->logout();
       header("Location:login.php");

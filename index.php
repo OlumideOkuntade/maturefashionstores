@@ -1,12 +1,12 @@
 <?php
     namespace matureFashion\index;
     require_once("partials/header.php");
-    $pdo = require __DIR__. "/servicemanager/Db.php";
-    require_once "servicemanager/ProductManager.php";
+    require_once "autoload.php";
     use servicemanager\ProductManager;
+    use servicemanager\Db;
+    $pdo = (new Db)->connect();
     $productManager = new ProductManager($pdo);
     $prod = $productManager->getAllProducts();
-
 ?>
 <!-- end navigation -->
 <div class="row mb-5">

@@ -43,7 +43,6 @@
                             <form style="margin-right:100px;"action="#" method="get" class="d-flex  " role="search" >
                                 <a href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
                                 <a href="login.php">LOGIN/SIGN UP</a>
-                                <!-- <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>   -->
                             </form>
                         </div>
                       </div>

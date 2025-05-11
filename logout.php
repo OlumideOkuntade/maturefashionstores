@@ -1,12 +1,13 @@
 <?php
- session_start();
- $pdo = require __DIR__. "/servicemanager/Db.php";
- require_once "servicemanager/CustomerManager.php";
- use servicemanager\CustomerManager;
- $customerManager = new CustomerManager($pdo);
- $customerManager->logout();
- header("Location:index.php");
- exit;
+session_start();
+require __DIR__. "/autoload.php";
+use servicemanager\CustomerManager;
+use servicemanager\Db;
+$pdo = (new Db)->connect();
+$customerManager = new CustomerManager($pdo);
+$customerManager->logout();
+header("Location:index.php");
+exit;
 
 
 

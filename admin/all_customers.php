@@ -1,10 +1,11 @@
 <?php
     session_start();
-    $pdo = require_once __DIR__ . "/../servicemanager/Db.php";
-    require_once __DIR__ . "/../servicemanager/CustomerManager.php";
+    require_once __DIR__ . "/../autoload.php";
     require_once "includes/header.php";
     require_once "admin_guard.php";
     use servicemanager\CustomerManager;
+    use servicemanager\Db;
+    $pdo = (new Db)->connect();
     $customerManager = new CustomerManager($pdo);
     $cus = $customerManager->getAllCustomers();
 

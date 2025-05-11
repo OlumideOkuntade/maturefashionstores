@@ -1,10 +1,11 @@
 <?php
       session_start();
-      $pdo = require_once __DIR__ . "/../servicemanager/Db.php";
-      require_once __DIR__ . "/../servicemanager/CategoryManager.php";
+      require_once __DIR__ . "/../autoload.php";
       require_once "includes/header.php";
       require_once "admin_guard.php";
+      use servicemanager\Db;
       use servicemanager\CategoryManager;
+      $pdo = (new Db)->connect();
       $categoryManager = new CategoryManager($pdo);
       $data = $categoryManager->fetchAllCatergory(); 
 ?>
@@ -42,13 +43,13 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="allproduct.php">
+                        <a class="nav-link" href="all_product.php">
                         <span data-feather="shopping-cart"></span>
                         Products
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="allcustomers.php">
+                        <a class="nav-link" href="all_customers.php">
                         <span data-feather="users"></span>
                         Customers
                         </a>
@@ -70,7 +71,7 @@
             </nav>
                   <div class="col-md-6 offset-1 ">
                         <h4 class="text-center mb-3 pt-3">Add Product</h4>
-                        <button class="btn btn-dark mb-4 float-end"><a href="allproduct.php">All product</a></button>
+                        <button class="btn btn-dark mb-4 float-end"><a href="all_product.php">All product</a></button>
                         <br><br><br>
                         <hr>
                        
