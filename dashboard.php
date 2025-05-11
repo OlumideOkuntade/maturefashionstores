@@ -1,10 +1,19 @@
 <?php
     session_start();
     $pdo = require __DIR__. "/servicemanager/Db.php";
-    require_once "servicemanager/CustomerManager.php";
+    //require_once "servicemanager/CustomerManager.php";
     require_once "customer_guard.php";
-    require_once "servicemanager/ProductManager.php";
-    require_once "servicemanager/CartManager.php";
+    //require_once "servicemanager/ProductManager.php";
+    //require_once "servicemanager/CartManager.php";
+    spl_autoload_register(function($class){
+        $path = __DIR__ . "/". str_replace("\\","/",$class).".php";
+        $prefix = 'C:\xampp\htdocs\maturedFashion/';
+        $pathWithoutPrefix = str_replace($prefix,"",$path);
+        //print_r($pathWithoutPrefix);
+        if(file_exists($pathWithoutPrefix)){
+            require $pathWithoutPrefix;
+        }
+    });
     use servicemanager\ProductManager; 
     use servicemanager\CustomerManager;
     use servicemanager\CartManager;

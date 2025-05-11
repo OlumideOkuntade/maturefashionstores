@@ -1,6 +1,5 @@
 <?php
 require_once "customer_guard.php"; 
-require_once "servicemanager/CartManager.php";
 use servicemanager\CartManager;
 $cartManager = new CartManager($pdo);
 $customerId = $_SESSION["useronline"];
