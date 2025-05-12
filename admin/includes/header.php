@@ -1,5 +1,5 @@
 <?php
-  require_once __DIR__ . "/../../autoload.php";
+  require __DIR__. '/../../vendor/autoload.php';
   require_once "admin_guard.php";
   $id =  $_SESSION["adminonline"];
   use servicemanager\AdminManager;

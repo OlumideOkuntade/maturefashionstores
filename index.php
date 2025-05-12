@@ -1,7 +1,7 @@
 <?php
     namespace matureFashion\index;
     require_once("partials/header.php");
-    require_once "autoload.php";
+    require __DIR__. '/vendor/autoload.php';
     use servicemanager\ProductManager;
     use servicemanager\Db;
     $pdo = (new Db)->connect();

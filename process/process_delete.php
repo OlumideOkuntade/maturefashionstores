@@ -1,6 +1,6 @@
 <?php
 session_start();
-require "../autoload.php";
+require __DIR__. '/../vendor/autoload.php';
 use servicemanager\CartManager;
 use servicemanager\Db;
 $pdo = (new Db)->connect();
