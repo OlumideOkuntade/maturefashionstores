@@ -1,0 +1,16 @@
+{
+    "name": "olumi/matured-fashion",
+    "authors": [
+        {
+            "name": "Olumide",
+            "email": "olumide.okuntade@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "servicemanager\\":"servicemanager/"
+        }
+
+    }
+}

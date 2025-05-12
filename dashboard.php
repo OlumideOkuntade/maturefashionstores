@@ -1,7 +1,8 @@
 <?php
     session_start();
     require_once "customer_guard.php";
-    require_once "autoload.php";
+    //require_once "autoload.php";
+    require __DIR__. '/vendor/autoload.php';
     use servicemanager\ProductManager; 
     use servicemanager\CustomerManager;
     use servicemanager\CartManager;
