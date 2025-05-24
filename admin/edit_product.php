@@ -3,11 +3,11 @@ session_start();
 require __DIR__. '/../vendor/autoload.php';
 require_once "includes/header.php";
 require_once "admin_guard.php";
-$id = $_GET["id"];
+$productId = $_GET["id"];
 use servicemanager\Db;
 $pdo = (new Db)->connect();
 $productManager = new \servicemanager\ProductManager($pdo);
-$dat = $productManager->fetchProductById($id);
+$dat = $productManager->fetchProductById($productId);
 ?>
 
 <!DOCTYPE html>
@@ -83,8 +83,8 @@ $dat = $productManager->fetchProductById($id);
                               unset($_SESSION['errormsg']);
                         }
                   ?>
-                  <form action="process/process_editproduct.php" method="post"enctype="multipart/form-data">
-                        <input type="hidden" name="pro" value="<?php echo $dat->product_id ?>">
+                  <form action="process/process_editproduct.php" method="post" enctype="multipart/form-data">
+                        <input type="hidden" name="product_id" value="<?php echo $dat->product_id ?>">
                         <div>
                               <label for="name">Product name</label>
                               <input type="text" name="name" id="name" class="form-control mb-3" value="<?php echo $dat->product_name ?>" >

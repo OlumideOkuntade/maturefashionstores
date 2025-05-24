@@ -10,7 +10,7 @@
 
         public function getAllProducts():array|bool{
                 try{
-                    $sql = "SELECT * FROM products";
+                    $sql = "SELECT * FROM products WHERE is_delete = FALSE";
                     $stmt = $this->pdo->prepare($sql);
                     $stmt->execute();
                     $data= $stmt->fetchAll(PDO::FETCH_OBJ);
@@ -82,5 +82,23 @@
                 return false;
             }
         }
+
+        public function deleteProductById($productId){
+            try{
+                $sql = "UPDATE products SET is_delete = TRUE WHERE product_id = ?";
+                $stmt = $this->pdo->prepare($sql);
+                $data = $stmt->execute([$productId]);
+                if($data){
+                        return true;
+                    }else{;
+                        return false;
+                }
+            }
+            catch(PDOException $e){
+                return false;
+            }
+        }
         
     }
+
+    

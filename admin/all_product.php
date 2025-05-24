@@ -81,8 +81,17 @@
             <div class="col-md-8">
                 <h3 class="fw-4 mt-3">Product listings</h3>
                 <hr>
-                <!-- <canvas class="my-4 w-100" id="myChart" width="2500" height="180"></canvas> -->
                 <button class="btn btn-dark mb-5 float-end"><a href="new_product.php">Add product</a></button>
+                 <?php
+                        if(isset($_SESSION["adminfeedback"])){
+                              echo "<div class='alert alert-success'>" . $_SESSION["adminfeedback"]. " </div>";
+                              unset($_SESSION['adminfeedback']);
+                        }
+                        if(isset($_SESSION["errormsg"])){
+                              echo "<div class='alert alert-danger'>" . $_SESSION["errormsg"] . " </div>";
+                              unset($_SESSION['errormsg']);
+                        }
+                  ?>
                 <table class="table table-striped table-sm">
                     <thead>
                         <tr>
@@ -113,8 +122,7 @@
                                         <td>$productQuantity</td>
                                         <td>$productStatus</td>
                                         <td><button class='btn btn-primary'><a href='edit_product.php?id=$productId'>Edit</a></buton></td>
-                                        <td><button class='btn btn-primary'><a href='edit_product.php?id=$productId'>Details</a></buton></td>
-                                        <td><button class='btn btn-danger'><a href='edit_product.php?id=$productId'>Delete</a></buton></td>
+                                        <td><button class='btn btn-danger'><a href='process/delete_product.php?id=$productId'>Delete</a></buton></td>
                                     </tr>";
                                     $m++;
 

@@ -82,8 +82,16 @@
             <div class="col-md-8">
                 <h3 class="fw-4 mt-3">All customer details</h3>
                 <hr>
-                <!-- <canvas class="my-4 w-100" id="myChart" width="2500" height="180"></canvas> -->
-                <!-- <button class="btn btn-dark mb-5 float-end"><a href="newproduct.php">Edit Customer</a></button> -->
+                 <?php
+                        if(isset($_SESSION["adminfeedback"])){
+                              echo "<div class='alert alert-success'>" . $_SESSION["adminfeedback"]. " </div>";
+                              unset($_SESSION['adminfeedback']);
+                        }
+                        if(isset($_SESSION["errormsg"])){
+                              echo "<div class='alert alert-danger'>" . $_SESSION["errormsg"] . " </div>";
+                              unset($_SESSION['errormsg']);
+                        }
+                  ?>
                 <table class="table table-striped table-sm">
                     <thead>
                         <tr>
@@ -99,7 +107,7 @@
                         <?php
                                 $m =1;
                             foreach($cus as $c){
-                                $id = $c->customer_id;
+                                $customerId = $c->customer_id;
                                 $firstName = $c->first_name;
                                 $lastName = $c->last_name;
                                 $phoneNumber = $c->phone_number;
@@ -110,9 +118,7 @@
                                         <td> $lastName</td>
                                         <td> $phoneNumber</td>
                                         <td>$email</td>
-                                        <td><button class='btn btn-primary'><a href='editcustomer.php?id= $id'>Edit</a></buton></td>
-                                        <td><button class='btn btn-primary'><a href='editcustomer.php?id=$id'>Details</a></buton></td>
-                                        <td><button class='btn btn-danger'><a href='editcustomer.php?id=$id'>Delete</a></buton></td>
+                                        <td><button class='btn btn-danger'><a href='process/delete_customer.php?id= $customerId'>Delete</a></buton></td>
                                     </tr>";
                                     $m++;
                             }

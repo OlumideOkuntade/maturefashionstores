@@ -76,6 +76,21 @@
                 return false;
             }
         }
+          public function deleteCustomerById($customerId):bool{
+            try{
+                $sql = "DELETE FROM customers WHERE customer_id = ?";
+                $stmt = $this->pdo->prepare($sql);
+                $data = $stmt->execute([$customerId]);
+                if($data){
+                        return true;
+                    }else{
+                        return false;
+                }
+            }
+            catch(PDOException $e){
+                return false;
+            }
+        }
        
          
     }

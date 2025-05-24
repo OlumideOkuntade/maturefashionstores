@@ -12,7 +12,6 @@
       }
       $name = $_POST['username'];
       $pass = $_POST['pass'];
-
       if(empty($name)|| empty($pass)){
             $_SESSION['errormsg']="Fields cannot be empty";
            header("Location:../login.php");
