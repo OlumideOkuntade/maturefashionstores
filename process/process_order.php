@@ -18,7 +18,7 @@ $_SESSION['orderId'] = $ordId;
 
 if(isset($_POST["btnorder"])){
   $data = $customerManager->getCustomerById($_SESSION['useronline']);
-  $email = $data['email'];
+  $email = $data->email;
   $ordId = $_SESSION["orderId"];
   $ref = uniqid("REF");
   $_SESSION["ref"] = $ref;

@@ -94,6 +94,18 @@
                 return false;
             }
         }
+        public function PaymentDetailByCustomer($customerId):array|bool{
+            try{
+                $sql = "SELECT * FROM payments JOIN customers ON customers.customer_id= payments.payment_cusid WHERE payment_cusid=? ";
+                $stmt = $this->pdo->prepare($sql);
+                $stmt->execute([$customerId]);
+                $data= $stmt->fetchAll(PDO::FETCH_OBJ);
+                return $data;
+            }
+            catch(PDOException $e){
+                return false;
+            }
+        }
     }
  
 

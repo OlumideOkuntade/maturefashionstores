@@ -8,7 +8,6 @@
     $pdo = (new Db)->connect();
     $customerManager = new CustomerManager($pdo);
     $cus = $customerManager->getAllCustomers();
-
 ?>
 <!DOCTYPE html>
 <html lang="en">

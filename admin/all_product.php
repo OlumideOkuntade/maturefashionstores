@@ -7,9 +7,9 @@
     $pdo = (new Db)->connect();
     $productManager = new \servicemanager\ProductManager($pdo);
     $prod = $productManager->getAllProducts(); 
-
 ?>
 <!DOCTYPE html>
+<html lang="en">
 <html lang="en">
 <head>
     <meta charset="UTF-8">

@@ -18,7 +18,6 @@ session_start();
     $radd = "checked";
   }
   unset($_SESSION['radio']);
- 
 ?>
 
 <div class="row">

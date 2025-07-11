@@ -67,6 +67,7 @@
                                 <ul class="dropdown-menu user-profile" style="border-radius:0px;background-color:white;">
                                     <li><a class="dropdown-item text-dark" href="#">Profile</a></li>
                                     <li><a class="dropdown-item text-dark" href="customer_orders.php">Orders</a></li>
+                                    <li><a class="dropdown-item text-dark" href="payment_status.php">Payment details</a></li>
                                     <li><a class="dropdown-item text-dark" href="logout.php">Logout</a></li>
                                 </ul>
                                 <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-cart-shopping me-4"></i></a>
